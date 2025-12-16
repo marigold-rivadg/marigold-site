@@ -2,5 +2,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 
 git status
 git add .
-git commit -m "rollback - FIX modifica descrizioni servizi ita-eng"
+git commit -m "fix(i18n, mobile): completate traduzioni EN, aggiornati testi servizi e chiusura automatica menu mobile"
 git push
