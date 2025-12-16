@@ -99,7 +99,8 @@
     <a href="#contatti" class="block py-4 px-6 border-b" data-i18n="nav.contact">Contatti</a>
     <a class="block py-4 px-6 text-coral font-bold text-center bg-gray-50 book-direct" data-i18n="cta.bookNowUpper" href="https://marigold.kross.travel/">PRENOTA ORA</a>
     <div class="py-4 px-6 border-t flex items-center gap-2">
-      <span class="text-xs uppercase tracking-[0.15em] text-gray-500">Lingua</span>
+	<span class="text-xs uppercase tracking-[0.15em] text-gray-500"
+			data-i18n="nav.lang">Lingua</span>
       <button id="lang-it-m" class="px-2 py-1 rounded border">IT</button>
       <button id="lang-en-m" class="px-2 py-1 rounded border">EN</button>
     </div>
@@ -403,6 +404,7 @@
     'cookie.text':'Privacy & Cookie: i dati sono trattati per finalità di prenotazione e risposta alle richieste. Informativa completa disponibile nella <a href="#" id="openPrivacyFromBanner" class="text-coral underline">privacy policy</a>. Puoi accettare o rifiutare i cookie non essenziali.',
     'cookie.accept':'Accetta','cookie.decline':'Rifiuta',
     'nav.about':'Chi Siamo','nav.rooms':'Camere','nav.services':'Servizi','nav.distances':'Distanze','nav.gallery':'Galleria','nav.todo':'Cose da fare','nav.contact':'Contatti',
+	'nav.lang':'Lingua',
     'cta.bookNow':'Prenota Ora','cta.bookNowUpper':'PRENOTA ORA','cta.search':'VERIFICA DISPONIBILITÀ',
     'hero.line1':'Sentirsi a casa,','hero.line2':'respirare il Garda.','hero.sub':'Camere rinnovate e la libertà di vivere Riva del Garda al tuo ritmo.',
     'trust.best':'Miglior tariffa garantita','trust.cancel':'Cancellazione flessibile',
@@ -446,6 +448,7 @@
     'cookie.text':'Privacy & Cookies: data is processed only to handle booking requests. Read the full notice in the <a href="#" id="openPrivacyFromBanner" class="text-coral underline">privacy policy</a>. You can accept or decline non-essential cookies.',
     'cookie.accept':'Accept','cookie.decline':'Decline',
     'nav.about':'About','nav.rooms':'Rooms','nav.services':'Amenities','nav.distances':'Distances','nav.gallery':'Gallery','nav.todo':'Things to do','nav.contact':'Contact',
+	'nav.lang':'Language',
     'cta.bookNow':'Book Now','cta.bookNowUpper':'BOOK NOW','cta.search':'CHECK AVAILABILITY',
     'hero.line1':'Feel at home,','hero.line2':'breathe Lake Garda.','hero.sub':'Renovated rooms and the freedom to enjoy Riva del Garda at your own pace.',
     'trust.best':'Best rate guaranteed','trust.cancel':'Flexible cancellation',
@@ -536,6 +539,9 @@
     document.title=(lang==='en'?titles.en:titles.it);
     document.querySelectorAll('.book-direct').forEach(a=>a.href=(lang==='en')?'https://marigold.kross.travel/en':'https://marigold.kross.travel/');
     applyI18n(lang); setDatePlaceholder(lang); initDatepicker(lang); bindPrivacyLinks(); renderRooms(); setMapsLang(lang);
+	// 🔧 FORZA AGGIORNAMENTO TESTI MENU MOBILE
+	applyI18n(lang);
+
   }
 
   // ====== Booking (Layout B) ======
