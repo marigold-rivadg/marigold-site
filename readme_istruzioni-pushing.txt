@@ -2,5 +2,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 
 git status
 git add .
-git commit -m "fix(i18n, mobile): completate traduzioni EN, aggiornati testi servizi e chiusura automatica menu mobile"
+git commit -m "feat(contact): template email bilingue per richieste di contatto"
 git push
