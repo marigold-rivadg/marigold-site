@@ -2,5 +2,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 
 git status
 git add .
-git commit -m "descrizione breve di cosa hai cambiato"
+git commit -m "FIX modifica descrizioni servizi ita-eng"
 git push
