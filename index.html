@@ -46,7 +46,21 @@
 	  .card-img .tx{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:1rem;color:#fff}
 	  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:80}
 	  .modal.active{display:flex}
-	  .svc-ico{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;margin:0 auto 12px;background:#111;color:#fff}
+		/* Mobile: icone più grandi */
+		.svc-ico{
+		  width:72px;
+		  height:72px;
+		  font-size:28px; /* aumenta la dimensione dell'icona FontAwesome */
+		}
+
+		/* Da sm in su (≥640px): torna come prima */
+		@media (min-width: 640px){
+		  .svc-ico{
+			width:56px;
+			height:56px;
+			font-size:20px;
+		  }
+		}
 	  .aspect-3-4{position:relative;width:100%}
 	  .aspect-3-4:before{content:"";display:block;padding-top:133.333%}
 	  .aspect-3-4>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:.75rem}
@@ -195,7 +209,7 @@
 <section id="servizi" class="py-16 bg-white">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-center font-serif text-3xl font-bold tracking-wide mb-12" data-i18n="services.h">I NOSTRI SERVIZI</h2>
-	<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10 text-center">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-14 text-center">
       <div><div class="svc-ico"><i class="fa-solid fa-key"></i></div><h3 class="font-semibold mb-1" data-i18n="services.flex.h">Check-in Flessibile</h3><p class="text-gray-500 italic" data-i18n="services.flex.p">Arriva senza orari rigidi</p></div>
       <div><div class="svc-ico"><i class="fa-solid fa-tree"></i></div><h3 class="font-semibold mb-1" data-i18n="services.garden.h">Giardino</h3><p class="text-gray-500 italic" data-i18n="services.garden.p">Relax all’aria aperta</p></div>
       <div><div class="svc-ico"><i class="fa-solid fa-tv"></i></div><h3 class="font-semibold mb-1" data-i18n="services.tv.h">Smart TV</h3><p class="text-gray-500 italic" data-i18n="services.tv.p">Film e serie on-demand</p></div>
@@ -204,9 +218,8 @@
       <div><div class="svc-ico"><i class="fa-solid fa-square-parking"></i></div><h3 class="font-semibold mb-1" data-i18n="services.parking.h">Parcheggio Gratuito</h3><p class="text-gray-500 italic" data-i18n="services.parking.p">A 50 m dalla struttura</p></div>
       <div><div class="svc-ico"><i class="fa-solid fa-bicycle"></i></div><h3 class="font-semibold mb-1" data-i18n="services.bike.h">Posto bici</h3><p class="text-gray-500 italic" data-i18n="services.bike.p">Al sicuro all’interno</p></div>
       <div><div class="svc-ico"><i class="fa-solid fa-snowflake"></i></div><h3 class="font-semibold mb-1" data-i18n="services.ac.h">Aria condizionata</h3><p class="text-gray-500 italic" data-i18n="services.ac.p">Nuova in tutte le unità</p></div>
-      <div><div class="svc-ico"><i class="fa-solid fa-ear-deaf"></i></div><h3 class="font-semibold mb-1" data-i18n="services.quiet.h">Quiet Zone</h3><p class="text-gray-500 italic" data-i18n="services.quiet.p">Lontano dal traffico</p>
-		<div class="service-item col-span-2 flex justify-center md:col-span-1"></div>
-	  </div>
+      <div><div class="svc-ico"><i class="fa-solid fa-ear-deaf"></i></div><h3 class="font-semibold mb-1" data-i18n="services.quiet.h">Quiet Zone</h3><p class="text-gray-500 italic" data-i18n="services.quiet.p">Lontano dal traffico</p></div>
+    </div>
   </div>
 </section>
 
