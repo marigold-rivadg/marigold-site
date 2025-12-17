@@ -588,10 +588,45 @@
   const roomsList=document.getElementById('roomsList');
   const checkin=document.getElementById('checkin'); const checkout=document.getElementById('checkout');
 
+  // ✅ Keep selections when UI re-renders (e.g., language switch)
+  let bookingState = {
+    inlineAges: [],
+    roomAdults: {},
+    roomChildren: {},
+    roomAges: {}
+  };
+
+  function snapshotBookingState(){
+    const n = parseInt(roomsSel.value || '1', 10);
+
+    if(n === 1){
+      bookingState.inlineAges = Array.from(document.querySelectorAll('[data-inline-age]'))
+        .map(s => parseInt(s.value, 10));
+      return;
+    }
+
+    bookingState.roomAdults = {};
+    bookingState.roomChildren = {};
+    bookingState.roomAges = {};
+
+    for(let r=1; r<=n; r++){
+      const ad = document.querySelector(`[data-room-adults="${r}"]`);
+      const ch = document.querySelector(`[data-room-children="${r}"]`);
+
+      bookingState.roomAdults[r] = ad ? parseInt(ad.value, 10) : 2;
+      bookingState.roomChildren[r] = ch ? parseInt(ch.value, 10) : 0;
+
+      bookingState.roomAges[r] = Array.from(document.querySelectorAll(`[data-room-age^="${r}-"]`))
+        .map(s => parseInt(s.value, 10));
+    }
+  }
+
+
   function makeNumberSelect(min,max,def){ const s=document.createElement('select'); s.className='w-full bg-gray-50 border border-gray-200 rounded p-2'; for(let i=min;i<=max;i++){ const o=document.createElement('option'); o.value=String(i); o.textContent=String(i); if(i===def) o.selected=true; s.appendChild(o);} return s;}
   function makeAgeSelect(def=6){ const s=document.createElement('select'); s.className='w-full bg-gray-50 border border-gray-200 rounded p-2'; for(let i=0;i<=17;i++){ const o=document.createElement('option'); o.value=i; o.textContent=i; if(i===def) o.selected=true; s.appendChild(o);} return s;}
 
   function renderRooms(){
+    snapshotBookingState();
     const n=parseInt(roomsSel.value||'1',10);
     roomsList.classList.toggle('hidden', n===1);
     inlineAgesWrap.classList.toggle('hidden', !(n===1 && parseInt(childrenTot.value||'0',10)>0));
@@ -603,8 +638,8 @@
         const lang=localStorage.getItem('lang')||'it';
         for(let i=0;i<kids;i++){
           const box=document.createElement('div'); box.className='w-[120px]';
-          const label=document.createElement('label'); label.className='text-xs text-gray-500'; label.textContent = (lang==='en'?'Age':'Età')+' '+(i+1);
-          const sel=makeAgeSelect(6); sel.setAttribute('data-inline-age', i);
+          const label=document.createElement('label'); label.className='text-xs text-gray-500'; const agePrefix = (lang==='en' ? 'Child age' : 'Età bambino'); label.textContent = agePrefix+' '+(i+1);
+          const defAge = (bookingState.inlineAges[i] ?? 6); const sel=makeAgeSelect(defAge); sel.setAttribute('data-inline-age', i);
           box.appendChild(label); box.appendChild(sel); inlineAges.appendChild(box);
         }
       }
@@ -616,11 +651,11 @@
         const card=document.createElement('div'); card.className='border border-gray-200 rounded-lg p-3 bg-white mb-3';
         const title=document.createElement('div'); title.className='font-semibold mb-2'; title.textContent=(lang==='en'?'Room':'Camera')+' '+r;
         const grid=document.createElement('div'); grid.className='grid grid-cols-12 gap-2';
-        const adW=document.createElement('div'); adW.className='col-span-6'; const adL=document.createElement('label'); adL.className='text-xs text-gray-500'; adL.textContent=(lang==='en'?'Adults':'Adulti'); const adS=makeNumberSelect(1,4,2); adS.setAttribute('data-room-adults', r); adW.appendChild(adL); adW.appendChild(adS);
-        const chW=document.createElement('div'); chW.className='col-span-6'; const chL=document.createElement('label'); chL.className='text-xs text-gray-500'; chL.textContent=(lang==='en'?'Children':'Bambini'); const chS=makeNumberSelect(0,4,0); chS.setAttribute('data-room-children', r); chW.appendChild(chL); chW.appendChild(chS);
+        const adW=document.createElement('div'); adW.className='col-span-6'; const adL=document.createElement('label'); adL.className='text-xs text-gray-500'; adL.textContent=(lang==='en'?'Adults':'Adulti'); const adS=makeNumberSelect(1,4,(bookingState.roomAdults[r] ?? 2)); adS.setAttribute('data-room-adults', r); adW.appendChild(adL); adW.appendChild(adS);
+        const chW=document.createElement('div'); chW.className='col-span-6'; const chL=document.createElement('label'); chL.className='text-xs text-gray-500'; chL.textContent=(lang==='en'?'Children':'Bambini'); const chS=makeNumberSelect(0,4,(bookingState.roomChildren[r] ?? 0)); chS.setAttribute('data-room-children', r); chW.appendChild(chL); chW.appendChild(chS);
         grid.appendChild(adW); grid.appendChild(chW);
         const agesRow=document.createElement('div'); agesRow.className='col-span-12 flex flex-wrap gap-2 mt-2'; agesRow.setAttribute('data-room-ages', r);
-        function renderAges(){ agesRow.innerHTML=''; const k=parseInt(chS.value||'0',10); for(let i=0;i<k;i++){ const c=document.createElement('div'); c.style.width='120px'; const l=document.createElement('label'); l.className='text-xs text-gray-500'; l.textContent=((lang==='en'?'Age':'Età')+' '+(i+1)); const s=makeAgeSelect(6); s.setAttribute('data-room-age', `${r}-${i}`); c.appendChild(l); c.appendChild(s); agesRow.appendChild(c);} }
+        function renderAges(){ agesRow.innerHTML=''; const k=parseInt(chS.value||'0',10); for(let i=0;i<k;i++){ const c=document.createElement('div'); c.style.width='120px'; const l=document.createElement('label'); l.className='text-xs text-gray-500'; const agePrefix = (lang==='en' ? 'Child age' : 'Età bambino'); l.textContent = agePrefix+' '+(i+1); const defAge = (bookingState.roomAges[r]?.[i] ?? 6); const s=makeAgeSelect(defAge); s.setAttribute('data-room-age', `${r}-${i}`); c.appendChild(l); c.appendChild(s); agesRow.appendChild(c);} }
         chS.addEventListener('change',()=>{ renderAges(); updateTotals(); refreshBookingLinks(); });
         adS.addEventListener('change',()=>{ updateTotals(); refreshBookingLinks(); });
         renderAges(); card.appendChild(title); card.appendChild(grid); card.appendChild(agesRow); roomsList.appendChild(card);
