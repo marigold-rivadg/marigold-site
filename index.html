@@ -536,10 +536,6 @@
 		altFormat:'d/m/Y',
 		allowInput:true,
 		locale,
-		defaultDate: [
-			new Date(),
-			new Date(new Date().setDate(new Date().getDate() + 1))
-					],
       onChange:(d)=>{ if(d.length===2){ const pad=n=>String(n).padStart(2,'0'); const iso=x=>`${x.getFullYear()}-${pad(x.getMonth()+1)}-${pad(x.getDate())}`; checkin.value=iso(d[0]); checkout.value=iso(d[1]); refreshBookingLinks(); } }
     });
   }
