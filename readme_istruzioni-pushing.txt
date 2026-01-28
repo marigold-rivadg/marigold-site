@@ -2,5 +2,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 
 git status
 git add .
-git commit -m "modifica servizio da check-in a cancellazione flessibile"
+git commit -m "modifica descrizione cancellazione flessibile"
 git push
