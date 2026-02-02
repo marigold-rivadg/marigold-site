@@ -782,5 +782,66 @@
   bindMobileNavAutoClose();
   renderRooms();
 </script>
+
+<!-- Google Analytics 4
+     Caricato SOLO dopo accettazione Privacy & Cookie (GDPR compliant)
+     Nessun tracciamento prima del consenso -->
+<script>
+  const GA_ID = 'G-S5F6RK1GEN';
+  const COOKIE_KEY = 'mgd_cookie_consent';
+
+  function loadGA() {
+    if (window.gaLoaded) return;
+    window.gaLoaded = true;
+
+    // Load gtag.js
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    document.head.appendChild(s);
+
+    // Init GA
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+
+    gtag('js', new Date());
+    gtag('config', GA_ID, {
+      anonymize_ip: true
+    });
+  }
+
+  // Accept cookies
+  document.getElementById('cookieAccept')?.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_KEY, 'accepted');
+    loadGA();
+    document.getElementById('cookieBanner').style.display = 'none';
+  });
+
+  // Decline cookies
+  document.getElementById('cookieDecline')?.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_KEY, 'declined');
+    document.getElementById('cookieBanner').style.display = 'none';
+  });
+
+  // Load GA if already accepted
+  if (localStorage.getItem(COOKIE_KEY) === 'accepted') {
+    loadGA();
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+
+  // Example: track booking clicks only if consented
+  document.querySelectorAll('.book-direct').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (localStorage.getItem(COOKIE_KEY) === 'accepted' && window.gtag) {
+        gtag('event', 'book_click', {
+          event_category: 'Booking',
+          event_label: 'Direct booking'
+        });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
