@@ -381,7 +381,9 @@
     <h2 class="font-serif text-3xl font-bold mb-6" data-i18n="contact.h">Contattaci</h2>
     <p class="text-gray-600 mb-8" data-i18n="contact.sub">Preferisci scriverci direttamente? Scegli tu il canale.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a id="emailContact" href="/cdn-cgi/l/email-protection#482a2a25293a212f27242c082f25292124662b2725773b3d2a222d2b3c751a212b20212d3b3c296d7a7821262e273a252932212726216d7a78656d7a7805293a212f27242c6e2a272c31750b2129276d7a7805293a212f27242c6d7a0b6d78096d78091b3c276d7a783e29243d3c29262c276d7a783d266d7a783b272f2f21273a26276d7a782d6d7a783e273a3a2d216d7a783a212b2d3e2d3a2d6d7a7821262e273a25293221272621666d78096d7809656d7a780b202d2b236521266d7b096d7a78171717176d7809656d7a780b202d2b2365273d3c6d7b096d7a78171717176d7809656d7a78063d252d3a276d7a78273b38213c216d7b096d7a78171717176d7809656d7a78063d252d3a276d7a782b29252d3a2d6d7b096d7a78171717176d7809656d7a781a212b20212d3b3c2d6d7a783b382d2b212924216d7b096d7a78171717176d78096d78090f3a2932212d6d7a796d78096d78090627252d6d7b096d7a78171717176d78091c2d242d2e2726276d7a786027383221272629242d616d7b096d7a7817171717" class="px-6 py-3 rounded-full btn-grad text-white font-bold lift">
+      <a id="emailContact"
+         href="mailto:bbmarigold@gmail.com?subject=Richiesta%20informazioni%20-%20Marigold&body=Ciao%20Marigold%2C%0A%0ASto%20valutando%20un%20soggiorno%20e%20vorrei%20ricevere%20informazioni.%0A%0A-%20Check-in%3A%20____%0A-%20Check-out%3A%20____%0A-%20Numero%20ospiti%3A%20____%0A-%20Numero%20camere%3A%20____%0A-%20Richieste%20speciali%3A%20____%0A%0AGrazie%21%0A%0ANome%3A%20____%0ATelefono%20(opzionale)%3A%20____"
+         class="px-6 py-3 rounded-full btn-grad text-white font-bold lift">
         <i class="fa-solid fa-envelope-open-text mr-2"></i><span data-i18n="contact.mail">Scrivici via email</span>
       </a>
 
@@ -425,7 +427,7 @@
       <p class="text-sm leading-6">
         <a class="hover:text-white" href="tel:+393933795105">+39 393 3795 105</a><br>
         <a class="hover:text-white" href="tel:+393926232219">+39 392 6232 219</a><br>
-        <a class="hover:text-white underline" href="/cdn-cgi/l/email-protection#5133333c302338363e3d3511363c30383d7f323e3c"><span class="__cf_email__" data-cfemail="e587878884978c828a8981a58288848c89cb868a88">[email&#160;protected]</span></a>
+        <a class="hover:text-white underline" href="mailto:bbmarigold@gmail.com">bbmarigold@gmail.com</a>
       </p>
     </div>
     <div>
@@ -451,12 +453,12 @@
       <p data-i18n="policy.p1"><strong>Di cosa si tratta?</strong> Quando ci scrivi, ci invii alcune informazioni su di te: nome, email e il tuo messaggio. Usiamo questi dati solo per risponderti e per gestire eventuali comunicazioni legate alla prenotazione.</p>
       <p data-i18n="policy.p2"><strong>Chi custodisce i tuoi dati?</strong> Marigold. Li teniamo al sicuro e non li cediamo, vendiamo o abbandoniamo.</p>
       <p data-i18n="policy.p3"><strong>Perché li usiamo?</strong> Per risponderti, darti informazioni e aiutarti prima/dopo una prenotazione. Niente newsletter e niente spam.</p>
-      <p data-i18n="policy.p4"><strong>Vuoi cancellarli?</strong> Scrivi a <a href="/cdn-cgi/l/email-protection#7614141b17041f11191a1236111b171f1a5815191b" class="underline"><span class="__cf_email__" data-cfemail="5a3838373b28333d35363e1a3d373b333674393537">[email&#160;protected]</span></a>.</p>
+      <p data-i18n="policy.p4"><strong>Vuoi cancellarli?</strong> Scrivi a <a href="mailto:bbmarigold@gmail.com" class="underline">bbmarigold@gmail.com</a>.</p>
     </div>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
   // Mobile menu
   document.getElementById('mobile-menu-btn')?.addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('hidden'));
@@ -586,8 +588,7 @@
 		dateFormat:'Y-m-d',
 		altInput:true,
 		altFormat:'d/m/Y',
-		allowInput:false,
-		disableMobile:true,
+		allowInput:true,
 		locale,
       onChange:(d)=>{ if(d.length===2){ const pad=n=>String(n).padStart(2,'0'); const iso=x=>`${x.getFullYear()}-${pad(x.getMonth()+1)}-${pad(x.getDate())}`; checkin.value=iso(d[0]); checkout.value=iso(d[1]); refreshBookingLinks(); } }
     });
@@ -883,4 +884,29 @@
   });
 
   // Decline cookies
-  doc
+  document.getElementById('cookieDecline')?.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_KEY, 'declined');
+    document.getElementById('cookieBanner').style.display = 'none';
+  });
+
+  // Load GA if already accepted
+  if (localStorage.getItem(COOKIE_KEY) === 'accepted') {
+    loadGA();
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+
+  // Example: track booking clicks only if consented
+  document.querySelectorAll('.book-direct').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (localStorage.getItem(COOKIE_KEY) === 'accepted' && window.gtag) {
+        gtag('event', 'book_click', {
+          event_category: 'Booking',
+          event_label: 'Direct booking'
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
