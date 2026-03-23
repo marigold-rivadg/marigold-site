@@ -2,5 +2,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 
 git status
 git add .
-git commit -m "fix: sostituito link email offuscato da Cloudflare con mailto diretto"
+git commit -m "rollback 20260318"
 git push
