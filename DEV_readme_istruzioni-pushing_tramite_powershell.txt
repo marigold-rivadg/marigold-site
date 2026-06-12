@@ -3,5 +3,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 git checkout dev
 git status
 git add .
-git commit -m "test dev v_0.03"
+git commit -m "allineamento DEV a PROD"
 git push
