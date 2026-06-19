@@ -142,15 +142,16 @@
 	  [data-reveal-group].is-visible > *{transition-delay:calc(var(--i,0) * 85ms)}
 
 	  /* ===== Hero ===== */
-	  .hero-bg{position:relative;overflow:hidden}
-	  .hero-bg::before{content:"";position:absolute;inset:0;z-index:0;
+	  .hero-bg{position:relative}                 /* no overflow clip on the header */
+	  .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden} /* only the background is clipped */
+	  .hero-media::before{content:"";position:absolute;inset:0;
 	    background:url('/assets/hero/facciata-marigold.jpg') center/cover no-repeat;
 	    transform:scale(1.12);animation:heroZoom 22s var(--ease) infinite alternate}
-	  .hero-bg::after{content:"";position:absolute;inset:0;z-index:1;
+	  .hero-media::after{content:"";position:absolute;inset:0;
 	    background:
 	      radial-gradient(80vw 60vh at 78% 6%, rgba(245,182,95,.30), transparent 55%),
 	      linear-gradient(180deg, rgba(36,20,12,.32) 0%, rgba(30,16,10,.40) 45%, rgba(22,12,8,.70) 100%)}
-	  .hero-bg > *{position:relative;z-index:2}
+	  .hero-content{position:relative;z-index:2}
 	  @keyframes heroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
 	  .hero-accent{font-style:italic;color:#fff}
 
@@ -190,9 +191,17 @@
 	  .flatpickr-day.inRange{background:rgba(255,174,163,.25);color:var(--ink)}
 	  .flatpickr-day.today{border:2px solid var(--coral)}
 
+	  /* Fit the elegant calendar inside small screens (no horizontal cropping) */
+	  @media (max-width:480px){
+	    .flatpickr-calendar{width:auto!important;max-width:calc(100vw - 20px)}
+	    .flatpickr-rContainer,.flatpickr-weekdaycontainer,.flatpickr-weekdays,.flatpickr-days{width:100%!important}
+	    .flatpickr-days .dayContainer{width:100%!important;min-width:0!important;max-width:none!important}
+	    .flatpickr-day{max-width:14.2857%;height:40px;line-height:39px}
+	  }
+
 	  /* ===== Reduced motion ===== */
 	  @media (prefers-reduced-motion: reduce){
-	    .hero-bg::before{animation:none;transform:scale(1.04)}
+	    .hero-media::before{animation:none;transform:scale(1.04)}
 	    .hero-content > *{animation:none;opacity:1;transform:none}
 	    [data-reveal],[data-reveal-group] > *{opacity:1!important;transform:none!important;transition:none!important}
 	    .btn-grad::after{display:none}
@@ -260,6 +269,7 @@
 </nav>
 
 <header class="relative min-h-[78vh] flex items-center justify-center hero-bg">
+  <div class="hero-media" aria-hidden="true"></div>
   <div class="hero-content text-center px-4 max-w-5xl mx-auto mt-10">
     <h1 class="font-serif text-5xl md:text-7xl text-white font-bold mb-6 leading-tight drop-shadow-lg">
       <span data-i18n="hero.line1">Sentirsi a casa,</span><br><span class="hero-accent" data-i18n="hero.line2">respirare il Garda.</span>
