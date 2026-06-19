@@ -62,11 +62,9 @@
 	  .title-left.title-accent::after{margin-left:0;margin-right:0}
 
 	  /* ===== Navbar ===== */
-	  #siteNav{transition:background .35s var(--ease),box-shadow .35s var(--ease),backdrop-filter .35s var(--ease)}
+	  #siteNav{transition:background .35s var(--ease),box-shadow .35s var(--ease)}
 	  #siteNav{background:rgba(255,253,250,.72)}
 	  #siteNav.nav-scrolled{background:rgba(255,253,250,.94);box-shadow:0 10px 30px -18px rgba(120,72,48,.45)}
-	  #siteNav.nav-scrolled .h-20{height:4.25rem}
-	  .h-20{transition:height .35s var(--ease)}
 	  .nav-link{position:relative;padding-bottom:3px;transition:color .25s var(--ease)}
 	  .nav-link::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
 	    background:var(--grad-coral);border-radius:999px;transform:scaleX(0);transform-origin:left;
@@ -1020,10 +1018,15 @@
       targets.forEach(t=>io.observe(t));
     }
 
-    // navbar solid-on-scroll
+    // navbar solid-on-scroll (hysteresis: dead zone 20–60px avoids flicker)
     const nav = document.getElementById('siteNav');
     if(nav){
-      const onScroll = ()=> nav.classList.toggle('nav-scrolled', window.scrollY > 8);
+      let scrolled = false;
+      const onScroll = ()=>{
+        const y = window.scrollY;
+        if(!scrolled && y > 60){ scrolled = true; nav.classList.add('nav-scrolled'); }
+        else if(scrolled && y < 20){ scrolled = false; nav.classList.remove('nav-scrolled'); }
+      };
       onScroll();
       window.addEventListener('scroll', onScroll, { passive:true });
     }
