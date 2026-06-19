@@ -14,14 +14,14 @@
     tailwind.config = {
       theme:{
         extend:{
-          colors:{ coral:'#ffaea3', coralDeep:'#ff8a76', gold:'#f5b65f', dark:'#2e2a27', offwhite:'#FAF7F1', sage:'#84A98C', sageDeep:'#5f8268' },
+          colors:{ coral:'#ffaea3', dark:'#333', offwhite:'#FAFAF9', sage:'#84A98C' },
           fontFamily:{ serif:['Playfair Display','serif'], sans:['Lato','system-ui','sans-serif'] }
         }
       }
     }
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -31,172 +31,93 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
 	<style>
-	  :root{
-	    --coral:#ffaea3; --coral-deep:#ff8a76; --coral-deeper:#f4715a;
-	    --gold:#f5b65f; --sage:#84A98C; --sage-deep:#5f8268;
-	    --ink:#2e2a27; --ink-soft:#7a716a; --cream:#FAF7F1; --line:rgba(46,42,39,.10);
-	    --grad-coral:linear-gradient(120deg,#ffb3a8 0%,#ff8d79 52%,#f56a4f 100%);
-	    --shadow-soft:0 14px 36px -18px rgba(120,72,48,.30);
-	    --shadow-lift:0 26px 50px -22px rgba(120,68,42,.40);
-	    --ease:cubic-bezier(.16,1,.3,1);
+	  html{scroll-behavior:smooth}
+	  .hero-bg{background-image:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.55)),url('/assets/hero/facciata-marigold.jpg');background-size:cover;background-position:center}
+	  .btn-grad{background:linear-gradient(90deg,#ffaea3 0%,#ff998c 100%)}
+	  .lift{transition:transform .2s,box-shadow .2s}
+	  .lift:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(0,0,0,.12)}
+	  .card-img{position:relative;overflow:hidden;border-radius:.9rem}
+	  .card-img img{width:100%;height:220px;object-fit:cover}
+	  .card-img .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.6))}
+	  .card-img .tx{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:1rem;color:#fff}
+	  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:80}
+	  .modal.active{display:flex}
+	  .svc-ico{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;margin:0 auto 12px;background:#111;color:#fff}
+	  .aspect-3-4{position:relative;width:100%}
+	  .aspect-3-4:before{content:"";display:block;padding-top:133.333%}
+	  .aspect-3-4>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:.75rem}
+
+	  /* ===== Swiper override (frecce + puntini bianchi) ===== */
+	  .swiper-button-next,
+	  .swiper-button-prev { color:#ffffff; }
+
+	  .swiper-pagination-bullet { background-color:rgba(255,255,255,0.5); opacity:1; }
+
+	  .swiper-pagination-bullet-active { background-color:#ffffff; }
+	  
+	/* ===== Flatpickr Custom Design – Marigold Elegant ===== */
+
+	  .flatpickr-calendar {
+		border: none;
+		border-radius: 1rem;
+		box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+		overflow: hidden;
 	  }
 
-	  html{scroll-behavior:smooth}
-	  body{color:var(--ink);-webkit-font-smoothing:antialiased}
-	  ::selection{background:rgba(255,174,163,.40);color:var(--ink)}
+	  /* Header con il tuo colore */
+	  .flatpickr-months {
+		background: linear-gradient(90deg,#ffaea3 0%,#ff998c 100%);
+		color: #fff;
+	  }
 
-	  /* Warm ambient depth */
-	  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-	    background:
-	      radial-gradient(60vw 40vh at 82% -8%, rgba(245,182,95,.10), transparent 60%),
-	      radial-gradient(48vw 38vh at -6% 12%, rgba(255,174,163,.10), transparent 60%);}
-	  body > *{position:relative;z-index:1}
+	  .flatpickr-current-month {
+		font-weight: 600;
+		font-size: 1rem;
+	  }
 
-	  .font-serif{letter-spacing:-.015em}
+	  .flatpickr-prev-month,
+	  .flatpickr-next-month {
+		fill: #fff;
+	  }
 
-	  /* ===== Section eyebrow + accent rule ===== */
-	  .eyebrow{position:relative}
-	  .title-accent{position:relative;padding-bottom:.65rem}
-	  .title-accent::after{content:"";display:block;width:64px;height:3px;margin:.85rem auto 0;
-	    border-radius:999px;background:var(--grad-coral)}
-	  .title-left.title-accent::after{margin-left:0;margin-right:0}
+	  /* Giorni settimana */
+	  .flatpickr-weekdays {
+		background: #fafaf9;
+	  }
 
-	  /* ===== Navbar ===== */
-	  #siteNav{transition:background .35s var(--ease),box-shadow .35s var(--ease),backdrop-filter .35s var(--ease)}
-	  #siteNav{background:rgba(255,253,250,.72)}
-	  #siteNav.nav-scrolled{background:rgba(255,253,250,.94);box-shadow:0 10px 30px -18px rgba(120,72,48,.45)}
-	  #siteNav.nav-scrolled .h-20{height:4.25rem}
-	  .h-20{transition:height .35s var(--ease)}
-	  .nav-link{position:relative;padding-bottom:3px;transition:color .25s var(--ease)}
-	  .nav-link::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
-	    background:var(--grad-coral);border-radius:999px;transform:scaleX(0);transform-origin:left;
-	    transition:transform .3s var(--ease)}
-	  .nav-link:hover::after{transform:scaleX(1)}
-	  #lang-it,#lang-en,#lang-it-m,#lang-en-m{transition:all .2s var(--ease)}
-	  #lang-it:hover,#lang-en:hover,#lang-it-m:hover,#lang-en-m:hover{border-color:var(--coral);color:var(--coral-deeper)}
+	  .flatpickr-weekday {
+		color: #999;
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	  }
 
-	  /* ===== Buttons ===== */
-	  .btn-grad{background:var(--grad-coral);position:relative;overflow:hidden;isolation:isolate;
-	    box-shadow:0 12px 26px -12px rgba(244,113,90,.6)}
-	  .btn-grad::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;
-	    background:linear-gradient(120deg,#ff9d8a 0%,#f4715a 100%);transition:opacity .3s var(--ease)}
-	  .btn-grad:hover::before{opacity:1}
-	  .btn-grad::after{content:"";position:absolute;top:0;left:-120%;width:55%;height:100%;
-	    background:linear-gradient(110deg,transparent,rgba(255,255,255,.55),transparent);
-	    transform:skewX(-18deg);transition:left .6s var(--ease)}
-	  .btn-grad:hover::after{left:160%}
+	  /* Giorni */
+	  .flatpickr-day {
+		border-radius: 999px;
+		transition: all 0.2s ease;
+	  }
 
-	  /* ===== Lift / cards ===== */
-	  .lift{transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-	  .lift:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+	  .flatpickr-day:hover {
+		background: #ffaea3;
+		color: #fff;
+	  }
 
-	  .card-img{position:relative;overflow:hidden;border-radius:1.1rem;box-shadow:var(--shadow-soft)}
-	  .card-img img{width:100%;height:230px;object-fit:cover;transition:transform .7s var(--ease)}
-	  .card-img:hover img{transform:scale(1.08)}
-	  .card-img .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,12,8,.05) 0%,rgba(20,12,8,.35) 55%,rgba(20,12,8,.74) 100%)}
-	  .card-img .tx{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:1.25rem;color:#fff}
-	  .card-img .tx .text-3xl span,.card-img .tx{transition:transform .4s var(--ease)}
-	  .card-img:hover .tx{transform:translateY(-3px)}
+	  .flatpickr-day.selected,
+	  .flatpickr-day.startRange,
+	  .flatpickr-day.endRange {
+		background: #333;
+		color: #fff;
+		border-color: #333;
+	  }
 
-	  /* ===== Modal ===== */
-	  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(28,18,12,.55);backdrop-filter:blur(6px);z-index:80}
-	  .modal.active{display:flex;animation:modalIn .4s var(--ease)}
-	  @keyframes modalIn{from{opacity:0}to{opacity:1}}
+	  .flatpickr-day.inRange {
+		background: rgba(255,174,163,0.25);
+		color: #333;
+	  }
 
-	  /* ===== Service icons ===== */
-	  .svc-ico{width:64px;height:64px;border-radius:999px;display:grid;place-items:center;margin:0 auto 14px;
-	    background:#fff;color:var(--coral-deeper);font-size:1.25rem;
-	    box-shadow:0 10px 24px -12px rgba(120,72,48,.4),inset 0 0 0 1px rgba(255,174,163,.55);
-	    transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .4s var(--ease),color .4s var(--ease)}
-	  #servizi .grid > div{transition:transform .4s var(--ease)}
-	  #servizi .grid > div:hover{transform:translateY(-4px)}
-	  #servizi .grid > div:hover .svc-ico{background:var(--grad-coral);color:#fff;transform:translateY(-2px) scale(1.06);
-	    box-shadow:0 18px 34px -14px rgba(244,113,90,.65)}
-
-	  /* ===== Aspect 3:4 (todo cards) ===== */
-	  .aspect-3-4{position:relative;width:100%;overflow:hidden;border-radius:.85rem}
-	  .aspect-3-4:before{content:"";display:block;padding-top:133.333%}
-	  .aspect-3-4>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:.85rem;transition:transform .7s var(--ease)}
-	  .lift:hover .aspect-3-4>img{transform:scale(1.07)}
-
-	  /* ===== Booking card ===== */
-	  .booking-card{position:relative;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);
-	    border:1px solid rgba(255,255,255,.7);border-radius:1.25rem;
-	    box-shadow:0 40px 80px -30px rgba(60,30,18,.55)}
-	  .booking-card::before{content:"";position:absolute;left:1.25rem;right:1.25rem;top:0;height:3px;border-radius:999px;
-	    background:var(--grad-coral);opacity:.9}
-	  .booking-card input,.booking-card select{transition:border-color .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
-	  .booking-card input:focus,.booking-card select:focus{border-color:var(--coral);
-	    box-shadow:0 0 0 3px rgba(255,174,163,.32);background:#fff;outline:none}
-
-	  /* ===== Room cards ===== */
-	  .price-pill{display:inline-flex;align-items:baseline;gap:.25rem;padding:.2rem .65rem;border-radius:999px;
-	    background:rgba(255,174,163,.16);color:var(--coral-deeper);font-weight:700;white-space:nowrap}
-	  .room-cta{transition:background .3s var(--ease),box-shadow .3s var(--ease),transform .3s var(--ease)}
-	  .room-cta:hover{box-shadow:0 14px 26px -12px rgba(244,113,90,.6)}
-
-	  /* ===== Scroll reveal ===== */
-	  [data-reveal],[data-reveal-group] > *{opacity:0;transform:translateY(26px);
-	    transition:opacity .8s var(--ease),transform .8s var(--ease)}
-	  [data-reveal].is-visible,[data-reveal-group].is-visible > *{opacity:1;transform:none}
-	  [data-reveal-group].is-visible > *{transition-delay:calc(var(--i,0) * 85ms)}
-
-	  /* ===== Hero ===== */
-	  .hero-bg{position:relative;overflow:hidden}
-	  .hero-bg::before{content:"";position:absolute;inset:0;z-index:0;
-	    background:url('/assets/hero/facciata-marigold.jpg') center/cover no-repeat;
-	    transform:scale(1.12);animation:heroZoom 22s var(--ease) infinite alternate}
-	  .hero-bg::after{content:"";position:absolute;inset:0;z-index:1;
-	    background:
-	      radial-gradient(80vw 60vh at 78% 6%, rgba(245,182,95,.30), transparent 55%),
-	      linear-gradient(180deg, rgba(36,20,12,.32) 0%, rgba(30,16,10,.40) 45%, rgba(22,12,8,.70) 100%)}
-	  .hero-bg > *{position:relative;z-index:2}
-	  @keyframes heroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
-	  .hero-accent{font-style:italic;color:#fff}
-
-	  /* Hero entrance */
-	  .hero-content > *{opacity:0;transform:translateY(28px);animation:heroUp .9s var(--ease) forwards}
-	  .hero-content > *:nth-child(1){animation-delay:.15s}
-	  .hero-content > *:nth-child(2){animation-delay:.32s}
-	  .hero-content > *:nth-child(3){animation-delay:.5s}
-	  @keyframes heroUp{to{opacity:1;transform:none}}
-
-	  /* ===== Map / visit panel ===== */
-	  #directionsLink{transition:gap .25s var(--ease),color .25s var(--ease)}
-
-	  /* ===== Footer ===== */
-	  footer a[aria-label]{transition:transform .3s var(--ease),background .3s var(--ease)}
-	  footer a[aria-label]:hover{transform:translateY(-3px)}
-
-	  /* ===== Swiper override ===== */
-	  .mySwiper{border-radius:1.25rem;box-shadow:var(--shadow-soft)}
-	  .swiper-button-next,.swiper-button-prev{color:#fff;background:rgba(28,18,12,.32);backdrop-filter:blur(4px);
-	    width:46px;height:46px;border-radius:999px;transition:background .25s var(--ease)}
-	  .swiper-button-next:hover,.swiper-button-prev:hover{background:rgba(244,113,90,.85)}
-	  .swiper-button-next:after,.swiper-button-prev:after{font-size:18px;font-weight:700}
-	  .swiper-pagination-bullet{background-color:rgba(255,255,255,.55);opacity:1;transition:width .25s var(--ease)}
-	  .swiper-pagination-bullet-active{background-color:#fff;width:24px;border-radius:999px}
-
-	  /* ===== Flatpickr ===== */
-	  .flatpickr-calendar{border:none;border-radius:1rem;box-shadow:0 24px 50px rgba(60,30,18,.22);overflow:hidden}
-	  .flatpickr-months{background:var(--grad-coral);color:#fff}
-	  .flatpickr-current-month{font-weight:700;font-size:1rem}
-	  .flatpickr-prev-month,.flatpickr-next-month{fill:#fff}
-	  .flatpickr-weekdays{background:var(--cream)}
-	  .flatpickr-weekday{color:#a89e96;font-size:.75rem;text-transform:uppercase;letter-spacing:1px}
-	  .flatpickr-day{border-radius:999px;transition:all .2s var(--ease)}
-	  .flatpickr-day:hover{background:var(--coral);color:#fff}
-	  .flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:var(--ink);color:#fff;border-color:var(--ink)}
-	  .flatpickr-day.inRange{background:rgba(255,174,163,.25);color:var(--ink)}
-	  .flatpickr-day.today{border:2px solid var(--coral)}
-
-	  /* ===== Reduced motion ===== */
-	  @media (prefers-reduced-motion: reduce){
-	    .hero-bg::before{animation:none;transform:scale(1.04)}
-	    .hero-content > *{animation:none;opacity:1;transform:none}
-	    [data-reveal],[data-reveal-group] > *{opacity:1!important;transform:none!important;transition:none!important}
-	    .btn-grad::after{display:none}
-	    html{scroll-behavior:auto}
+	  .flatpickr-day.today {
+		border: 2px solid #ffaea3;
 	  }
 	</style>
 </head>
@@ -215,7 +136,7 @@
   </div>
 </div>
 
-<nav id="siteNav" class="sticky top-0 w-full z-50 backdrop-blur shadow-sm">
+<nav class="sticky top-0 w-full z-50 bg-white/90 backdrop-blur shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
       <div class="flex items-center gap-3">
@@ -226,13 +147,13 @@
         </div>
       </div>
       <div class="hidden md:flex items-center space-x-6 text-sm font-bold uppercase tracking-wider">
-        <a href="#chi-siamo" class="nav-link hover:text-coral" data-i18n="nav.about">Chi Siamo</a>
-        <a href="#camere" class="nav-link hover:text-coral" data-i18n="nav.rooms">Camere</a>
-        <a href="#servizi" class="nav-link hover:text-coral" data-i18n="nav.services">Servizi</a>
-        <a href="#distanze" class="nav-link hover:text-coral" data-i18n="nav.distances">Distanze</a>
-        <a href="#galleria" class="nav-link hover:text-coral" data-i18n="nav.gallery">Galleria</a>
-        <a href="#da-fare" class="nav-link hover:text-coral" data-i18n="nav.todo">Cose da fare</a>
-        <a href="#contatti" class="nav-link hover:text-coral" data-i18n="nav.contact">Contatti</a>
+        <a href="#chi-siamo" class="hover:text-coral" data-i18n="nav.about">Chi Siamo</a>
+        <a href="#camere" class="hover:text-coral" data-i18n="nav.rooms">Camere</a>
+        <a href="#servizi" class="hover:text-coral" data-i18n="nav.services">Servizi</a>
+        <a href="#distanze" class="hover:text-coral" data-i18n="nav.distances">Distanze</a>
+        <a href="#galleria" class="hover:text-coral" data-i18n="nav.gallery">Galleria</a>
+        <a href="#da-fare" class="hover:text-coral" data-i18n="nav.todo">Cose da fare</a>
+        <a href="#contatti" class="hover:text-coral" data-i18n="nav.contact">Contatti</a>
         <a class="btn-grad lift text-white px-6 py-3 rounded-full shadow-md transition book-direct" data-i18n="cta.bookNow" href="https://marigold.kross.travel/">Prenota Ora</a>
         <div class="ml-2 flex gap-2 items-center text-xs normal-case">
           <button id="lang-it" class="px-2 py-1 rounded border">IT</button>
@@ -260,15 +181,15 @@
 </nav>
 
 <header class="relative min-h-[78vh] flex items-center justify-center hero-bg">
-  <div class="hero-content text-center px-4 max-w-5xl mx-auto mt-10">
+  <div class="text-center px-4 max-w-5xl mx-auto mt-10">
     <h1 class="font-serif text-5xl md:text-7xl text-white font-bold mb-6 leading-tight drop-shadow-lg">
-      <span data-i18n="hero.line1">Sentirsi a casa,</span><br><span class="hero-accent" data-i18n="hero.line2">respirare il Garda.</span>
+      <span data-i18n="hero.line1">Sentirsi a casa,</span><br><span data-i18n="hero.line2">respirare il Garda.</span>
     </h1>
     <p class="text-white/95 text-lg md:text-2xl mb-10 font-light drop-shadow max-w-2xl mx-auto" data-i18n="hero.sub">
       Camere rinnovate e la libertà di vivere Riva del Garda al tuo ritmo.
     </p>
 
-    <div class="booking-card p-6 max-w-5xl mx-auto -mb-28">
+    <div class="bg-white/95 backdrop-blur p-6 rounded-xl shadow-2xl max-w-5xl mx-auto -mb-28 border border-gray-100">
       <form class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end" onsubmit="return false;">
         <div class="md:col-span-4 text-left">
           <label class="block text-xs font-bold text-gray-400 uppercase mb-1" data-i18n="form.date">Date</label>
@@ -314,11 +235,11 @@
 </header>
 
 <section id="chi-siamo" class="pt-48 pb-14 px-4">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center" data-reveal-group>
-    <div><img src="/assets/about/camera.jpg" alt="Camera Marigold" class="rounded-2xl shadow-xl w-full"></div>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div><img src="/assets/about/camera.jpg" alt="Camera Marigold" class="rounded-lg shadow-xl"></div>
     <div>
-      <span class="eyebrow text-coral font-bold uppercase tracking-widest text-sm mb-2 block" data-i18n="about.kicker">La Nostra Storia</span>
-      <h2 class="font-serif text-4xl font-bold text-dark mb-6 title-left title-accent" data-i18n="about.h">Benvenuti al Marigold.</h2>
+      <span class="text-coral font-bold uppercase tracking-widest text-sm mb-2 block" data-i18n="about.kicker">La Nostra Storia</span>
+      <h2 class="font-serif text-4xl font-bold text-dark mb-6" data-i18n="about.h">Benvenuti al Marigold.</h2>
       <p class="text-gray-600 mb-6 leading-relaxed" data-i18n="about.p1">Ristrutturato con cura nel 2018, in Via dell'Albola, un quartiere silenzioso ma strategico. Rifugio ideale a due passi dal centro.</p>
       <p class="text-gray-600" data-i18n="about.p2">Accoglienza familiare e attenzione all'ambiente grazie all'impianto fotovoltaico. Parcheggio gratuito a 50 m.</p>
     </div>
@@ -327,8 +248,8 @@
 
 <section id="servizi" class="py-16 bg-white">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-center font-serif text-3xl font-bold tracking-wide mb-12 title-accent" data-i18n="services.h">I NOSTRI SERVIZI</h2>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-14 text-center" data-reveal-group>
+    <h2 class="text-center font-serif text-3xl font-bold tracking-wide mb-12" data-i18n="services.h">I NOSTRI SERVIZI</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-14 text-center">
       
       <div>
         <div class="svc-ico"><i class="fa-solid fa-calendar-check"></i></div>
@@ -351,7 +272,7 @@
 <section id="distanze" class="py-12 px-4">
   <div class="max-w-6xl mx-auto">
     <h3 class="text-center text-2xl font-semibold text-gray-700 mb-6" data-i18n="dist.h">Distano a piedi:</h3>
-    <div class="grid md:grid-cols-3 gap-6" data-reveal-group>
+    <div class="grid md:grid-cols-3 gap-6">
       <div class="card-img lift"><img src="/assets/distanze/bus.jpg" alt="Autostazione"><div class="ov"></div><div class="tx"><div class="text-sm opacity-90" data-i18n="visit.bus">Autostazione</div><div class="text-3xl font-serif font-bold">5 <span class="text-xl">min</span> →</div></div></div>
       <div class="card-img lift"><img src="/assets/distanze/centro-storico.jpg" alt="Centro"><div class="ov"></div><div class="tx"><div class="text-sm opacity-90" data-i18n="visit.center">Centro storico</div><div class="text-3xl font-serif font-bold">10 <span class="text-xl">min</span> →</div></div></div>
       <div class="card-img lift"><img src="/assets/distanze/spiaggia.jpg" alt="Spiaggia"><div class="ov"></div><div class="tx"><div class="text-sm opacity-90" data-i18n="visit.beach">Spiaggia</div><div class="text-3xl font-serif font-bold">15 <span class="text-xl">min</span> →</div></div></div>
@@ -362,56 +283,56 @@
 <section id="camere" class="py-20 bg-white">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-12">
-      <h2 class="font-serif text-4xl text-dark font-bold mb-4 title-accent" data-i18n="rooms.h">Le Nostre Camere</h2>
+      <h2 class="font-serif text-4xl text-dark font-bold mb-4" data-i18n="rooms.h">Le Nostre Camere</h2>
       <p class="text-gray-500" data-i18n="rooms.sub">Design moderno, luce naturale e comfort totale.</p>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-      <article class="bg-offwhite rounded-2xl overflow-hidden shadow-lg group lift">
+      <article class="bg-offwhite rounded-xl overflow-hidden shadow-lg group lift">
         <div class="h-48 overflow-hidden"><img src="/assets/rooms/standard.jpg" class="w-full h-full object-cover group-hover:scale-110 transition" alt="Camera Standard"></div>
         <div class="p-6">
           <div class="flex justify-between items-baseline mb-2">
             <h3 class="font-serif text-xl font-bold" data-i18n="rooms.std.name">Standard</h3>
-            <span class="price-pill"><span data-i18n="rooms.from">da</span> €69</span>
+            <span class="text-coral font-bold"><span data-i18n="rooms.from">da</span> €69</span>
           </div>
           <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide" data-i18n="rooms.std.meta">2 Adulti · 22 m² · Bagno privato</p>
-          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded-lg room-cta hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
+          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
         </div>
       </article>
 
-      <article class="bg-offwhite rounded-2xl overflow-hidden shadow-lg group lift">
+      <article class="bg-offwhite rounded-xl overflow-hidden shadow-lg group lift">
         <div class="h-48 overflow-hidden"><img src="/assets/rooms/deluxe.jpg" class="w-full h-full object-cover group-hover:scale-110 transition" alt="Camera Deluxe"></div>
         <div class="p-6">
           <div class="flex justify-between items-baseline mb-2">
             <h3 class="font-serif text-xl font-bold" data-i18n="rooms.del.name">Deluxe</h3>
-            <span class="price-pill"><span data-i18n="rooms.from">da</span> €70</span>
+            <span class="text-coral font-bold"><span data-i18n="rooms.from">da</span> €70</span>
           </div>
           <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide" data-i18n="rooms.del.meta">2 Adulti · 22 m² · Balcone</p>
-          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded-lg room-cta hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
+          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
         </div>
       </article>
 
-      <article class="bg-offwhite rounded-2xl overflow-hidden shadow-lg group lift">
+      <article class="bg-offwhite rounded-xl overflow-hidden shadow-lg group lift">
         <div class="h-48 overflow-hidden"><img src="/assets/rooms/junior-suite.jpg" class="w-full h-full object-cover group-hover:scale-110 transition" alt="Junior Suite"></div>
         <div class="p-6">
           <div class="flex justify-between items-baseline mb-2">
             <h3 class="font-serif text-xl font-bold" data-i18n="rooms.js.name">Junior Suite</h3>
-            <span class="price-pill"><span data-i18n="rooms.from">da</span> €72</span>
+            <span class="text-coral font-bold"><span data-i18n="rooms.from">da</span> €72</span>
           </div>
           <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide" data-i18n="rooms.js.meta">Fino a 4 Ospiti · 40 m² · Cucina · Vista</p>
-          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded-lg room-cta hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
+          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
         </div>
       </article>
 
-      <article class="bg-offwhite rounded-2xl overflow-hidden shadow-lg group lift">
+      <article class="bg-offwhite rounded-xl overflow-hidden shadow-lg group lift">
         <div class="h-48 overflow-hidden"><img src="/assets/rooms/monolocale.jpg" class="w-full h-full object-cover group-hover:scale-110 transition" alt="Monolocale"></div>
         <div class="p-6">
           <div class="flex justify-between items-baseline mb-2">
             <h3 class="font-serif text-xl font-bold" data-i18n="rooms.st.name">Studio</h3>
-            <span class="price-pill"><span data-i18n="rooms.from">da</span> €71</span>
+            <span class="text-coral font-bold"><span data-i18n="rooms.from">da</span> €71</span>
           </div>
           <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide" data-i18n="rooms.st.meta">Fino a 4 Ospiti · 40 m² · Cucina · Giardino</p>
-          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded-lg room-cta hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
+          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
         </div>
       </article>
 
@@ -421,7 +342,7 @@
 
 <section id="galleria" class="py-16 px-4 bg-white">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-center font-serif text-3xl font-bold mb-8 title-accent" data-i18n="gallery.h">Galleria</h2>
+    <h2 class="text-center font-serif text-3xl font-bold mb-8" data-i18n="gallery.h">Galleria</h2>
     <p class="text-center text-gray-500 mb-10" data-i18n="gallery.sub">Uno sguardo a camere, dettagli e dintorni.</p>
     <div class="swiper mySwiper rounded-xl shadow">
       <div class="swiper-wrapper">
@@ -442,24 +363,24 @@
 
 <section id="da-fare" class="py-16 px-4 bg-offwhite">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-center font-serif text-3xl font-bold mb-8 title-accent" data-i18n="todo.h">Cose da fare a Riva del Garda</h2>
+    <h2 class="text-center font-serif text-3xl font-bold mb-8" data-i18n="todo.h">Cose da fare a Riva del Garda</h2>
     <p class="text-center text-gray-500 mb-10" data-i18n="todo.sub">Esperienze a pochi minuti da Marigold.</p>
-    <div class="grid md:grid-cols-3 gap-6" data-reveal-group>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/trekking.jpg" alt="Trekking"></div><h3 class="font-semibold mb-1" data-i18n="todo.trek.h">Trekking</h3><p class="text-gray-600 text-sm" data-i18n="todo.trek.p">Sentieri vista lago, dal facile al panoramico.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/cascata-varone.jpg" alt="Cascata del Varone"></div><h3 class="font-semibold mb-1" data-i18n="todo.varone.h">Cascata del Varone</h3><p class="text-gray-600 text-sm" data-i18n="todo.varone.p">Forra scenografica a pochi minuti d’auto.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/spiaggia-yoga.jpg" alt="Spiaggia"></div><h3 class="font-semibold mb-1" data-i18n="todo.beach.h">Spiaggia</h3><p class="text-gray-600 text-sm" data-i18n="todo.beach.p">Prati, acqua trasparente, bar e servizi.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/bici.jpg" alt="Bicicletta"></div><h3 class="font-semibold mb-1" data-i18n="todo.bike.h">Bicicletta</h3><p class="text-gray-600 text-sm" data-i18n="todo.bike.p">Piste ciclabili lungo lago e valli.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/ferrata.jpg" alt="Ferrata"></div><h3 class="font-semibold mb-1" data-i18n="todo.ferrata.h">Ferrata</h3><p class="text-gray-600 text-sm" data-i18n="todo.ferrata.p">Vie attrezzate per tutti i livelli.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/windsurf.jpg" alt="Windsurf"></div><h3 class="font-semibold mb-1" data-i18n="todo.sail.h">Windsurf</h3><p class="text-gray-600 text-sm" data-i18n="todo.sail.p">Brezze costanti: scuole e noleggi vicini.</p></article>
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="bg-white rounded-xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/trekking.jpg" alt="Trekking"></div><h3 class="font-semibold mb-1" data-i18n="todo.trek.h">Trekking</h3><p class="text-gray-600 text-sm" data-i18n="todo.trek.p">Sentieri vista lago, dal facile al panoramico.</p></article>
+      <article class="bg-white rounded-xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/cascata-varone.jpg" alt="Cascata del Varone"></div><h3 class="font-semibold mb-1" data-i18n="todo.varone.h">Cascata del Varone</h3><p class="text-gray-600 text-sm" data-i18n="todo.varone.p">Forra scenografica a pochi minuti d’auto.</p></article>
+      <article class="bg-white rounded-xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/spiaggia-yoga.jpg" alt="Spiaggia"></div><h3 class="font-semibold mb-1" data-i18n="todo.beach.h">Spiaggia</h3><p class="text-gray-600 text-sm" data-i18n="todo.beach.p">Prati, acqua trasparente, bar e servizi.</p></article>
+      <article class="bg-white rounded-xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/bici.jpg" alt="Bicicletta"></div><h3 class="font-semibold mb-1" data-i18n="todo.bike.h">Bicicletta</h3><p class="text-gray-600 text-sm" data-i18n="todo.bike.p">Piste ciclabili lungo lago e valli.</p></article>
+      <article class="bg-white rounded-xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/ferrata.jpg" alt="Ferrata"></div><h3 class="font-semibold mb-1" data-i18n="todo.ferrata.h">Ferrata</h3><p class="text-gray-600 text-sm" data-i18n="todo.ferrata.p">Vie attrezzate per tutti i livelli.</p></article>
+      <article class="bg-white rounded-xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/windsurf.jpg" alt="Windsurf"></div><h3 class="font-semibold mb-1" data-i18n="todo.sail.h">Windsurf</h3><p class="text-gray-600 text-sm" data-i18n="todo.sail.p">Brezze costanti: scuole e noleggi vicini.</p></article>
     </div>
   </div>
 </section>
 
 <section id="contatti" class="bg-gray-50 py-16 px-4">
   <div class="max-w-4xl mx-auto text-center">
-    <h2 class="font-serif text-3xl font-bold mb-6 title-accent" data-i18n="contact.h">Contattaci</h2>
+    <h2 class="font-serif text-3xl font-bold mb-6" data-i18n="contact.h">Contattaci</h2>
     <p class="text-gray-600 mb-8" data-i18n="contact.sub">Preferisci scriverci direttamente? Scegli tu il canale.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center" data-reveal-group>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a id="emailContact"
          href="mailto:bbmarigold@gmail.com?subject=Richiesta%20informazioni%20-%20Marigold&body=Ciao%20Marigold%2C%0A%0ASto%20valutando%20un%20soggiorno%20e%20vorrei%20ricevere%20informazioni.%0A%0A-%20Check-in%3A%20____%0A-%20Check-out%3A%20____%0A-%20Numero%20ospiti%3A%20____%0A-%20Numero%20camere%3A%20____%0A-%20Richieste%20speciali%3A%20____%0A%0AGrazie%21%0A%0ANome%3A%20____%0ATelefono%20(opzionale)%3A%20____"
          class="px-6 py-3 rounded-full btn-grad text-white font-bold lift">
@@ -474,7 +395,7 @@
 
 <section class="py-0 flex flex-col md:flex-row h-[520px]">
   <div class="md:w-1/2 bg-sage/10 p-12 flex flex-col justify-center">
-    <h2 class="font-serif text-3xl font-bold mb-6 title-left title-accent" data-i18n="visit.h">Vieni a trovarci</h2>
+    <h2 class="font-serif text-3xl font-bold mb-6" data-i18n="visit.h">Vieni a trovarci</h2>
     <p class="mb-6 text-gray-600" data-i18n="visit.addr">Via dell'Albola, 85 · 38066 Riva del Garda (TN) · Italia</p>
     <a id="directionsLink" href="https://maps.google.com/?q=Marigold%20-%20Via%20dell'Albola%2085%2C%20Riva%20del%20Garda" target="_blank" class="mt-2 inline-block text-coral font-bold hover:underline" data-i18n="visit.directions">Vedi indicazioni →</a>
   </div>
@@ -986,38 +907,6 @@
       }
     });
   });
-</script>
-
-<script>
-  // ===== Motion: scroll reveal + nav scroll state (self-contained, plug & play) =====
-  (function(){
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // stagger index for grouped reveals
-    document.querySelectorAll('[data-reveal-group]').forEach(g=>{
-      Array.from(g.children).forEach((c,i)=>c.style.setProperty('--i', i));
-    });
-
-    const targets = document.querySelectorAll('[data-reveal],[data-reveal-group]');
-    if(reduce || !('IntersectionObserver' in window)){
-      targets.forEach(t=>t.classList.add('is-visible'));
-    } else {
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
-        });
-      }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
-      targets.forEach(t=>io.observe(t));
-    }
-
-    // navbar solid-on-scroll
-    const nav = document.getElementById('siteNav');
-    if(nav){
-      const onScroll = ()=> nav.classList.toggle('nav-scrolled', window.scrollY > 8);
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive:true });
-    }
-  })();
 </script>
 
 </body>
