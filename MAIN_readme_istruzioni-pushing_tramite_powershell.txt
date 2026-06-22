@@ -1,7 +1,11 @@
 cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-site"
 
-git checkout main
-git status
+git checkout dev
 git add .
+
 git commit -m "evolutiva: miglioria design"
-git push
+
+git push origin dev
+git checkout main
+git merge dev
+git push origin main
