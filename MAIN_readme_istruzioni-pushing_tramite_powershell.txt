@@ -3,7 +3,7 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 git checkout dev
 git add .
 
-git commit -m "evolutiva: miglioria design"
+git commit -m "bug tasto verifica disponibilità su mobile + migliorie su gestione lingua"
 
 git push origin dev
 git checkout main
