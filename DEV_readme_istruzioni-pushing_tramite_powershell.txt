@@ -3,5 +3,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 git checkout dev
 git status
 git add .
-git commit -m "claude opus 4.8 v_0.2"
-git push
+git commit -m "bug fix: tasto verifica disponibilità non funzionante su mobile"
+git push origin dev
