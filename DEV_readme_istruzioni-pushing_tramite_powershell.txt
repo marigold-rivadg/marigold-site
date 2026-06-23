@@ -3,5 +3,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 git checkout dev
 git status
 git add .
-git commit -m "bug fix: tasto verifica disponibilità non funzionante su mobile"
+git commit -m "migliorie varie, soprattutto impostaz lingua e preview sito con condivisione link"
 git push origin dev
