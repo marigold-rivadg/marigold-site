@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://www.bbmarigold.com/">
   <link rel="icon" type="image/png" href="/assets/brand/favicon.png">
   <link rel="apple-touch-icon" href="/assets/brand/favicon.png">
-  <meta name="theme-color" content="#d98a2b">
+  <meta name="theme-color" content="#c47f2a">
 
   <!-- ===== Open Graph (anteprime WhatsApp / Facebook / LinkedIn) =====
        Per l'anteprima migliore usa un'immagine dedicata 1200x630px.
@@ -83,14 +83,14 @@
     tailwind.config = {
       theme:{
         extend:{
-          colors:{ coral:'#c9822c', coralDeep:'#a5661c', gold:'#e0a44b', dark:'#20302c', offwhite:'#f6efe3', sage:'#6f7d5a', sageDeep:'#556147' },
-          fontFamily:{ serif:['Fraunces','Georgia','serif'], sans:['Inter','system-ui','sans-serif'] }
+          colors:{ coral:'#c47f2a', coralDeep:'#a5661c', gold:'#d69a45', dark:'#2b2720', offwhite:'#f3ebdb', sage:'#5c6b47', sageDeep:'#43502f' },
+          fontFamily:{ serif:['Fraunces','Georgia','serif'], sans:['Hanken Grotesk','system-ui','sans-serif'] }
         }
       }
     }
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -101,121 +101,169 @@
 
 	<style>
   :root{
-    /* ---- Marigold · Lago di Garda palette ---- */
-    --ink:#20302c;          /* deep spruce / lake-charcoal (text & dark UI) */
-    --ink-soft:#5f6b63;     /* muted body */
-    --gold:#c9822c;         /* marigold accent */
-    --gold-deep:#a5661c;    /* pressed / deep accent */
-    --gold-soft:#e0a44b;    /* light highlight */
-    --olive:#6f7d5a;        /* garden / eco secondary */
-    --paper:#f6efe3;        /* warm parchment ground */
-    --card:#fffdf9;         /* warm card white */
-    --line:rgba(32,48,44,.12);
-    --grad-gold:linear-gradient(120deg,#e0a44b 0%,#c9822c 55%,#a5661c 100%);
-    --shadow-soft:0 18px 42px -22px rgba(40,32,18,.34);
-    --shadow-lift:0 30px 60px -26px rgba(40,30,14,.42);
+    /* ---- Marigold · warm boutique palette ---- */
+    --paper:#f3ebdb;      /* warm oat parchment */
+    --paper-2:#ece0c9;    /* deeper band */
+    --card:#fffdf7;       /* warm card */
+    --ink:#2b2720;        /* warm espresso */
+    --ink-soft:#6b6357;   /* muted body */
+    --marigold:#c47f2a;   /* the flower / accent */
+    --marigold-deep:#a5661c;
+    --marigold-soft:#d69a45;
+    --olive:#5c6b47;      /* garden / eco */
+    --olive-deep:#43502f;
+    --line:rgba(43,39,32,.14);
+    --grad-gold:linear-gradient(120deg,#d69a45 0%,#c47f2a 52%,#a5661c 100%);
+    --shadow-soft:0 18px 40px -22px rgba(60,44,20,.34);
+    --shadow-lift:0 30px 60px -26px rgba(60,42,16,.42);
     --ease:cubic-bezier(.16,1,.3,1);
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   html{scroll-behavior:smooth}
-  body{color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;
-    font-feature-settings:"cv05","ss01";letter-spacing:.005em}
-  ::selection{background:rgba(201,130,44,.24);color:var(--ink)}
+  body{color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(196,127,42,.24);color:var(--ink)}
 
-  /* Serif = Fraunces, tuned for display */
-  .font-serif{font-optical-sizing:auto;letter-spacing:-.018em;font-weight:560}
-  h1.font-serif,h2.font-serif{font-weight:560}
+  .font-serif{font-optical-sizing:auto;letter-spacing:-.018em;font-weight:540}
+  h1.font-serif,h2.font-serif,h3.font-serif{font-weight:540}
 
-  /* Quiet warm atmosphere */
+  /* Ambient warmth + paper grain (materico) */
   body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
     background:
-      radial-gradient(56vw 40vh at 84% -10%, rgba(201,130,44,.06), transparent 60%),
-      radial-gradient(46vw 36vh at -6% 10%, rgba(111,125,90,.06), transparent 60%);}
+      radial-gradient(52vw 40vh at 84% -10%, rgba(196,127,42,.07), transparent 60%),
+      radial-gradient(44vw 34vh at -6% 8%, rgba(92,107,71,.07), transparent 60%);}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:var(--grain);background-size:180px 180px;opacity:.05;mix-blend-mode:multiply}
   body > *{position:relative;z-index:1}
   body > header{z-index:2}
   .booking-card{z-index:3}
 
-  /* Date field nudge when user searches without dates */
-  #daterange.date-missing{border-color:var(--gold)!important;
-    box-shadow:0 0 0 3px rgba(201,130,44,.28)!important;animation:dateNudge .45s var(--ease)}
+  #daterange.date-missing{border-color:var(--marigold)!important;
+    box-shadow:0 0 0 3px rgba(196,127,42,.28)!important;animation:dateNudge .45s var(--ease)}
   @keyframes dateNudge{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 
-  /* ===== Section eyebrow + accent rule ===== */
-  .eyebrow{position:relative;color:var(--gold-deep)}
+  /* ===== Eyebrows, marks, rules ===== */
+  .eyebrow{position:relative;color:var(--marigold-deep)}
+  .eyebrow-mark{display:inline-flex;align-items:center;gap:.55rem;margin-bottom:.9rem;
+    color:var(--marigold-deep);font-weight:700;text-transform:uppercase;
+    font-size:.72rem;letter-spacing:.24em}
+  .eyebrow-mark svg{width:17px;height:17px;flex:none}
+  .eyebrow-mark.center{justify-content:center}
   .title-accent{position:relative;padding-bottom:.7rem}
-  .title-accent::after{content:"";display:block;width:46px;height:2px;margin:.9rem auto 0;
-    border-radius:999px;background:var(--gold)}
+  .title-accent::after{content:"";display:block;width:44px;height:2px;margin:.9rem auto 0;
+    border-radius:999px;background:var(--marigold)}
   .title-left.title-accent::after{margin-left:0;margin-right:0}
 
   /* ===== Navbar ===== */
   #siteNav{transition:background .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
-    background:rgba(246,239,227,.70);border-bottom:1px solid transparent}
-  #siteNav.nav-scrolled{background:rgba(246,239,227,.93);border-bottom-color:var(--line);
-    box-shadow:0 10px 30px -20px rgba(40,30,14,.4)}
+    background:rgba(243,235,219,.72);border-bottom:1px solid transparent}
+  #siteNav.nav-scrolled{background:rgba(243,235,219,.94);border-bottom-color:var(--line);
+    box-shadow:0 10px 30px -20px rgba(60,42,16,.4)}
   .nav-link{position:relative;padding-bottom:3px;transition:color .25s var(--ease)}
   .nav-link::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
-    background:var(--gold);border-radius:999px;transform:scaleX(0);transform-origin:left;
+    background:var(--marigold);border-radius:999px;transform:scaleX(0);transform-origin:left;
     transition:transform .3s var(--ease)}
   .nav-link:hover::after{transform:scaleX(1)}
   #lang-it,#lang-en,#lang-it-m,#lang-en-m{border-color:var(--line);transition:all .2s var(--ease)}
-  #lang-it:hover,#lang-en:hover,#lang-it-m:hover,#lang-en-m:hover{border-color:var(--gold);color:var(--gold-deep)}
+  #lang-it:hover,#lang-en:hover,#lang-it-m:hover,#lang-en-m:hover{border-color:var(--marigold);color:var(--marigold-deep)}
 
   /* ===== Buttons ===== */
   .btn-grad{background:var(--grad-gold);color:#fff;position:relative;
-    box-shadow:0 12px 26px -14px rgba(165,102,28,.62);
+    box-shadow:0 12px 26px -14px rgba(165,102,28,.6);
     transition:transform .3s var(--ease),box-shadow .3s var(--ease),filter .25s var(--ease)}
   .btn-grad:hover{filter:brightness(1.05);box-shadow:0 18px 32px -16px rgba(165,102,28,.66)}
 
-  /* ===== Lift / cards ===== */
   .lift{transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
   .lift:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
 
+  /* ===== Image caption cards (distanze) ===== */
   .card-img{position:relative;overflow:hidden;border-radius:1rem;box-shadow:var(--shadow-soft)}
-  .card-img img{width:100%;height:240px;object-fit:cover;transition:transform .8s var(--ease)}
+  .card-img img{width:100%;height:230px;object-fit:cover;transition:transform .8s var(--ease)}
   .card-img:hover img{transform:scale(1.07)}
   .card-img .ov{position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(18,26,20,.02) 0%,rgba(18,26,20,.30) 52%,rgba(18,26,20,.78) 100%)}
-  .card-img .tx{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:1.35rem;color:#fff}
-  .card-img .tx{transition:transform .4s var(--ease)}
+    background:linear-gradient(180deg,rgba(22,16,8,.02) 0%,rgba(22,16,8,.30) 52%,rgba(22,16,8,.78) 100%)}
+  .card-img .tx{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:1.35rem;color:#fff;transition:transform .4s var(--ease)}
   .card-img:hover .tx{transform:translateY(-3px)}
 
   /* ===== Modal ===== */
-  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(20,28,22,.55);backdrop-filter:blur(6px);z-index:80}
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(24,18,10,.55);backdrop-filter:blur(6px);z-index:80}
   .modal.active{display:flex;animation:modalIn .4s var(--ease)}
   @keyframes modalIn{from{opacity:0}to{opacity:1}}
 
   /* ===== Service icons ===== */
   .svc-ico{width:66px;height:66px;border-radius:999px;display:grid;place-items:center;margin:0 auto 16px;
-    background:var(--card);color:var(--gold-deep);font-size:1.28rem;
-    box-shadow:0 12px 26px -14px rgba(40,30,14,.35),inset 0 0 0 1px rgba(201,130,44,.30);
+    background:var(--card);color:var(--marigold-deep);font-size:1.28rem;
+    box-shadow:0 12px 26px -14px rgba(60,42,16,.32),inset 0 0 0 1px rgba(196,127,42,.28);
     transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .4s var(--ease),color .4s var(--ease)}
   #servizi .grid > div{transition:transform .4s var(--ease)}
   #servizi .grid > div:hover{transform:translateY(-4px)}
   #servizi .grid > div:hover .svc-ico{background:var(--grad-gold);color:#fff;transform:translateY(-2px) scale(1.05);
     box-shadow:0 20px 34px -16px rgba(165,102,28,.6)}
 
-  /* ===== Aspect 3:4 (todo cards) ===== */
+  /* ===== Aspect 3:4 (todo) ===== */
   .aspect-3-4{position:relative;width:100%;overflow:hidden;border-radius:.8rem}
   .aspect-3-4:before{content:"";display:block;padding-top:133.333%}
   .aspect-3-4>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:.8rem;transition:transform .8s var(--ease)}
   .lift:hover .aspect-3-4>img{transform:scale(1.06)}
 
-  /* ===== Booking card ===== */
-  .booking-card{position:relative;background:rgba(255,253,249,.96);backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,.7);border-radius:1.1rem;
-    box-shadow:0 44px 84px -34px rgba(30,22,10,.5)}
-  .booking-card::before{content:"";position:absolute;left:1.35rem;right:1.35rem;top:0;height:2px;border-radius:999px;
-    background:var(--gold)}
-  .booking-card label{color:var(--ink-soft)!important;letter-spacing:.14em}
-  .booking-card input,.booking-card select{transition:border-color .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
-  .booking-card input:focus,.booking-card select:focus{border-color:var(--gold);
-    box-shadow:0 0 0 3px rgba(201,130,44,.22);background:#fff;outline:none}
+  /* ===== Booking card (concierge panel) ===== */
+  .booking-card{position:relative;background:var(--card);
+    border:1px solid rgba(196,127,42,.20);border-radius:1.1rem;
+    box-shadow:0 44px 84px -34px rgba(40,26,8,.5)}
+  .booking-card::before{content:"";position:absolute;left:1.4rem;right:1.4rem;top:0;height:3px;border-radius:999px;background:var(--grad-gold)}
+  .bk-head{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;justify-content:space-between;margin-bottom:1.1rem}
+  .bk-eyebrow{display:inline-flex;align-items:center;gap:.5rem;color:var(--ink);
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.28rem;letter-spacing:-.01em}
+  .bk-eyebrow svg{width:20px;height:20px}
+  .bk-sub{color:var(--ink-soft);font-size:.86rem;margin-top:.15rem}
+  .bk-badge{display:inline-flex;align-items:center;gap:.45rem;background:rgba(92,107,71,.12);
+    color:var(--olive-deep);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+    padding:.4rem .8rem;border-radius:999px}
+  .booking-card label{color:var(--ink-soft)!important;letter-spacing:.13em;font-weight:700}
+  .booking-card input,.booking-card select{background:#fbf6ec;border:1px solid var(--line);border-radius:.6rem;
+    padding:.62rem .7rem;color:var(--ink);
+    transition:border-color .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
+  .booking-card input:focus,.booking-card select:focus{border-color:var(--marigold);
+    box-shadow:0 0 0 3px rgba(196,127,42,.20);background:#fff;outline:none}
+  .bk-trust{margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;color:var(--ink-soft);font-size:.8rem}
+  .bk-trust b{color:var(--ink);font-weight:600}
+  .bk-trust i{color:var(--olive);margin-right:.35rem}
 
-  /* ===== Room cards ===== */
+  /* ===== Direct-booking value band ===== */
+  .band-warm{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .value-card{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1.6rem 1.4rem;
+    box-shadow:0 14px 30px -22px rgba(60,42,16,.3);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+  .value-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift)}
+  .value-ico{width:48px;height:48px;border-radius:.8rem;display:grid;place-items:center;margin-bottom:1rem;
+    background:rgba(196,127,42,.12);color:var(--marigold-deep);font-size:1.1rem}
+
+  /* ===== About facts strip ===== */
+  .about-mark{position:absolute;right:-90px;top:-70px;width:360px;height:360px;opacity:.5;pointer-events:none}
+  .about-mark svg{width:100%;height:100%;opacity:.5}
+  .facts{display:flex;flex-wrap:wrap;gap:1.6rem 2.4rem;margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+  .fact{display:flex;flex-direction:column;line-height:1.1}
+  .fact-n{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--marigold-deep)}
+  .fact-l{margin-top:.2rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-soft);font-weight:700}
+
+  /* ===== Distances band ===== */
+  .dist-band{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+  /* ===== Rooms ===== */
   .price-pill{display:inline-flex;align-items:baseline;gap:.25rem;padding:.22rem .7rem;border-radius:999px;
-    background:rgba(201,130,44,.12);color:var(--gold-deep);font-weight:700;white-space:nowrap;letter-spacing:.01em}
-  .room-cta{transition:background .3s var(--ease),box-shadow .3s var(--ease),transform .3s var(--ease);letter-spacing:.12em}
+    background:rgba(196,127,42,.13);color:var(--marigold-deep);font-weight:700;white-space:nowrap}
+  .room-cta{transition:background .3s var(--ease),box-shadow .3s var(--ease),transform .3s var(--ease);letter-spacing:.1em}
   .room-cta:hover{box-shadow:0 16px 26px -14px rgba(165,102,28,.6)}
+  .rooms-incl{display:inline-flex;align-items:center;gap:.6rem;margin:2.4rem auto 0;padding:.7rem 1.2rem;
+    background:rgba(92,107,71,.10);border:1px solid rgba(92,107,71,.2);border-radius:999px;
+    color:var(--olive-deep);font-size:.86rem;font-weight:500}
+  .rooms-incl i{color:var(--marigold-deep)}
+
+  /* ===== Final CTA band ===== */
+  .cta-band{position:relative;overflow:hidden;background:var(--olive-deep);padding:5.5rem 0}
+  .cta-band::after{content:"";position:absolute;inset:0;background-image:var(--grain);background-size:180px 180px;opacity:.08;mix-blend-mode:overlay;pointer-events:none}
+  .cta-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:520px;height:520px;opacity:.14;pointer-events:none}
+  .cta-mark svg{width:100%;height:100%}
 
   /* ===== Scroll reveal ===== */
   [data-reveal],[data-reveal-group] > *{opacity:0;transform:translateY(24px);
@@ -231,19 +279,15 @@
     transform:scale(1.08);animation:heroZoom 26s var(--ease) infinite alternate}
   .hero-media::after{content:"";position:absolute;inset:0;
     background:
-      radial-gradient(78vw 58vh at 80% 4%, rgba(224,164,75,.20), transparent 56%),
-      linear-gradient(180deg, rgba(20,30,26,.34) 0%, rgba(18,26,22,.48) 46%, rgba(14,22,18,.78) 100%)}
+      radial-gradient(76vw 56vh at 80% 2%, rgba(214,154,69,.20), transparent 56%),
+      linear-gradient(180deg, rgba(24,18,10,.34) 0%, rgba(22,16,9,.48) 46%, rgba(18,13,7,.80) 100%)}
   .hero-content{position:relative;z-index:2}
   @keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
-
   .hero-eyebrow{display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.25rem;
-    color:#f0d6a6;font-family:'Inter',system-ui,sans-serif;font-weight:600;
-    font-size:.72rem;text-transform:uppercase;letter-spacing:.34em}
-  .hero-eyebrow::before,.hero-eyebrow::after{content:"";width:26px;height:1px;background:rgba(240,214,166,.6)}
-  .hero-content h1{font-weight:520;letter-spacing:-.022em}
+    color:#f0d6a6;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.32em}
+  .hero-eyebrow::before,.hero-eyebrow::after{content:"";width:24px;height:1px;background:rgba(240,214,166,.6)}
+  .hero-content h1{font-weight:500;letter-spacing:-.022em}
   .hero-accent{font-style:italic;font-weight:500;color:#f2cd8f}
-
-  /* Hero entrance */
   .hero-content > *{opacity:0;transform:translateY(26px);animation:heroUp .9s var(--ease) forwards}
   .hero-content > *:nth-child(1){animation-delay:.12s}
   .hero-content > *:nth-child(2){animation-delay:.28s}
@@ -251,36 +295,32 @@
   .hero-content > *:nth-child(4){animation-delay:.6s}
   @keyframes heroUp{to{opacity:1;transform:none}}
 
-  /* ===== Map / visit panel ===== */
   #directionsLink{transition:gap .25s var(--ease),color .25s var(--ease)}
-  #directionsLink:hover{color:var(--gold-deep)}
-
-  /* ===== Footer ===== */
+  #directionsLink:hover{color:var(--marigold-deep)}
   footer a[aria-label]{transition:transform .3s var(--ease),background .3s var(--ease)}
   footer a[aria-label]:hover{transform:translateY(-3px)}
 
-  /* ===== Swiper override ===== */
+  /* ===== Swiper ===== */
   .mySwiper{border-radius:1.1rem;box-shadow:var(--shadow-soft)}
-  .swiper-button-next,.swiper-button-prev{color:#fff;background:rgba(20,28,22,.34);backdrop-filter:blur(4px);
+  .swiper-button-next,.swiper-button-prev{color:#fff;background:rgba(24,18,10,.34);backdrop-filter:blur(4px);
     width:46px;height:46px;border-radius:999px;transition:background .25s var(--ease)}
-  .swiper-button-next:hover,.swiper-button-prev:hover{background:rgba(201,130,44,.9)}
+  .swiper-button-next:hover,.swiper-button-prev:hover{background:rgba(196,127,42,.9)}
   .swiper-button-next:after,.swiper-button-prev:after{font-size:17px;font-weight:700}
   .swiper-pagination-bullet{background-color:rgba(255,255,255,.55);opacity:1;transition:width .25s var(--ease)}
   .swiper-pagination-bullet-active{background-color:#fff;width:24px;border-radius:999px}
 
   /* ===== Flatpickr ===== */
-  .flatpickr-calendar{border:none;border-radius:1rem;box-shadow:0 26px 54px rgba(30,22,10,.22);overflow:hidden}
+  .flatpickr-calendar{border:none;border-radius:1rem;box-shadow:0 26px 54px rgba(40,26,8,.22);overflow:hidden}
   .flatpickr-months{background:var(--grad-gold);color:#fff}
   .flatpickr-current-month{font-weight:700;font-size:1rem}
   .flatpickr-prev-month,.flatpickr-next-month{fill:#fff}
   .flatpickr-weekdays{background:var(--paper)}
   .flatpickr-weekday{color:#9a8f7f;font-size:.75rem;text-transform:uppercase;letter-spacing:1px}
   .flatpickr-day{border-radius:999px;transition:all .2s var(--ease)}
-  .flatpickr-day:hover{background:var(--gold-soft);color:#fff;border-color:var(--gold-soft)}
+  .flatpickr-day:hover{background:var(--marigold-soft);color:#fff;border-color:var(--marigold-soft)}
   .flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .flatpickr-day.inRange{background:rgba(201,130,44,.18);color:var(--ink);border-color:transparent}
-  .flatpickr-day.today{border:2px solid var(--gold)}
-
+  .flatpickr-day.inRange{background:rgba(196,127,42,.18);color:var(--ink);border-color:transparent}
+  .flatpickr-day.today{border:2px solid var(--marigold)}
   @media (max-width:480px){
     .flatpickr-calendar{width:auto!important;max-width:calc(100vw - 20px)}
     .flatpickr-rContainer,.flatpickr-weekdaycontainer,.flatpickr-weekdays,.flatpickr-days{width:100%!important}
@@ -288,7 +328,6 @@
     .flatpickr-day{max-width:14.2857%;height:40px;line-height:39px}
   }
 
-  /* ===== Reduced motion ===== */
   @media (prefers-reduced-motion: reduce){
     .hero-media::before{animation:none;transform:scale(1.03)}
     .hero-content > *{animation:none;opacity:1;transform:none}
@@ -347,7 +386,7 @@
     <a href="#galleria" class="block py-4 px-6 border-b" data-i18n="nav.gallery">Galleria</a>
     <a href="#da-fare" class="block py-4 px-6 border-b" data-i18n="nav.todo">Cose da fare</a>
     <a href="#contatti" class="block py-4 px-6 border-b" data-i18n="nav.contact">Contatti</a>
-    <a class="block py-4 px-6 text-coral font-bold text-center bg-gray-50 book-direct" data-i18n="cta.bookNowUpper" href="https://marigold.kross.travel/">PRENOTA ORA</a>
+    <a class="block py-4 px-6 text-coral font-bold text-center bg-offwhite book-direct" data-i18n="cta.bookNowUpper" href="https://marigold.kross.travel/">PRENOTA ORA</a>
     <div class="py-4 px-6 border-t flex items-center gap-2">
       <span class="text-xs uppercase tracking-[0.15em] text-gray-500" data-i18n="nav.lang">Lingua</span>
       <button id="lang-it-m" class="px-2 py-1 rounded border">IT</button>
@@ -367,8 +406,15 @@
       Camere rinnovate e la libertà di vivere Riva del Garda al tuo ritmo.
     </p>
 
-    <div class="booking-card p-6 max-w-5xl mx-auto -mb-28">
-      <form class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end" onsubmit="return false;">
+    <div class="booking-card p-5 md:p-7 max-w-4xl mx-auto -mb-28 text-left">
+      <div class="bk-head">
+        <div>
+          <span class="bk-eyebrow"><svg viewBox="0 0 100 100" fill="none" stroke="#c47f2a" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(0 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(30 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(60 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(90 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(120 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(150 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(180 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(210 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(240 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(270 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(300 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(330 50 50)"/><circle cx="50" cy="50" r="8.5" fill="#c47f2a" stroke="none"/></svg><span data-i18n="bk.head">Prenota diretto</span></span>
+          <div class="bk-sub" data-i18n="bk.sub">Miglior prezzo garantito, senza commissioni</div>
+        </div>
+        <span class="bk-badge"><i class="fa-solid fa-shield-heart"></i><span data-i18n="trust.best">Miglior tariffa garantita</span></span>
+      </div>
+      <form class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-end" onsubmit="return false;">
         <div class="md:col-span-4 text-left">
           <label class="block text-xs font-bold text-gray-400 uppercase mb-1" data-i18n="form.date">Date</label>
           <input id="daterange" type="text" placeholder="gg/mm/aaaa – gg/mm/aaaa" class="w-full bg-gray-50 border border-gray-200 rounded p-2 text-dark focus:border-coral outline-none"/>
@@ -409,22 +455,46 @@
         <span data-i18n="form.pickDates">Seleziona prima le date del soggiorno per verificare la disponibilità.</span>
       </div>
 
-      <div class="mt-3 flex justify-between items-center text-xs text-gray-600 px-1">
-        <span><i class="fas fa-check text-green-600"></i> <span data-i18n="trust.best">Miglior tariffa garantita</span></span>
-        <span><i class="fas fa-check text-green-600"></i> <span data-i18n="trust.cancel">Cancellazione flessibile</span></span>
+      <div class="bk-trust">
+        <span><i class="fa-solid fa-tag"></i><b data-i18n="trust.best">Miglior tariffa garantita</b></span>
+        <span><i class="fa-solid fa-calendar-check"></i><b data-i18n="trust.cancel">Cancellazione flessibile</b></span>
+        <span><i class="fa-solid fa-mug-saucer"></i><b data-i18n="trust.bkf">Colazione inclusa</b></span>
       </div>
     </div>
   </div>
 </header>
 
-<section id="chi-siamo" class="pt-52 pb-24 px-4">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center" data-reveal-group>
+<section id="chi-siamo" class="pt-60 pb-24 px-4 relative overflow-hidden">
+  <div class="about-mark" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="#e8d6b0" stroke-width="1.1" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(0 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(30 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(60 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(90 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(120 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(150 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(180 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(210 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(240 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(270 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(300 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(330 50 50)"/><circle cx="50" cy="50" r="8.5" fill="#e8d6b0" stroke="none"/></svg></div>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-center relative" data-reveal-group>
     <div><img src="/assets/about/camera.jpg" alt="Camera Marigold" class="rounded-2xl shadow-xl w-full"></div>
     <div>
-      <span class="eyebrow text-coral font-bold uppercase tracking-widest text-sm mb-2 block" data-i18n="about.kicker">La Nostra Storia</span>
-      <h2 class="font-serif text-4xl font-bold text-dark mb-6 title-left title-accent" data-i18n="about.h">Benvenuti al Marigold.</h2>
-      <p class="text-gray-600 mb-6 leading-relaxed" data-i18n="about.p1">Ristrutturato con cura nel 2018, in Via dell'Albola, un quartiere silenzioso ma strategico. Rifugio ideale a due passi dal centro.</p>
-      <p class="text-gray-600" data-i18n="about.p2">Accoglienza familiare e attenzione all'ambiente grazie all'impianto fotovoltaico. Parcheggio gratuito a 50 m.</p>
+      <span class="eyebrow-mark"><svg viewBox="0 0 100 100" fill="none" stroke="#c47f2a" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(0 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(30 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(60 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(90 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(120 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(150 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(180 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(210 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(240 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(270 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(300 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(330 50 50)"/><circle cx="50" cy="50" r="8.5" fill="#c47f2a" stroke="none"/></svg><span data-i18n="about.kicker">La Nostra Storia</span></span>
+      <h2 class="font-serif text-4xl md:text-5xl text-dark mb-6 title-left title-accent" data-i18n="about.h">Benvenuti al Marigold.</h2>
+      <p class="text-gray-600 mb-5 leading-relaxed text-lg" data-i18n="about.p1">Ristrutturato con cura nel 2018, in Via dell'Albola, un quartiere silenzioso ma strategico. Rifugio ideale a due passi dal centro.</p>
+      <p class="text-gray-600 leading-relaxed" data-i18n="about.p2">Accoglienza familiare e attenzione all'ambiente grazie all'impianto fotovoltaico. Parcheggio gratuito a 50 m.</p>
+      <div class="facts">
+        <div class="fact"><span class="fact-n">2018</span><span class="fact-l" data-i18n="fact.year">Ristrutturato</span></div>
+        <div class="fact"><span class="fact-n">4</span><span class="fact-l" data-i18n="fact.rooms">Camere</span></div>
+        <div class="fact"><span class="fact-n">5 kWh</span><span class="fact-l" data-i18n="fact.solar">Fotovoltaico</span></div>
+        <div class="fact"><span class="fact-n">50 m</span><span class="fact-l" data-i18n="fact.park">Parcheggio</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="perche" class="py-24 px-4 band-warm relative">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <span class="eyebrow-mark center"><svg viewBox="0 0 100 100" fill="none" stroke="#c47f2a" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(0 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(30 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(60 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(90 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(120 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(150 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(180 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(210 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(240 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(270 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(300 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(330 50 50)"/><circle cx="50" cy="50" r="8.5" fill="#c47f2a" stroke="none"/></svg><span data-i18n="bk.head">Prenota diretto</span></span>
+      <h2 class="font-serif text-4xl md:text-5xl text-dark title-accent mb-4" data-i18n="direct.h">Perché prenotare qui</h2>
+      <p class="max-w-2xl mx-auto text-gray-600" data-i18n="direct.p">Prenoti direttamente con noi e ottieni sempre il meglio: nessun intermediario tra te e la tua vacanza.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" data-reveal-group>
+      <div class="value-card"><div class="value-ico"><i class="fa-solid fa-tags"></i></div><h3 class="font-serif text-xl mb-1" data-i18n="direct.1h">Miglior prezzo</h3><p class="text-sm text-gray-600" data-i18n="direct.1p">La tariffa più bassa, garantita. Nessun sovrapprezzo da piattaforme.</p></div>
+      <div class="value-card"><div class="value-ico"><i class="fa-solid fa-hand-holding-dollar"></i></div><h3 class="font-serif text-xl mb-1" data-i18n="direct.2h">Zero commissioni</h3><p class="text-sm text-gray-600" data-i18n="direct.2p">Paghi la camera, non le spese degli intermediari.</p></div>
+      <div class="value-card"><div class="value-ico"><i class="fa-solid fa-calendar-check"></i></div><h3 class="font-serif text-xl mb-1" data-i18n="direct.3h">Cancellazione flessibile</h3><p class="text-sm text-gray-600" data-i18n="direct.3p">Gratuita fino a 3 giorni prima dell'arrivo.</p></div>
+      <div class="value-card"><div class="value-ico"><i class="fa-solid fa-comments"></i></div><h3 class="font-serif text-xl mb-1" data-i18n="direct.4h">Contatto diretto</h3><p class="text-sm text-gray-600" data-i18n="direct.4p">Parli con chi ti accoglie, non con un call center.</p></div>
     </div>
   </div>
 </section>
@@ -452,9 +522,12 @@
   </div>
 </section>
 
-<section id="distanze" class="py-20 px-4">
+<section id="distanze" class="py-24 px-4 dist-band">
   <div class="max-w-6xl mx-auto">
-    <h3 class="text-center text-2xl font-semibold text-gray-700 mb-6" data-i18n="dist.h">Distano a piedi:</h3>
+    <div class="text-center mb-10">
+      <span class="eyebrow-mark center"><svg viewBox="0 0 100 100" fill="none" stroke="#c47f2a" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(0 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(30 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(60 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(90 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(120 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(150 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(180 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(210 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(240 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(270 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(300 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(330 50 50)"/><circle cx="50" cy="50" r="8.5" fill="#c47f2a" stroke="none"/></svg><span data-i18n="nav.distances">Distanze</span></span>
+      <h3 class="font-serif text-3xl md:text-4xl text-dark title-accent" data-i18n="dist.h">Distano a piedi:</h3>
+    </div>
     <div class="grid md:grid-cols-3 gap-6" data-reveal-group>
       <div class="card-img lift"><img src="/assets/distanze/bus.jpg" alt="Autostazione"><div class="ov"></div><div class="tx"><div class="text-sm opacity-90" data-i18n="visit.bus">Autostazione</div><div class="text-3xl font-serif font-bold">5 <span class="text-xl">min</span> →</div></div></div>
       <div class="card-img lift"><img src="/assets/distanze/centro-storico.jpg" alt="Centro"><div class="ov"></div><div class="tx"><div class="text-sm opacity-90" data-i18n="visit.center">Centro storico</div><div class="text-3xl font-serif font-bold">10 <span class="text-xl">min</span> →</div></div></div>
@@ -520,6 +593,9 @@
       </article>
 
     </div>
+    <div class="text-center">
+      <span class="rooms-incl"><i class="fa-solid fa-seedling"></i><span data-i18n="rooms.incl">In tutte le camere: colazione, Wi-Fi in fibra, aria condizionata e parcheggio gratuito.</span></span>
+    </div>
   </div>
 </section>
 
@@ -584,6 +660,15 @@
   </div>
   <div class="md:w-1/2 h-full bg-gray-200">
     <iframe id="mapsEmbed" src="https://www.google.com/maps?q=Marigold%20-%20Via%20dell'Albola%2085%2C%20Riva%20del%20Garda&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-mark" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" stroke="#e8d6b0" stroke-width="1.1" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(0 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(30 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(60 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(90 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(120 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(150 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(180 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(210 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(240 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(270 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(300 50 50)"/><ellipse cx="50" cy="23" rx="6.4" ry="19" transform="rotate(330 50 50)"/><circle cx="50" cy="50" r="8.5" fill="#e8d6b0" stroke="none"/></svg></div>
+  <div class="max-w-3xl mx-auto text-center px-4 relative" data-reveal>
+    <h2 class="font-serif text-4xl md:text-5xl text-white mb-4" data-i18n="cta2.h">Pronto a respirare il Garda?</h2>
+    <p class="text-white/85 mb-8 text-lg" data-i18n="cta2.p">Controlla le date e prenota diretto, al miglior prezzo.</p>
+    <a href="https://marigold.kross.travel/" class="btn-grad book-direct lift inline-block px-9 py-4 rounded-full text-white font-bold text-sm tracking-wide" data-i18n="cta.search">VERIFICA DISPONIBILITÀ</a>
   </div>
 </section>
 
@@ -661,6 +746,16 @@
     'cta.bookNow':'Prenota Ora','cta.bookNowUpper':'PRENOTA ORA','cta.search':'VERIFICA DISPONIBILITÀ',
     'hero.line1':'Sentirsi a casa,','hero.line2':'respirare il Garda.','hero.sub':'Camere rinnovate e la libertà di vivere Riva del Garda al tuo ritmo.',
     'trust.best':'Miglior tariffa garantita','trust.cancel':'Cancellazione flessibile',
+    'trust.bkf':'Colazione inclusa',
+    'bk.head':'Prenota diretto','bk.sub':'Miglior prezzo garantito, senza commissioni',
+    'direct.h':'Perché prenotare qui','direct.p':'Prenoti direttamente con noi e ottieni sempre il meglio: nessun intermediario tra te e la tua vacanza.',
+    'direct.1h':'Miglior prezzo','direct.1p':'La tariffa più bassa, garantita. Nessun sovrapprezzo da piattaforme.',
+    'direct.2h':'Zero commissioni','direct.2p':'Paghi la camera, non le spese degli intermediari.',
+    'direct.3h':'Cancellazione flessibile','direct.3p':'Gratuita fino a 3 giorni prima dell\'arrivo.',
+    'direct.4h':'Contatto diretto','direct.4p':'Parli con chi ti accoglie, non con un call center.',
+    'fact.year':'Ristrutturato','fact.rooms':'Camere','fact.solar':'Fotovoltaico','fact.park':'Parcheggio',
+    'rooms.incl':'In tutte le camere: colazione, Wi-Fi in fibra, aria condizionata e parcheggio gratuito.',
+    'cta2.h':'Pronto a respirare il Garda?','cta2.p':'Controlla le date e prenota diretto, al miglior prezzo.',
     'form.date':'Date','form.rooms':'Camere','form.adulti':'Adulti','form.bambini':'Bambini','form.agesHint':'Età bambini al momento del soggiorno (0–17 anni).','form.room':'Camera','form.adultiRoom':'Adulti','form.bambiniRoom':'Bambini','form.age':'Età','form.pickDates':'Seleziona prima le date del soggiorno per verificare la disponibilità.',
 
     'about.kicker':'La Nostra Storia',
@@ -707,6 +802,16 @@
     'cta.bookNow':'Book Now','cta.bookNowUpper':'BOOK NOW','cta.search':'CHECK AVAILABILITY',
     'hero.line1':'Feel at home,','hero.line2':'breathe Lake Garda.','hero.sub':'Renovated rooms and the freedom to enjoy Riva del Garda at your own pace.',
     'trust.best':'Best rate guaranteed','trust.cancel':'Flexible cancellation',
+    'trust.bkf':'Breakfast included',
+    'bk.head':'Book direct','bk.sub':'Best price guaranteed, no booking fees',
+    'direct.h':'Why book with us','direct.p':'Book directly with us and always get the best: no middlemen between you and your holiday.',
+    'direct.1h':'Best price','direct.1p':'The lowest rate, guaranteed. No platform surcharges.',
+    'direct.2h':'Zero fees','direct.2p':'You pay for the room, not the middlemen.',
+    'direct.3h':'Flexible cancellation','direct.3p':'Free up to 3 days before arrival.',
+    'direct.4h':'Direct contact','direct.4p':'Talk to your hosts, not a call center.',
+    'fact.year':'Renovated','fact.rooms':'Rooms','fact.solar':'Solar power','fact.park':'Parking',
+    'rooms.incl':'Every room includes: breakfast, fiber Wi-Fi, air conditioning and free parking.',
+    'cta2.h':'Ready to breathe Lake Garda?','cta2.p':'Check your dates and book direct, at the best price.',
     'form.date':'Dates','form.rooms':'Rooms','form.adulti':'Adults','form.bambini':'Children','form.agesHint':'Children ages at stay time (0–17).','form.room':'Room','form.adultiRoom':'Adults','form.bambiniRoom':'Children','form.age':'Age','form.pickDates':'Please pick your stay dates first to check availability.',
 
     'about.kicker':'Our Story',
