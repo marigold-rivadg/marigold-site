@@ -3,5 +3,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 git checkout dev
 git status
 git add .
-git commit -m "restyle v_0.2"
+git commit -m "roll back, allineamento a prod"
 git push origin dev
