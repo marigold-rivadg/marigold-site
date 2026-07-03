@@ -3,5 +3,5 @@ cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-
 git checkout dev
 git status
 git add .
-git commit -m "migliorie varie, soprattutto impostaz lingua e preview sito con condivisione link"
+git commit -m "restyle v_0.1"
 git push origin dev
