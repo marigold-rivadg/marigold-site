@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="scroll-smooth">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Marigold – Relax, Comfort e Libertà a Riva del Garda</title>
   <meta name="description" content="Marigold a Riva del Garda. Camere accoglienti, posizione comoda, parcheggio gratuito. Prenota al miglior prezzo.">
   <link rel="canonical" href="https://www.bbmarigold.com/">
   <link rel="icon" type="image/png" href="/assets/brand/favicon.png">
   <link rel="apple-touch-icon" href="/assets/brand/favicon.png">
-  <meta name="theme-color" content="#ffaea3">
+  <meta name="theme-color" content="#f4715a">
 
-  <!-- ===== Open Graph (anteprime WhatsApp / Facebook / LinkedIn) =====
-       Per l'anteprima migliore usa un'immagine dedicata 1200x630px.
-       Qui usiamo una foto esistente del sito; sostituiscila quando hai la share-image. -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="B&amp;B Marigold">
   <meta property="og:title" content="B&amp;B Marigold – Relax e comfort a Riva del Garda">
@@ -23,16 +21,13 @@
   <meta property="og:locale" content="it_IT">
   <meta property="og:locale:alternate" content="en_US">
 
-  <!-- ===== Twitter / X Card ===== -->
+  <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="B&amp;B Marigold – Relax e comfort a Riva del Garda">
   <meta name="twitter:description" content="Camere accoglienti a due passi dal centro di Riva del Garda. Parcheggio gratuito, Wi-Fi, giardino.">
   <meta name="twitter:image" content="https://www.bbmarigold.com/assets/about/camera.jpg">
 
-  <!-- ===== Dati strutturati JSON-LD (schede ricche Google) =====
-       ⚠️ geo: coordinate APPROSSIMATIVE. Sostituiscile con quelle esatte
-       (Google Maps -> tasto destro sul pin -> clic sulle coordinate per copiarle).
-       priceRange: indicatore generico, puoi mettere es. "€60-€120". -->
+  <!-- Dati strutturati JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -78,757 +73,1101 @@
   }
   </script>
 
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme:{
-        extend:{
-          colors:{ coral:'#ffaea3', coralDeep:'#ff8a76', gold:'#f5b65f', dark:'#2e2a27', offwhite:'#FAF7F1', sage:'#84A98C', sageDeep:'#5f8268' },
-          fontFamily:{ serif:['Playfair Display','serif'], sans:['Lato','system-ui','sans-serif'] }
+      theme: {
+        extend: {
+          colors: {
+            coral: '#f4715a',
+            coralLight: '#ffaea3',
+            coralHover: '#e05943',
+            dark: '#1c1917',
+            darkSoft: '#292524',
+            cream: '#FAF7F2',
+            creamCard: '#FFFFFF',
+            sage: '#6a8d73',
+            gold: '#e2a348'
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'glow': '0 12px 35px -8px rgba(244, 113, 90, 0.45)',
+            'soft': '0 20px 40px -15px rgba(28, 25, 23, 0.07)',
+            'glass': '0 30px 60px -12px rgba(0, 0, 0, 0.18)'
+          }
         }
       }
     }
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
+  <!-- Flatpickr -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
 
+  <!-- Swiper -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
-	<style>
-	  :root{
-	    --coral:#ffaea3; --coral-deep:#ff8a76; --coral-deeper:#f4715a;
-	    --gold:#f5b65f; --sage:#84A98C; --sage-deep:#5f8268;
-	    --ink:#2e2a27; --ink-soft:#7a716a; --cream:#FAF7F1; --line:rgba(46,42,39,.10);
-	    --grad-coral:linear-gradient(120deg,#ffb3a8 0%,#ff8d79 52%,#f56a4f 100%);
-	    --shadow-soft:0 14px 36px -18px rgba(120,72,48,.30);
-	    --shadow-lift:0 26px 50px -22px rgba(120,68,42,.40);
-	    --ease:cubic-bezier(.16,1,.3,1);
-	  }
+  <style>
+    :root {
+      --coral: #f4715a;
+      --coral-light: #ffaea3;
+      --grad-coral: linear-gradient(135deg, #ff8a76 0%, #f4715a 50%, #e0543c 100%);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-	  html{scroll-behavior:smooth}
-	  body{color:var(--ink);-webkit-font-smoothing:antialiased}
-	  ::selection{background:rgba(255,174,163,.40);color:var(--ink)}
+    body {
+      background-color: #FAF7F2;
+      color: #1c1917;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
 
-	  /* Warm ambient depth */
-	  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-	    background:
-	      radial-gradient(60vw 40vh at 82% -8%, rgba(245,182,95,.10), transparent 60%),
-	      radial-gradient(48vw 38vh at -6% 12%, rgba(255,174,163,.10), transparent 60%);}
-	  body > *{position:relative;z-index:1}
-	  /* La booking-card "galleggia" sopra la sezione successiva con margine negativo:
-	     l'header deve stare sopra le sezioni, altrimenti il padding trasparente di
-	     #chi-siamo copre il tasto VERIFICA DISPONIBILITA' su mobile e ne blocca i tap. */
-	  body > header{z-index:2}
-	  .booking-card{z-index:3}
-	  /* Evidenzia il campo date quando l'utente clicca "Verifica" senza averle scelte */
-	  #daterange.date-missing{border-color:var(--coral-deep)!important;
-	    box-shadow:0 0 0 3px rgba(255,138,118,.35);animation:dateNudge .45s var(--ease)}
-	  @keyframes dateNudge{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+    /* Gradient Buttons & Interactions */
+    .btn-grad {
+      background: var(--grad-coral);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      transition: all 0.3s var(--ease);
+    }
+    .btn-grad::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0;
+      background: linear-gradient(135deg, #f4715a 0%, #d94930 100%);
+      transition: opacity 0.3s var(--ease);
+    }
+    .btn-grad:hover::before { opacity: 1; }
+    .btn-grad::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -150%;
+      width: 60%; height: 100%;
+      background: linear-gradient(110deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.75s var(--ease);
+    }
+    .btn-grad:hover::after { left: 180%; }
 
-	  .font-serif{letter-spacing:-.015em}
+    /* Lift animation */
+    .lift-hover {
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .lift-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 45px -12px rgba(28, 25, 23, 0.12);
+    }
 
-	  /* ===== Section eyebrow + accent rule ===== */
-	  .eyebrow{position:relative}
-	  .title-accent{position:relative;padding-bottom:.65rem}
-	  .title-accent::after{content:"";display:block;width:64px;height:3px;margin:.85rem auto 0;
-	    border-radius:999px;background:var(--grad-coral)}
-	  .title-left.title-accent::after{margin-left:0;margin-right:0}
+    /* Navbar backdrop effect */
+    #siteNav {
+      transition: background-color 0.4s var(--ease), backdrop-filter 0.4s var(--ease), box-shadow 0.4s var(--ease), padding 0.4s var(--ease);
+    }
+    #siteNav.nav-scrolled {
+      background-color: rgba(255, 253, 250, 0.92);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px -10px rgba(28, 25, 23, 0.08);
+    }
 
-	  /* ===== Navbar ===== */
-	  #siteNav{transition:background .35s var(--ease),box-shadow .35s var(--ease)}
-	  #siteNav{background:rgba(255,253,250,.72)}
-	  #siteNav.nav-scrolled{background:rgba(255,253,250,.94);box-shadow:0 10px 30px -18px rgba(120,72,48,.45)}
-	  .nav-link{position:relative;padding-bottom:3px;transition:color .25s var(--ease)}
-	  .nav-link::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
-	    background:var(--grad-coral);border-radius:999px;transform:scaleX(0);transform-origin:left;
-	    transition:transform .3s var(--ease)}
-	  .nav-link:hover::after{transform:scaleX(1)}
-	  #lang-it,#lang-en,#lang-it-m,#lang-en-m{transition:all .2s var(--ease)}
-	  #lang-it:hover,#lang-en:hover,#lang-it-m:hover,#lang-en-m:hover{border-color:var(--coral);color:var(--coral-deeper)}
+    /* Nav underline indicator */
+    .nav-link {
+      position: relative;
+      transition: color 0.25s var(--ease);
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -4px;
+      height: 2px; width: 100%;
+      background: var(--grad-coral);
+      border-radius: 99px;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s var(--ease);
+    }
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
 
-	  /* ===== Buttons ===== */
-	  .btn-grad{background:var(--grad-coral);position:relative;overflow:hidden;isolation:isolate;
-	    box-shadow:0 12px 26px -12px rgba(244,113,90,.6)}
-	  .btn-grad::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;
-	    background:linear-gradient(120deg,#ff9d8a 0%,#f4715a 100%);transition:opacity .3s var(--ease)}
-	  .btn-grad:hover::before{opacity:1}
-	  .btn-grad::after{content:"";position:absolute;top:0;left:-120%;width:55%;height:100%;
-	    background:linear-gradient(110deg,transparent,rgba(255,255,255,.55),transparent);
-	    transform:skewX(-18deg);transition:left .6s var(--ease)}
-	  .btn-grad:hover::after{left:160%}
+    /* Hero Background Zoom */
+    .hero-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('/assets/hero/facciata-marigold.jpg') center/cover no-repeat;
+      transform: scale(1.08);
+      animation: heroZoom 24s var(--ease) infinite alternate;
+    }
+    @keyframes heroZoom {
+      from { transform: scale(1.08); }
+      to { transform: scale(1.0); }
+    }
 
-	  /* ===== Lift / cards ===== */
-	  .lift{transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-	  .lift:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+    /* Booking Card Styles */
+    .booking-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
 
-	  .card-img{position:relative;overflow:hidden;border-radius:1.1rem;box-shadow:var(--shadow-soft)}
-	  .card-img img{width:100%;height:230px;object-fit:cover;transition:transform .7s var(--ease)}
-	  .card-img:hover img{transform:scale(1.08)}
-	  .card-img .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,12,8,.05) 0%,rgba(20,12,8,.35) 55%,rgba(20,12,8,.74) 100%)}
-	  .card-img .tx{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:1.25rem;color:#fff}
-	  .card-img .tx .text-3xl span,.card-img .tx{transition:transform .4s var(--ease)}
-	  .card-img:hover .tx{transform:translateY(-3px)}
+    /* Flatpickr Custom Design */
+    .flatpickr-calendar {
+      border: none;
+      border-radius: 1.25rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 8px;
+    }
+    .flatpickr-months { background: var(--grad-coral); border-radius: 0.85rem 0.85rem 0 0; }
+    .flatpickr-current-month { font-weight: 700; color: #fff; }
+    .flatpickr-weekdays { background: transparent; padding-top: 8px; }
+    .flatpickr-weekday { color: #888; font-size: 0.75rem; font-weight: 700; }
+    .flatpickr-day { border-radius: 99px; }
+    .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange {
+      background: #1c1917 !important;
+      border-color: #1c1917 !important;
+      color: #fff !important;
+    }
+    .flatpickr-day.inRange {
+      background: rgba(244, 113, 90, 0.18) !important;
+      color: #1c1917 !important;
+    }
 
-	  /* ===== Modal ===== */
-	  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(28,18,12,.55);backdrop-filter:blur(6px);z-index:80}
-	  .modal.active{display:flex;animation:modalIn .4s var(--ease)}
-	  @keyframes modalIn{from{opacity:0}to{opacity:1}}
+    /* Date missing highlight animation */
+    #daterange.date-missing {
+      border-color: var(--coral) !important;
+      box-shadow: 0 0 0 4px rgba(244, 113, 90, 0.25);
+      animation: nudge 0.4s var(--ease);
+    }
+    @keyframes nudge {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
 
-	  /* ===== Service icons ===== */
-	  .svc-ico{width:64px;height:64px;border-radius:999px;display:grid;place-items:center;margin:0 auto 14px;
-	    background:#fff;color:var(--coral-deeper);font-size:1.25rem;
-	    box-shadow:0 10px 24px -12px rgba(120,72,48,.4),inset 0 0 0 1px rgba(255,174,163,.55);
-	    transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .4s var(--ease),color .4s var(--ease)}
-	  #servizi .grid > div{transition:transform .4s var(--ease)}
-	  #servizi .grid > div:hover{transform:translateY(-4px)}
-	  #servizi .grid > div:hover .svc-ico{background:var(--grad-coral);color:#fff;transform:translateY(-2px) scale(1.06);
-	    box-shadow:0 18px 34px -14px rgba(244,113,90,.65)}
+    /* Swiper Styling */
+    .mySwiper { border-radius: 1.5rem; }
+    .swiper-button-next, .swiper-button-prev {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      color: #1c1917;
+      width: 48px; height: 48px;
+      border-radius: 99px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s var(--ease);
+    }
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background: #f4715a;
+      color: #fff;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after { font-size: 16px; font-weight: 800; }
+    .swiper-pagination-bullet-active { background: #f4715a !important; width: 28px; border-radius: 99px; }
 
-	  /* ===== Aspect 3:4 (todo cards) ===== */
-	  .aspect-3-4{position:relative;width:100%;overflow:hidden;border-radius:.85rem}
-	  .aspect-3-4:before{content:"";display:block;padding-top:133.333%}
-	  .aspect-3-4>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:.85rem;transition:transform .7s var(--ease)}
-	  .lift:hover .aspect-3-4>img{transform:scale(1.07)}
+    /* Aspect ratio 3:4 for experience cards */
+    .aspect-3-4 {
+      position: relative;
+      width: 100%;
+      padding-top: 133.33%;
+      overflow: hidden;
+      border-radius: 1.25rem;
+    }
+    .aspect-3-4 > img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease);
+    }
 
-	  /* ===== Booking card ===== */
-	  .booking-card{position:relative;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);
-	    border:1px solid rgba(255,255,255,.7);border-radius:1.25rem;
-	    box-shadow:0 40px 80px -30px rgba(60,30,18,.55)}
-	  .booking-card::before{content:"";position:absolute;left:1.25rem;right:1.25rem;top:0;height:3px;border-radius:999px;
-	    background:var(--grad-coral);opacity:.9}
-	  .booking-card input,.booking-card select{transition:border-color .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
-	  .booking-card input:focus,.booking-card select:focus{border-color:var(--coral);
-	    box-shadow:0 0 0 3px rgba(255,174,163,.32);background:#fff;outline:none}
+    /* Reveal animations */
+    [data-reveal], [data-reveal-group] > * {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    [data-reveal].is-visible, [data-reveal-group].is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    [data-reveal-group].is-visible > * {
+      transition-delay: calc(var(--i, 0) * 90ms);
+    }
 
-	  /* ===== Room cards ===== */
-	  .price-pill{display:inline-flex;align-items:baseline;gap:.25rem;padding:.2rem .65rem;border-radius:999px;
-	    background:rgba(255,174,163,.16);color:var(--coral-deeper);font-weight:700;white-space:nowrap}
-	  .room-cta{transition:background .3s var(--ease),box-shadow .3s var(--ease),transform .3s var(--ease)}
-	  .room-cta:hover{box-shadow:0 14px 26px -12px rgba(244,113,90,.6)}
-
-	  /* ===== Scroll reveal ===== */
-	  [data-reveal],[data-reveal-group] > *{opacity:0;transform:translateY(26px);
-	    transition:opacity .8s var(--ease),transform .8s var(--ease)}
-	  [data-reveal].is-visible,[data-reveal-group].is-visible > *{opacity:1;transform:none}
-	  [data-reveal-group].is-visible > *{transition-delay:calc(var(--i,0) * 85ms)}
-
-	  /* ===== Hero ===== */
-	  .hero-bg{position:relative}                 /* no overflow clip on the header */
-	  .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden} /* only the background is clipped */
-	  .hero-media::before{content:"";position:absolute;inset:0;
-	    background:url('/assets/hero/facciata-marigold.jpg') center/cover no-repeat;
-	    transform:scale(1.12);animation:heroZoom 22s var(--ease) infinite alternate}
-	  .hero-media::after{content:"";position:absolute;inset:0;
-	    background:
-	      radial-gradient(80vw 60vh at 78% 6%, rgba(245,182,95,.30), transparent 55%),
-	      linear-gradient(180deg, rgba(36,20,12,.32) 0%, rgba(30,16,10,.40) 45%, rgba(22,12,8,.70) 100%)}
-	  .hero-content{position:relative;z-index:2}
-	  @keyframes heroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
-	  .hero-accent{font-style:italic;color:#fff}
-
-	  /* Hero entrance */
-	  .hero-content > *{opacity:0;transform:translateY(28px);animation:heroUp .9s var(--ease) forwards}
-	  .hero-content > *:nth-child(1){animation-delay:.15s}
-	  .hero-content > *:nth-child(2){animation-delay:.32s}
-	  .hero-content > *:nth-child(3){animation-delay:.5s}
-	  @keyframes heroUp{to{opacity:1;transform:none}}
-
-	  /* ===== Map / visit panel ===== */
-	  #directionsLink{transition:gap .25s var(--ease),color .25s var(--ease)}
-
-	  /* ===== Footer ===== */
-	  footer a[aria-label]{transition:transform .3s var(--ease),background .3s var(--ease)}
-	  footer a[aria-label]:hover{transform:translateY(-3px)}
-
-	  /* ===== Swiper override ===== */
-	  .mySwiper{border-radius:1.25rem;box-shadow:var(--shadow-soft)}
-	  .swiper-button-next,.swiper-button-prev{color:#fff;background:rgba(28,18,12,.32);backdrop-filter:blur(4px);
-	    width:46px;height:46px;border-radius:999px;transition:background .25s var(--ease)}
-	  .swiper-button-next:hover,.swiper-button-prev:hover{background:rgba(244,113,90,.85)}
-	  .swiper-button-next:after,.swiper-button-prev:after{font-size:18px;font-weight:700}
-	  .swiper-pagination-bullet{background-color:rgba(255,255,255,.55);opacity:1;transition:width .25s var(--ease)}
-	  .swiper-pagination-bullet-active{background-color:#fff;width:24px;border-radius:999px}
-
-	  /* ===== Flatpickr ===== */
-	  .flatpickr-calendar{border:none;border-radius:1rem;box-shadow:0 24px 50px rgba(60,30,18,.22);overflow:hidden}
-	  .flatpickr-months{background:var(--grad-coral);color:#fff}
-	  .flatpickr-current-month{font-weight:700;font-size:1rem}
-	  .flatpickr-prev-month,.flatpickr-next-month{fill:#fff}
-	  .flatpickr-weekdays{background:var(--cream)}
-	  .flatpickr-weekday{color:#a89e96;font-size:.75rem;text-transform:uppercase;letter-spacing:1px}
-	  .flatpickr-day{border-radius:999px;transition:all .2s var(--ease)}
-	  .flatpickr-day:hover{background:var(--coral);color:#fff}
-	  .flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange{background:var(--ink);color:#fff;border-color:var(--ink)}
-	  .flatpickr-day.inRange{background:rgba(255,174,163,.25);color:var(--ink)}
-	  .flatpickr-day.today{border:2px solid var(--coral)}
-
-	  /* Fit the elegant calendar inside small screens (no horizontal cropping) */
-	  @media (max-width:480px){
-	    .flatpickr-calendar{width:auto!important;max-width:calc(100vw - 20px)}
-	    .flatpickr-rContainer,.flatpickr-weekdaycontainer,.flatpickr-weekdays,.flatpickr-days{width:100%!important}
-	    .flatpickr-days .dayContainer{width:100%!important;min-width:0!important;max-width:none!important}
-	    .flatpickr-day{max-width:14.2857%;height:40px;line-height:39px}
-	  }
-
-	  /* ===== Reduced motion ===== */
-	  @media (prefers-reduced-motion: reduce){
-	    .hero-media::before{animation:none;transform:scale(1.04)}
-	    .hero-content > *{animation:none;opacity:1;transform:none}
-	    [data-reveal],[data-reveal-group] > *{opacity:1!important;transform:none!important;transition:none!important}
-	    .btn-grad::after{display:none}
-	    html{scroll-behavior:auto}
-	  }
-	</style>
+    /* Modals */
+    .modal {
+      position: fixed; inset: 0;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(28, 25, 23, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 90;
+    }
+    .modal.active { display: flex; animation: modalIn 0.35s var(--ease); }
+    @keyframes modalIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+  </style>
 </head>
-<body class="font-sans text-dark bg-offwhite antialiased">
+<body class="bg-cream text-dark">
 
-<div id="cookieBanner" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[60] max-w-3xl w-[92%] md:w-[720px] bg-white/95 backdrop-blur border border-gray-200 shadow-2xl rounded-2xl p-5">
+<!-- Cookie Banner -->
+<div id="cookieBanner" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-2xl bg-white/95 backdrop-blur-md border border-stone-200/80 shadow-2xl rounded-2xl p-6">
   <div class="flex items-start gap-4">
-    <div class="shrink-0 w-10 h-10 rounded-full bg-coral/30 grid place-items-center">
-      <svg class="w-5 h-5 text-coral" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12a8 8 0 1 1-8-8 3 3 0 0 0 3 3 3 3 0 0 0 3 3 3 3 0 0 0 3 3Z"/></svg>
+    <div class="shrink-0 w-11 h-11 rounded-xl bg-coral/10 text-coral flex items-center justify-center text-lg">
+      <i class="fa-solid fa-cookie-bite"></i>
     </div>
-    <div class="text-sm text-gray-700 leading-6" data-i18n-html="cookie.text"></div>
+    <div class="text-sm text-stone-600 leading-relaxed" data-i18n-html="cookie.text"></div>
   </div>
-  <div class="mt-4 flex justify-end gap-2">
-    <button id="cookieDecline" class="px-4 py-2 border rounded" data-i18n="cookie.decline">Rifiuta</button>
-    <button id="cookieAccept" class="px-4 py-2 text-white rounded btn-grad" data-i18n="cookie.accept">Accetta</button>
+  <div class="mt-5 flex justify-end items-center gap-3">
+    <button id="cookieDecline" class="px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-stone-500 hover:text-stone-800 transition" data-i18n="cookie.decline">Rifiuta</button>
+    <button id="cookieAccept" class="px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white rounded-xl btn-grad shadow-glow" data-i18n="cookie.accept">Accetta</button>
   </div>
 </div>
 
-<nav id="siteNav" class="sticky top-0 w-full z-50 backdrop-blur shadow-sm">
+<!-- Sticky Modern Header Navigation -->
+<nav id="siteNav" class="fixed top-0 left-0 w-full z-50 py-4 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
-      <div class="flex items-center gap-3">
-        <img src="/assets/brand/logo.png" alt="Marigold logo" class="w-10 h-10"/>
+    <div class="flex justify-between items-center h-14">
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="/assets/brand/logo.png" alt="Marigold logo" class="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-105"/>
         <div>
-          <span class="font-serif text-2xl font-bold leading-none block">Marigold</span>
-          <span class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Riva del Garda</span>
+          <span class="font-serif text-2xl font-bold tracking-tight block text-stone-900 leading-none">Marigold</span>
+          <span class="text-[9px] uppercase tracking-[0.25em] text-stone-500 font-bold">Riva del Garda</span>
         </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center space-x-7 text-xs font-bold uppercase tracking-wider text-stone-700">
+        <a href="#chi-siamo" class="nav-link" data-i18n="nav.about">Chi Siamo</a>
+        <a href="#camere" class="nav-link" data-i18n="nav.rooms">Camere</a>
+        <a href="#servizi" class="nav-link" data-i18n="nav.services">Servizi</a>
+        <a href="#distanze" class="nav-link" data-i18n="nav.distances">Distanze</a>
+        <a href="#galleria" class="nav-link" data-i18n="nav.gallery">Galleria</a>
+        <a href="#da-fare" class="nav-link" data-i18n="nav.todo">Cose da fare</a>
+        <a href="#contatti" class="nav-link" data-i18n="nav.contact">Contatti</a>
       </div>
-      <div class="hidden md:flex items-center space-x-6 text-sm font-bold uppercase tracking-wider">
-        <a href="#chi-siamo" class="nav-link hover:text-coral" data-i18n="nav.about">Chi Siamo</a>
-        <a href="#camere" class="nav-link hover:text-coral" data-i18n="nav.rooms">Camere</a>
-        <a href="#servizi" class="nav-link hover:text-coral" data-i18n="nav.services">Servizi</a>
-        <a href="#distanze" class="nav-link hover:text-coral" data-i18n="nav.distances">Distanze</a>
-        <a href="#galleria" class="nav-link hover:text-coral" data-i18n="nav.gallery">Galleria</a>
-        <a href="#da-fare" class="nav-link hover:text-coral" data-i18n="nav.todo">Cose da fare</a>
-        <a href="#contatti" class="nav-link hover:text-coral" data-i18n="nav.contact">Contatti</a>
-        <a class="btn-grad lift text-white px-6 py-3 rounded-full shadow-md transition book-direct" data-i18n="cta.bookNow" href="https://marigold.kross.travel/">Prenota Ora</a>
-        <div class="ml-2 flex gap-2 items-center text-xs normal-case">
-          <button id="lang-it" class="px-2 py-1 rounded border">IT</button>
-          <button id="lang-en" class="px-2 py-1 rounded border">EN</button>
+
+      <div class="hidden lg:flex items-center gap-4">
+        <!-- Lang switcher -->
+        <div class="flex items-center p-1 bg-stone-200/50 rounded-lg text-[11px] font-bold">
+          <button id="lang-it" class="px-2.5 py-1 rounded-md transition text-stone-700">IT</button>
+          <button id="lang-en" class="px-2.5 py-1 rounded-md transition text-stone-700">EN</button>
         </div>
+        <!-- Book button -->
+        <a href="https://marigold.kross.travel/" class="btn-grad text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-glow hover:scale-[1.02] active:scale-[0.98] transition book-direct" data-i18n="cta.bookNow">Prenota Ora</a>
       </div>
-      <div class="md:hidden"><button id="mobile-menu-btn" class="p-2"><i class="fas fa-bars text-2xl"></i></button></div>
+
+      <!-- Mobile menu button -->
+      <div class="lg:hidden flex items-center gap-3">
+        <button id="mobile-menu-btn" class="p-2.5 text-stone-800 focus:outline-none" aria-label="Menu">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
-    <a href="#chi-siamo" class="block py-4 px-6 border-b" data-i18n="nav.about">Chi Siamo</a>
-    <a href="#camere" class="block py-4 px-6 border-b" data-i18n="nav.rooms">Camere</a>
-    <a href="#servizi" class="block py-4 px-6 border-b" data-i18n="nav.services">Servizi</a>
-    <a href="#distanze" class="block py-4 px-6 border-b" data-i18n="nav.distances">Distanze</a>
-    <a href="#galleria" class="block py-4 px-6 border-b" data-i18n="nav.gallery">Galleria</a>
-    <a href="#da-fare" class="block py-4 px-6 border-b" data-i18n="nav.todo">Cose da fare</a>
-    <a href="#contatti" class="block py-4 px-6 border-b" data-i18n="nav.contact">Contatti</a>
-    <a class="block py-4 px-6 text-coral font-bold text-center bg-gray-50 book-direct" data-i18n="cta.bookNowUpper" href="https://marigold.kross.travel/">PRENOTA ORA</a>
-    <div class="py-4 px-6 border-t flex items-center gap-2">
-      <span class="text-xs uppercase tracking-[0.15em] text-gray-500" data-i18n="nav.lang">Lingua</span>
-      <button id="lang-it-m" class="px-2 py-1 rounded border">IT</button>
-      <button id="lang-en-m" class="px-2 py-1 rounded border">EN</button>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white/98 backdrop-blur-xl border-b border-stone-200 shadow-2xl absolute top-full left-0 w-full transition-all">
+    <div class="px-6 py-6 space-y-4 text-stone-800 font-bold uppercase tracking-wider text-sm">
+      <a href="#chi-siamo" class="block py-2 border-b border-stone-100" data-i18n="nav.about">Chi Siamo</a>
+      <a href="#camere" class="block py-2 border-b border-stone-100" data-i18n="nav.rooms">Camere</a>
+      <a href="#servizi" class="block py-2 border-b border-stone-100" data-i18n="nav.services">Servizi</a>
+      <a href="#distanze" class="block py-2 border-b border-stone-100" data-i18n="nav.distances">Distanze</a>
+      <a href="#galleria" class="block py-2 border-b border-stone-100" data-i18n="nav.gallery">Galleria</a>
+      <a href="#da-fare" class="block py-2 border-b border-stone-100" data-i18n="nav.todo">Cose da fare</a>
+      <a href="#contatti" class="block py-2 border-b border-stone-100" data-i18n="nav.contact">Contatti</a>
+      <div class="pt-2 flex items-center justify-between">
+        <span class="text-xs text-stone-400 font-semibold" data-i18n="nav.lang">Lingua</span>
+        <div class="flex gap-2">
+          <button id="lang-it-m" class="px-3 py-1 bg-stone-100 rounded text-xs">IT</button>
+          <button id="lang-en-m" class="px-3 py-1 bg-stone-100 rounded text-xs">EN</button>
+        </div>
+      </div>
+      <a href="https://marigold.kross.travel/" class="block text-center py-3.5 btn-grad text-white rounded-xl font-bold tracking-widest shadow-glow mt-4 book-direct" data-i18n="cta.bookNowUpper">PRENOTA ORA</a>
     </div>
   </div>
 </nav>
 
-<header class="relative min-h-[78vh] flex items-center justify-center hero-bg">
+<!-- Hero Section -->
+<header class="relative min-h-[90vh] flex items-center justify-center pt-24 pb-32 hero-bg overflow-hidden">
   <div class="hero-media" aria-hidden="true"></div>
-  <div class="hero-content text-center px-4 max-w-5xl mx-auto mt-10">
-    <h1 class="font-serif text-5xl md:text-7xl text-white font-bold mb-6 leading-tight drop-shadow-lg">
-      <span data-i18n="hero.line1">Sentirsi a casa,</span><br><span class="hero-accent" data-i18n="hero.line2">respirare il Garda.</span>
+  <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-900/40 to-stone-900/30 z-10"></div>
+
+  <div class="relative z-20 text-center px-4 max-w-5xl mx-auto pt-10">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs uppercase tracking-[0.25em] font-bold mb-6">
+      <i class="fa-solid fa-location-dot text-coralLight text-xs"></i> Boutique Stay • Riva del Garda
+    </div>
+    
+    <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-bold mb-6 leading-[1.08] tracking-tight drop-shadow-md">
+      <span data-i18n="hero.line1">Sentirsi a casa,</span><br>
+      <span class="italic font-normal text-coralLight" data-i18n="hero.line2">respirare il Garda.</span>
     </h1>
-    <p class="text-white/95 text-lg md:text-2xl mb-10 font-light drop-shadow max-w-2xl mx-auto" data-i18n="hero.sub">
+    
+    <p class="text-stone-200 text-lg sm:text-xl md:text-2xl mb-12 font-light max-w-2xl mx-auto leading-relaxed" data-i18n="hero.sub">
       Camere rinnovate e la libertà di vivere Riva del Garda al tuo ritmo.
     </p>
 
-    <div class="booking-card p-6 max-w-5xl mx-auto -mb-28">
+    <!-- Floating Glass Booking Engine -->
+    <div class="booking-card p-6 md:p-8 rounded-3xl max-w-5xl mx-auto shadow-glass relative text-left border border-white/60">
       <form class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end" onsubmit="return false;">
-        <div class="md:col-span-4 text-left">
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1" data-i18n="form.date">Date</label>
-          <input id="daterange" type="text" placeholder="gg/mm/aaaa – gg/mm/aaaa" class="w-full bg-gray-50 border border-gray-200 rounded p-2 text-dark focus:border-coral outline-none"/>
-          <input id="checkin" type="hidden"><input id="checkout" type="hidden">
-        </div>
-        <div class="md:col-span-2 text-left">
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1" data-i18n="form.rooms">Camere</label>
-          <select id="rooms" class="w-full bg-gray-50 border border-gray-200 rounded p-2"><option>1</option><option>2</option><option>3</option><option>4</option></select>
-        </div>
-        <div class="md:col-span-2 text-left">
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1" data-i18n="form.adulti">Adulti</label>
-          <select id="adultsTotal" class="w-full bg-gray-50 border border-gray-200 rounded p-2">
-            <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-          </select>
-        </div>
-        <div class="md:col-span-2 text-left">
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1" data-i18n="form.bambini">Bambini</label>
-          <select id="childrenTotal" class="w-full bg-gray-50 border border-gray-200 rounded p-2">
-            <option selected>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
-          </select>
-        </div>
-        <div class="md:col-span-2 flex items-end">
-          <a id="btnSearch" href="#" class="w-full btn-grad text-white font-bold py-3 rounded shadow hover:opacity-90 transition book-param lift" data-i18n="cta.search">VERIFICA DISPONIBILITÀ</a>
+        
+        <!-- Date Selector -->
+        <div class="md:col-span-4">
+          <label class="block text-[11px] font-extrabold text-stone-500 uppercase tracking-wider mb-2" data-i18n="form.date">Date</label>
+          <div class="relative">
+            <i class="fa-regular fa-calendar-check absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-sm pointer-events-none"></i>
+            <input id="daterange" type="text" readonly placeholder="gg/mm/aaaa – gg/mm/aaaa" class="w-full bg-stone-50/80 border border-stone-200 rounded-xl pl-10 pr-3 py-3 text-sm text-stone-800 font-semibold focus:border-coral focus:ring-2 focus:ring-coral/20 outline-none transition cursor-pointer"/>
+          </div>
+          <input id="checkin" type="hidden">
+          <input id="checkout" type="hidden">
         </div>
 
-        <div id="inlineAgesWrap" class="md:col-span-12 hidden">
-          <div class="border border-gray-200 rounded p-3 bg-white">
-            <div class="text-xs text-gray-500 mb-2" data-i18n="form.agesHint">Età bambini al momento del soggiorno (0–17 anni).</div>
-            <div id="inlineAges" class="flex flex-wrap gap-2"></div>
+        <!-- Rooms Selector -->
+        <div class="md:col-span-2">
+          <label class="block text-[11px] font-extrabold text-stone-500 uppercase tracking-wider mb-2" data-i18n="form.rooms">Camere</label>
+          <div class="relative">
+            <select id="rooms" class="w-full bg-stone-50/80 border border-stone-200 rounded-xl px-3 py-3 text-sm text-stone-800 font-semibold focus:border-coral outline-none appearance-none cursor-pointer">
+              <option>1</option><option>2</option><option>3</option><option>4</option>
+            </select>
+            <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-xs pointer-events-none"></i>
           </div>
         </div>
 
+        <!-- Adults Selector -->
+        <div class="md:col-span-2">
+          <label class="block text-[11px] font-extrabold text-stone-500 uppercase tracking-wider mb-2" data-i18n="form.adulti">Adulti</label>
+          <div class="relative">
+            <select id="adultsTotal" class="w-full bg-stone-50/80 border border-stone-200 rounded-xl px-3 py-3 text-sm text-stone-800 font-semibold focus:border-coral outline-none appearance-none cursor-pointer">
+              <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+            </select>
+            <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-xs pointer-events-none"></i>
+          </div>
+        </div>
+
+        <!-- Children Selector -->
+        <div class="md:col-span-2">
+          <label class="block text-[11px] font-extrabold text-stone-500 uppercase tracking-wider mb-2" data-i18n="form.bambini">Bambini</label>
+          <div class="relative">
+            <select id="childrenTotal" class="w-full bg-stone-50/80 border border-stone-200 rounded-xl px-3 py-3 text-sm text-stone-800 font-semibold focus:border-coral outline-none appearance-none cursor-pointer">
+              <option selected>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            </select>
+            <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-xs pointer-events-none"></i>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="md:col-span-2">
+          <a id="btnSearch" href="#" class="w-full btn-grad text-white font-bold py-3.5 px-2 rounded-xl text-xs uppercase tracking-wider text-center shadow-glow block hover:opacity-95 transition book-param" data-i18n="cta.search">VERIFICA DISPONIBILITÀ</a>
+        </div>
+
+        <!-- Dynamic Inline Child Ages Wrapper -->
+        <div id="inlineAgesWrap" class="md:col-span-12 hidden">
+          <div class="border border-stone-200/80 rounded-xl p-4 bg-stone-50/80 mt-2">
+            <div class="text-xs font-medium text-stone-500 mb-3" data-i18n="form.agesHint">Età bambini al momento del soggiorno (0–17 anni).</div>
+            <div id="inlineAges" class="flex flex-wrap gap-3"></div>
+          </div>
+        </div>
+
+        <!-- Multiple Rooms Breakdown -->
         <div class="md:col-span-12 hidden" id="roomsList"></div>
       </form>
 
-      <div id="dateHint" class="hidden mt-3 flex items-center gap-2 text-sm font-semibold text-coralDeep bg-coral/10 border border-coral/40 rounded-lg px-3 py-2" role="alert">
-        <i class="fas fa-calendar-day"></i>
+      <!-- Alert Hint for missing dates -->
+      <div id="dateHint" class="hidden mt-4 flex items-center gap-3 text-xs font-bold text-coral bg-coral/10 border border-coral/30 rounded-xl p-3.5" role="alert">
+        <i class="fas fa-calendar-day text-base"></i>
         <span data-i18n="form.pickDates">Seleziona prima le date del soggiorno per verificare la disponibilità.</span>
       </div>
 
-      <div class="mt-3 flex justify-between items-center text-xs text-gray-600 px-1">
-        <span><i class="fas fa-check text-green-600"></i> <span data-i18n="trust.best">Miglior tariffa garantita</span></span>
-        <span><i class="fas fa-check text-green-600"></i> <span data-i18n="trust.cancel">Cancellazione flessibile</span></span>
+      <!-- Trust Badges -->
+      <div class="mt-4 pt-4 border-t border-stone-200/60 flex flex-wrap justify-between items-center text-xs font-semibold text-stone-600 gap-2">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-600"></i> <span data-i18n="trust.best">Miglior tariffa garantita</span></span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-rotate-left text-emerald-600"></i> <span data-i18n="trust.cancel">Cancellazione flessibile</span></span>
       </div>
     </div>
   </div>
 </header>
 
-<section id="chi-siamo" class="pt-48 pb-14 px-4">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center" data-reveal-group>
-    <div><img src="/assets/about/camera.jpg" alt="Camera Marigold" class="rounded-2xl shadow-xl w-full"></div>
+<!-- About Section -->
+<section id="chi-siamo" class="py-24 px-4 bg-cream overflow-hidden">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-center" data-reveal-group>
+    <div class="relative">
+      <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
+        <img src="/assets/about/camera.jpg" alt="Camera Marigold" class="w-full h-[480px] object-cover hover:scale-105 transition duration-700">
+      </div>
+      <!-- Accent badge -->
+      <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl z-20 hidden sm:block max-w-[200px] border border-stone-100">
+        <div class="text-coral font-bold text-3xl font-serif">100%</div>
+        <div class="text-xs text-stone-500 font-semibold mt-1">Energia rinnovabile e accoglienza green</div>
+      </div>
+    </div>
+
     <div>
-      <span class="eyebrow text-coral font-bold uppercase tracking-widest text-sm mb-2 block" data-i18n="about.kicker">La Nostra Storia</span>
-      <h2 class="font-serif text-4xl font-bold text-dark mb-6 title-left title-accent" data-i18n="about.h">Benvenuti al Marigold.</h2>
-      <p class="text-gray-600 mb-6 leading-relaxed" data-i18n="about.p1">Ristrutturato con cura nel 2018, in Via dell'Albola, un quartiere silenzioso ma strategico. Rifugio ideale a due passi dal centro.</p>
-      <p class="text-gray-600" data-i18n="about.p2">Accoglienza familiare e attenzione all'ambiente grazie all'impianto fotovoltaico. Parcheggio gratuito a 50 m.</p>
+      <span class="text-coral font-bold uppercase tracking-[0.25em] text-xs mb-3 block" data-i18n="about.kicker">La Nostra Storia</span>
+      <h2 class="font-serif text-4xl sm:text-5xl font-bold text-stone-900 mb-6 leading-tight" data-i18n="about.h">Benvenuti al Marigold.</h2>
+      <p class="text-stone-600 text-base leading-relaxed mb-6 font-normal" data-i18n="about.p1">Ristrutturato con cura nel 2018, in Via dell'Albola, un quartiere silenzioso ma strategico. Rifugio ideale a due passi dal centro.</p>
+      <p class="text-stone-600 text-base leading-relaxed mb-8 font-normal" data-i18n="about.p2">Accoglienza familiare e attenzione all'ambiente grazie all'impianto fotovoltaico. Parcheggio gratuito a 50 m.</p>
+
+      <div class="grid grid-cols-2 gap-4 border-t border-stone-200 pt-6">
+        <div>
+          <span class="block text-2xl font-serif font-bold text-stone-900">2018</span>
+          <span class="text-xs text-stone-500 uppercase tracking-wider font-semibold">Anno Ristrutturazione</span>
+        </div>
+        <div>
+          <span class="block text-2xl font-serif font-bold text-stone-900">50m</span>
+          <span class="text-xs text-stone-500 uppercase tracking-wider font-semibold">Parcheggio Gratuito</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="servizi" class="py-16 bg-white">
+<!-- Amenities / Services Section -->
+<section id="servizi" class="py-24 bg-white">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-center font-serif text-3xl font-bold tracking-wide mb-12 title-accent" data-i18n="services.h">I NOSTRI SERVIZI</h2>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-14 text-center" data-reveal-group>
-      
-      <div>
-        <div class="svc-ico"><i class="fa-solid fa-calendar-check"></i></div>
-        <h3 class="font-semibold mb-1" data-i18n="services.flex.h">Cancellazione Flessibile</h3>
-        <p class="text-gray-500 italic" data-i18n="services.flex.p">Gratuita fino a 3 giorni prima della data di arrivo</p>
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-coral font-bold uppercase tracking-[0.25em] text-xs mb-2 block">Comfort & Dettagli</span>
+      <h2 class="font-serif text-4xl sm:text-5xl font-bold text-stone-900" data-i18n="services.h">I NOSTRI SERVIZI</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 text-center" data-reveal-group>
+      <!-- Amenity Item -->
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-calendar-check"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.flex.h">Cancellazione Flessibile</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.flex.p">Gratuita fino a 3 giorni prima della data di arrivo</p>
       </div>
-      
-      <div><div class="svc-ico"><i class="fa-solid fa-tree"></i></div><h3 class="font-semibold mb-1" data-i18n="services.garden.h">Giardino</h3><p class="text-gray-500 italic" data-i18n="services.garden.p">Relax all’aria aperta</p></div>
-      <div><div class="svc-ico"><i class="fa-solid fa-tv"></i></div><h3 class="font-semibold mb-1" data-i18n="services.tv.h">Smart TV</h3><p class="text-gray-500 italic" data-i18n="services.tv.p">Film e serie on-demand</p></div>
-      <div><div class="svc-ico"><i class="fa-solid fa-wifi"></i></div><h3 class="font-semibold mb-1" data-i18n="services.wifi.h">Free Wi-Fi</h3><p class="text-gray-500 italic" data-i18n="services.wifi.p">Fibra ultraveloce</p></div>
-      <div><div class="svc-ico"><i class="fa-solid fa-solar-panel"></i></div><h3 class="font-semibold mb-1" data-i18n="services.green.h">Energia Verde</h3><p class="text-gray-500 italic" data-i18n="services.green.p">Fotovoltaico 5kWh</p></div>
-      <div><div class="svc-ico"><i class="fa-solid fa-square-parking"></i></div><h3 class="font-semibold mb-1" data-i18n="services.parking.h">Parcheggio Gratuito</h3><p class="text-gray-500 italic" data-i18n="services.parking.p">A 50 m dalla struttura</p></div>
-      <div><div class="svc-ico"><i class="fa-solid fa-bicycle"></i></div><h3 class="font-semibold mb-1" data-i18n="services.bike.h">Posto bici</h3><p class="text-gray-500 italic" data-i18n="services.bike.p">Al sicuro all’interno</p></div>
-      <div><div class="svc-ico"><i class="fa-solid fa-snowflake"></i></div><h3 class="font-semibold mb-1" data-i18n="services.ac.h">Aria condizionata</h3><p class="text-gray-500 italic" data-i18n="services.ac.p">Nuova in tutte le unità</p></div>
-      <div><div class="svc-ico"><i class="fa-solid fa-ear-deaf"></i></div><h3 class="font-semibold mb-1" data-i18n="services.quiet.h">Quiet Zone</h3><p class="text-gray-500 italic" data-i18n="services.quiet.p">Lontano dal traffico</p></div>
+
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-tree"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.garden.h">Giardino</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.garden.p">Relax all’aria aperta</p>
+      </div>
+
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-tv"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.tv.h">Smart TV</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.tv.p">Film e serie on-demand</p>
+      </div>
+
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-wifi"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.wifi.h">Free Wi-Fi</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.wifi.p">Fibra ultraveloce</p>
+      </div>
+
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-solar-panel"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.green.h">Energia Verde</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.green.p">Fotovoltaico 5kWh</p>
+      </div>
+
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-square-parking"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.parking.h">Parcheggio Gratuito</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.parking.p">A 50 m dalla struttura</p>
+      </div>
+
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-bicycle"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.bike.h">Posto bici</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.bike.p">Al sicuro all’interno</p>
+      </div>
+
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-snowflake"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.ac.h">Aria condizionata</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.ac.p">Nuova in tutte le unità</p>
+      </div>
+
+      <div class="bg-cream/60 p-8 rounded-2xl border border-stone-100 hover:border-coral/30 hover:bg-white transition duration-300 group lift-hover">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-coral group-hover:text-white transition duration-300 shadow-sm">
+          <i class="fa-solid fa-ear-deaf"></i>
+        </div>
+        <h3 class="font-bold text-lg text-stone-900 mb-2" data-i18n="services.quiet.h">Quiet Zone</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="services.quiet.p">Lontano dal traffico</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="distanze" class="py-12 px-4">
+<!-- Distances Section -->
+<section id="distanze" class="py-20 px-4 bg-cream">
   <div class="max-w-6xl mx-auto">
-    <h3 class="text-center text-2xl font-semibold text-gray-700 mb-6" data-i18n="dist.h">Distano a piedi:</h3>
-    <div class="grid md:grid-cols-3 gap-6" data-reveal-group>
-      <div class="card-img lift"><img src="/assets/distanze/bus.jpg" alt="Autostazione"><div class="ov"></div><div class="tx"><div class="text-sm opacity-90" data-i18n="visit.bus">Autostazione</div><div class="text-3xl font-serif font-bold">5 <span class="text-xl">min</span> →</div></div></div>
-      <div class="card-img lift"><img src="/assets/distanze/centro-storico.jpg" alt="Centro"><div class="ov"></div><div class="tx"><div class="text-sm opacity-90" data-i18n="visit.center">Centro storico</div><div class="text-3xl font-serif font-bold">10 <span class="text-xl">min</span> →</div></div></div>
-      <div class="card-img lift"><img src="/assets/distanze/spiaggia.jpg" alt="Spiaggia"><div class="ov"></div><div class="tx"><div class="text-sm opacity-90" data-i18n="visit.beach">Spiaggia</div><div class="text-3xl font-serif font-bold">15 <span class="text-xl">min</span> →</div></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="camere" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-12">
-      <h2 class="font-serif text-4xl text-dark font-bold mb-4 title-accent" data-i18n="rooms.h">Le Nostre Camere</h2>
-      <p class="text-gray-500" data-i18n="rooms.sub">Design moderno, luce naturale e comfort totale.</p>
+      <span class="text-coral font-bold uppercase tracking-[0.25em] text-xs mb-2 block">Posizione Strategica</span>
+      <h3 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900" data-i18n="dist.h">Distano a piedi:</h3>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
 
-      <article class="bg-offwhite rounded-2xl overflow-hidden shadow-lg group lift">
-        <div class="h-48 overflow-hidden"><img src="/assets/rooms/standard.jpg" class="w-full h-full object-cover group-hover:scale-110 transition" alt="Camera Standard"></div>
-        <div class="p-6">
-          <div class="flex justify-between items-baseline mb-2">
-            <h3 class="font-serif text-xl font-bold" data-i18n="rooms.std.name">Standard</h3>
-            <span class="price-pill"><span data-i18n="rooms.from">da</span> €69</span>
+    <div class="grid md:grid-cols-3 gap-8" data-reveal-group>
+      <!-- Card Bus -->
+      <div class="relative rounded-3xl overflow-hidden shadow-lg group h-80 cursor-pointer lift-hover">
+        <img src="/assets/distanze/bus.jpg" alt="Autostazione" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-900/30 to-transparent"></div>
+        <div class="absolute bottom-0 inset-x-0 p-6 text-white flex justify-between items-end">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-stone-300 font-semibold block mb-1" data-i18n="visit.bus">Autostazione</span>
+            <div class="font-serif text-3xl font-bold">5 <span class="text-lg font-sans font-normal">min</span></div>
           </div>
-          <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide" data-i18n="rooms.std.meta">2 Adulti · 22 m² · Bagno privato</p>
-          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded-lg room-cta hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
+          <span class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-coral transition duration-300"><i class="fa-solid fa-arrow-right text-sm"></i></span>
         </div>
-      </article>
-
-      <article class="bg-offwhite rounded-2xl overflow-hidden shadow-lg group lift">
-        <div class="h-48 overflow-hidden"><img src="/assets/rooms/deluxe.jpg" class="w-full h-full object-cover group-hover:scale-110 transition" alt="Camera Deluxe"></div>
-        <div class="p-6">
-          <div class="flex justify-between items-baseline mb-2">
-            <h3 class="font-serif text-xl font-bold" data-i18n="rooms.del.name">Deluxe</h3>
-            <span class="price-pill"><span data-i18n="rooms.from">da</span> €70</span>
-          </div>
-          <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide" data-i18n="rooms.del.meta">2 Adulti · 22 m² · Balcone</p>
-          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded-lg room-cta hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
-        </div>
-      </article>
-
-      <article class="bg-offwhite rounded-2xl overflow-hidden shadow-lg group lift">
-        <div class="h-48 overflow-hidden"><img src="/assets/rooms/junior-suite.jpg" class="w-full h-full object-cover group-hover:scale-110 transition" alt="Junior Suite"></div>
-        <div class="p-6">
-          <div class="flex justify-between items-baseline mb-2">
-            <h3 class="font-serif text-xl font-bold" data-i18n="rooms.js.name">Junior Suite</h3>
-            <span class="price-pill"><span data-i18n="rooms.from">da</span> €72</span>
-          </div>
-          <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide" data-i18n="rooms.js.meta">Fino a 4 Ospiti · 40 m² · Cucina · Vista</p>
-          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded-lg room-cta hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
-        </div>
-      </article>
-
-      <article class="bg-offwhite rounded-2xl overflow-hidden shadow-lg group lift">
-        <div class="h-48 overflow-hidden"><img src="/assets/rooms/monolocale.jpg" class="w-full h-full object-cover group-hover:scale-110 transition" alt="Monolocale"></div>
-        <div class="p-6">
-          <div class="flex justify-between items-baseline mb-2">
-            <h3 class="font-serif text-xl font-bold" data-i18n="rooms.st.name">Studio</h3>
-            <span class="price-pill"><span data-i18n="rooms.from">da</span> €71</span>
-          </div>
-          <p class="text-xs text-gray-500 mb-4 uppercase tracking-wide" data-i18n="rooms.st.meta">Fino a 4 Ospiti · 40 m² · Cucina · Giardino</p>
-          <a href="https://marigold.kross.travel/" class="block text-center bg-dark text-white py-2 rounded-lg room-cta hover:bg-coral transition uppercase text-xs font-bold book-direct" data-i18n="cta.bookNow">Prenota</a>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section id="galleria" class="py-16 px-4 bg-white">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-center font-serif text-3xl font-bold mb-8 title-accent" data-i18n="gallery.h">Galleria</h2>
-    <p class="text-center text-gray-500 mb-10" data-i18n="gallery.sub">Uno sguardo a camere, dettagli e dintorni.</p>
-    <div class="swiper mySwiper rounded-xl shadow">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="/assets/gallery/01-giardino-spirale.jpg" class="w-full h-[520px] object-cover" alt=""></div>
-        <div class="swiper-slide"><img src="/assets/gallery/02-volte-sasso.jpg" class="w-full h-[520px] object-cover" alt=""></div>
-        <div class="swiper-slide"><img src="/assets/gallery/03-sala-colazioni.jpg" class="w-full h-[520px] object-cover" alt=""></div>
-        <div class="swiper-slide"><img src="/assets/gallery/04-colazioni-salate.jpg" class="w-full h-[520px] object-cover" alt=""></div>
-        <div class="swiper-slide"><img src="/assets/gallery/05-colazioni-dolci.jpg" class="w-full h-[520px] object-cover" alt=""></div>
-        <div class="swiper-slide"><img src="/assets/gallery/06-vista-monte.jpg" class="w-full h-[520px] object-cover" alt=""></div>
-        <div class="swiper-slide"><img src="/assets/gallery/07-vista-parcheggio.jpg" class="w-full h-[520px] object-cover" alt=""></div>
-        <div class="swiper-slide"><img src="/assets/gallery/08-dettaglio-quadro.jpg" class="w-full h-[520px] object-cover" alt=""></div>
-        <div class="swiper-slide"><img src="/assets/gallery/09-facciata.jpg" class="w-full h-[520px] object-cover" alt=""></div>
       </div>
-      <div class="swiper-button-prev"></div><div class="swiper-button-next"></div><div class="swiper-pagination"></div>
+
+      <!-- Card Centro -->
+      <div class="relative rounded-3xl overflow-hidden shadow-lg group h-80 cursor-pointer lift-hover">
+        <img src="/assets/distanze/centro-storico.jpg" alt="Centro" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-900/30 to-transparent"></div>
+        <div class="absolute bottom-0 inset-x-0 p-6 text-white flex justify-between items-end">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-stone-300 font-semibold block mb-1" data-i18n="visit.center">Centro storico</span>
+            <div class="font-serif text-3xl font-bold">10 <span class="text-lg font-sans font-normal">min</span></div>
+          </div>
+          <span class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-coral transition duration-300"><i class="fa-solid fa-arrow-right text-sm"></i></span>
+        </div>
+      </div>
+
+      <!-- Card Spiaggia -->
+      <div class="relative rounded-3xl overflow-hidden shadow-lg group h-80 cursor-pointer lift-hover">
+        <img src="/assets/distanze/spiaggia.jpg" alt="Spiaggia" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-900/30 to-transparent"></div>
+        <div class="absolute bottom-0 inset-x-0 p-6 text-white flex justify-between items-end">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-stone-300 font-semibold block mb-1" data-i18n="visit.beach">Spiaggia</span>
+            <div class="font-serif text-3xl font-bold">15 <span class="text-lg font-sans font-normal">min</span></div>
+          </div>
+          <span class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-coral transition duration-300"><i class="fa-solid fa-arrow-right text-sm"></i></span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="da-fare" class="py-16 px-4 bg-offwhite">
+<!-- Rooms Section -->
+<section id="camere" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-coral font-bold uppercase tracking-[0.25em] text-xs mb-2 block">Ospitalità & Elegaza</span>
+      <h2 class="font-serif text-4xl sm:text-5xl font-bold text-stone-900 mb-4" data-i18n="rooms.h">Le Nostre Camere</h2>
+      <p class="text-stone-500 text-sm font-normal" data-i18n="rooms.sub">Design moderno, luce naturale e comfort totale.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8" data-reveal-group>
+
+      <!-- Standard -->
+      <article class="bg-cream rounded-3xl overflow-hidden border border-stone-100 flex flex-col justify-between group lift-hover">
+        <div>
+          <div class="h-60 overflow-hidden relative">
+            <img src="/assets/rooms/standard.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Camera Standard">
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-coral">
+              <span data-i18n="rooms.from">da</span> €69
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2" data-i18n="rooms.std.name">Standard</h3>
+            <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-6" data-i18n="rooms.std.meta">2 Adulti · 22 m² · Bagno privato</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <a href="https://marigold.kross.travel/" class="block text-center bg-stone-900 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-wider hover:bg-coral transition duration-300 book-direct shadow-sm" data-i18n="cta.bookNow">Prenota</a>
+        </div>
+      </article>
+
+      <!-- Deluxe -->
+      <article class="bg-cream rounded-3xl overflow-hidden border border-stone-100 flex flex-col justify-between group lift-hover">
+        <div>
+          <div class="h-60 overflow-hidden relative">
+            <img src="/assets/rooms/deluxe.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Camera Deluxe">
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-coral">
+              <span data-i18n="rooms.from">da</span> €70
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2" data-i18n="rooms.del.name">Deluxe</h3>
+            <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-6" data-i18n="rooms.del.meta">2 Adulti · 22 m² · Balcone</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <a href="https://marigold.kross.travel/" class="block text-center bg-stone-900 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-wider hover:bg-coral transition duration-300 book-direct shadow-sm" data-i18n="cta.bookNow">Prenota</a>
+        </div>
+      </article>
+
+      <!-- Junior Suite -->
+      <article class="bg-cream rounded-3xl overflow-hidden border border-stone-100 flex flex-col justify-between group lift-hover">
+        <div>
+          <div class="h-60 overflow-hidden relative">
+            <img src="/assets/rooms/junior-suite.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Junior Suite">
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-coral">
+              <span data-i18n="rooms.from">da</span> €72
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2" data-i18n="rooms.js.name">Junior Suite</h3>
+            <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-6" data-i18n="rooms.js.meta">Fino a 4 Ospiti · 40 m² · Cucina · Vista</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <a href="https://marigold.kross.travel/" class="block text-center bg-stone-900 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-wider hover:bg-coral transition duration-300 book-direct shadow-sm" data-i18n="cta.bookNow">Prenota</a>
+        </div>
+      </article>
+
+      <!-- Monolocale / Studio -->
+      <article class="bg-cream rounded-3xl overflow-hidden border border-stone-100 flex flex-col justify-between group lift-hover">
+        <div>
+          <div class="h-60 overflow-hidden relative">
+            <img src="/assets/rooms/monolocale.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Monolocale">
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-coral">
+              <span data-i18n="rooms.from">da</span> €71
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2" data-i18n="rooms.st.name">Studio</h3>
+            <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-6" data-i18n="rooms.st.meta">Fino a 4 Ospiti · 40 m² · Cucina · Giardino</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <a href="https://marigold.kross.travel/" class="block text-center bg-stone-900 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-wider hover:bg-coral transition duration-300 book-direct shadow-sm" data-i18n="cta.bookNow">Prenota</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Slider Section -->
+<section id="galleria" class="py-24 px-4 bg-stone-900 text-white">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-center font-serif text-3xl font-bold mb-8 title-accent" data-i18n="todo.h">Cose da fare a Riva del Garda</h2>
-    <p class="text-center text-gray-500 mb-10" data-i18n="todo.sub">Esperienze a pochi minuti da Marigold.</p>
-    <div class="grid md:grid-cols-3 gap-6" data-reveal-group>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/trekking.jpg" alt="Trekking"></div><h3 class="font-semibold mb-1" data-i18n="todo.trek.h">Trekking</h3><p class="text-gray-600 text-sm" data-i18n="todo.trek.p">Sentieri vista lago, dal facile al panoramico.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/cascata-varone.jpg" alt="Cascata del Varone"></div><h3 class="font-semibold mb-1" data-i18n="todo.varone.h">Cascata del Varone</h3><p class="text-gray-600 text-sm" data-i18n="todo.varone.p">Forra scenografica a pochi minuti d’auto.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/spiaggia-yoga.jpg" alt="Spiaggia"></div><h3 class="font-semibold mb-1" data-i18n="todo.beach.h">Spiaggia</h3><p class="text-gray-600 text-sm" data-i18n="todo.beach.p">Prati, acqua trasparente, bar e servizi.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/bici.jpg" alt="Bicicletta"></div><h3 class="font-semibold mb-1" data-i18n="todo.bike.h">Bicicletta</h3><p class="text-gray-600 text-sm" data-i18n="todo.bike.p">Piste ciclabili lungo lago e valli.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/ferrata.jpg" alt="Ferrata"></div><h3 class="font-semibold mb-1" data-i18n="todo.ferrata.h">Ferrata</h3><p class="text-gray-600 text-sm" data-i18n="todo.ferrata.p">Vie attrezzate per tutti i livelli.</p></article>
-      <article class="bg-white rounded-2xl shadow p-5 lift"><div class="aspect-3-4 mb-4"><img src="/assets/todo/windsurf.jpg" alt="Windsurf"></div><h3 class="font-semibold mb-1" data-i18n="todo.sail.h">Windsurf</h3><p class="text-gray-600 text-sm" data-i18n="todo.sail.p">Brezze costanti: scuole e noleggi vicini.</p></article>
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <span class="text-coralLight font-bold uppercase tracking-[0.25em] text-xs mb-2 block">I Nostri Spazi</span>
+      <h2 class="font-serif text-4xl sm:text-5xl font-bold" data-i18n="gallery.h">Galleria</h2>
+      <p class="text-stone-400 text-sm mt-3 font-light" data-i18n="gallery.sub">Uno sguardo a camere, dettagli e dintorni.</p>
+    </div>
+
+    <div class="swiper mySwiper relative overflow-hidden shadow-2xl">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/assets/gallery/01-giardino-spirale.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Giardino"></div>
+        <div class="swiper-slide"><img src="/assets/gallery/02-volte-sasso.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Dettaglio pietra"></div>
+        <div class="swiper-slide"><img src="/assets/gallery/03-sala-colazioni.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Sala colazioni"></div>
+        <div class="swiper-slide"><img src="/assets/gallery/04-colazioni-salate.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Colazione salata"></div>
+        <div class="swiper-slide"><img src="/assets/gallery/05-colazioni-dolci.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Colazione dolce"></div>
+        <div class="swiper-slide"><img src="/assets/gallery/06-vista-monte.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Vista monte"></div>
+        <div class="swiper-slide"><img src="/assets/gallery/07-vista-parcheggio.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Parcheggio"></div>
+        <div class="swiper-slide"><img src="/assets/gallery/08-dettaglio-quadro.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Quadro"></div>
+        <div class="swiper-slide"><img src="/assets/gallery/09-facciata.jpg" class="w-full h-[480px] sm:h-[560px] object-cover" alt="Facciata Marigold"></div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 </section>
 
-<section id="contatti" class="bg-gray-50 py-16 px-4">
+<!-- Things to do Section -->
+<section id="da-fare" class="py-24 px-4 bg-cream">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-coral font-bold uppercase tracking-[0.25em] text-xs mb-2 block">Esperienze Uniche</span>
+      <h2 class="font-serif text-4xl sm:text-5xl font-bold text-stone-900 mb-3" data-i18n="todo.h">Cose da fare a Riva del Garda</h2>
+      <p class="text-stone-500 text-sm" data-i18n="todo.sub">Esperienze a pochi minuti da Marigold.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8" data-reveal-group>
+      
+      <article class="bg-white rounded-3xl p-5 border border-stone-100 shadow-soft lift-hover">
+        <div class="aspect-3-4 mb-5">
+          <img src="/assets/todo/trekking.jpg" alt="Trekking">
+        </div>
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-1" data-i18n="todo.trek.h">Trekking</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="todo.trek.p">Sentieri vista lago, dal facile al panoramico.</p>
+      </article>
+
+      <article class="bg-white rounded-3xl p-5 border border-stone-100 shadow-soft lift-hover">
+        <div class="aspect-3-4 mb-5">
+          <img src="/assets/todo/cascata-varone.jpg" alt="Cascata del Varone">
+        </div>
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-1" data-i18n="todo.varone.h">Cascata del Varone</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="todo.varone.p">Forra scenografica a pochi minuti d’auto.</p>
+      </article>
+
+      <article class="bg-white rounded-3xl p-5 border border-stone-100 shadow-soft lift-hover">
+        <div class="aspect-3-4 mb-5">
+          <img src="/assets/todo/spiaggia-yoga.jpg" alt="Spiaggia">
+        </div>
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-1" data-i18n="todo.beach.h">Spiaggia</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="todo.beach.p">Prati, acqua trasparente, bar e servizi.</p>
+      </article>
+
+      <article class="bg-white rounded-3xl p-5 border border-stone-100 shadow-soft lift-hover">
+        <div class="aspect-3-4 mb-5">
+          <img src="/assets/todo/bici.jpg" alt="Bicicletta">
+        </div>
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-1" data-i18n="todo.bike.h">Bicicletta</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="todo.bike.p">Piste ciclabili lungo lago e valli.</p>
+      </article>
+
+      <article class="bg-white rounded-3xl p-5 border border-stone-100 shadow-soft lift-hover">
+        <div class="aspect-3-4 mb-5">
+          <img src="/assets/todo/ferrata.jpg" alt="Ferrata">
+        </div>
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-1" data-i18n="todo.ferrata.h">Ferrata</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="todo.ferrata.p">Vie attrezzate per tutti i livelli.</p>
+      </article>
+
+      <article class="bg-white rounded-3xl p-5 border border-stone-100 shadow-soft lift-hover">
+        <div class="aspect-3-4 mb-5">
+          <img src="/assets/todo/windsurf.jpg" alt="Windsurf">
+        </div>
+        <h3 class="font-serif text-xl font-bold text-stone-900 mb-1" data-i18n="todo.sail.h">Windsurf</h3>
+        <p class="text-stone-500 text-xs leading-relaxed" data-i18n="todo.sail.p">Brezze costanti: scuole e noleggi vicini.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA Section -->
+<section id="contatti" class="py-24 px-4 bg-white border-t border-stone-100">
   <div class="max-w-4xl mx-auto text-center">
-    <h2 class="font-serif text-3xl font-bold mb-6 title-accent" data-i18n="contact.h">Contattaci</h2>
-    <p class="text-gray-600 mb-8" data-i18n="contact.sub">Preferisci scriverci direttamente? Scegli tu il canale.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center" data-reveal-group>
+    <span class="text-coral font-bold uppercase tracking-[0.25em] text-xs mb-3 block">Siamo a tua disposizione</span>
+    <h2 class="font-serif text-4xl sm:text-5xl font-bold text-stone-900 mb-4" data-i18n="contact.h">Contattaci</h2>
+    <p class="text-stone-500 text-base max-w-xl mx-auto mb-10" data-i18n="contact.sub">Preferisci scriverci direttamente? Scegli tu il canale.</p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-reveal-group>
       <a id="emailContact"
          href="mailto:bbmarigold@gmail.com?subject=Richiesta%20informazioni%20-%20Marigold&body=Ciao%20Marigold%2C%0A%0ASto%20valutando%20un%20soggiorno%20e%20vorrei%20ricevere%20informazioni.%0A%0A-%20Check-in%3A%20____%0A-%20Check-out%3A%20____%0A-%20Numero%20ospiti%3A%20____%0A-%20Numero%20camere%3A%20____%0A-%20Richieste%20speciali%3A%20____%0A%0AGrazie%21%0A%0ANome%3A%20____%0ATelefono%20(opzionale)%3A%20____"
-         class="px-6 py-3 rounded-full btn-grad text-white font-bold lift">
+         class="w-full sm:w-auto px-8 py-4 rounded-full btn-grad text-white font-bold text-xs uppercase tracking-wider shadow-glow lift-hover">
         <i class="fa-solid fa-envelope-open-text mr-2"></i><span data-i18n="contact.mail">Scrivici via email</span>
       </a>
 
-      <a id="waMain" href="#" class="px-6 py-3 rounded-full bg-green-600 hover:bg-green-700 text-white font-bold lift"><i class="fa-brands fa-whatsapp mr-2"></i><span data-i18n="contact.wa">WhatsApp</span></a>
-      <a href="tel:+393933795105" class="px-6 py-3 rounded-full bg-dark hover:bg-coral text-white font-bold lift"><i class="fa-solid fa-phone mr-2"></i><span data-i18n="contact.call">Chiamaci</span></a>
+      <a id="waMain" href="#" class="w-full sm:w-auto px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition lift-hover">
+        <i class="fa-brands fa-whatsapp mr-2 text-sm"></i><span data-i18n="contact.wa">WhatsApp</span>
+      </a>
+
+      <a href="tel:+393933795105" class="w-full sm:w-auto px-8 py-4 rounded-full bg-stone-900 hover:bg-coral text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition lift-hover">
+        <i class="fa-solid fa-phone mr-2 text-xs"></i><span data-i18n="contact.call">Chiamaci</span>
+      </a>
     </div>
   </div>
 </section>
 
-<section class="py-0 flex flex-col md:flex-row h-[520px]">
-  <div class="md:w-1/2 bg-sage/10 p-12 flex flex-col justify-center">
-    <h2 class="font-serif text-3xl font-bold mb-6 title-left title-accent" data-i18n="visit.h">Vieni a trovarci</h2>
-    <p class="mb-6 text-gray-600" data-i18n="visit.addr">Via dell'Albola, 85 · 38066 Riva del Garda (TN) · Italia</p>
-    <a id="directionsLink" href="https://maps.google.com/?q=Marigold%20-%20Via%20dell'Albola%2085%2C%20Riva%20del%20Garda" target="_blank" class="mt-2 inline-block text-coral font-bold hover:underline" data-i18n="visit.directions">Vedi indicazioni →</a>
+<!-- Location & Map -->
+<section class="flex flex-col md:flex-row min-h-[500px]">
+  <div class="md:w-1/2 bg-cream p-12 lg:p-16 flex flex-col justify-center">
+    <span class="text-coral font-bold uppercase tracking-[0.25em] text-xs mb-3 block">Come Raggiungerci</span>
+    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-6" data-i18n="visit.h">Vieni a trovarci</h2>
+    <p class="text-stone-600 text-base leading-relaxed mb-8" data-i18n="visit.addr">Via dell'Albola, 85 · 38066 Riva del Garda (TN) · Italia</p>
+    <div>
+      <a id="directionsLink" href="https://maps.google.com/?q=Marigold%20-%20Via%20dell'Albola%2085%2C%20Riva%20del%20Garda" target="_blank" class="inline-flex items-center gap-2 font-bold text-xs uppercase tracking-wider text-coral hover:text-stone-900 transition" data-i18n="visit.directions">
+        Vedi indicazioni <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
   </div>
-  <div class="md:w-1/2 h-full bg-gray-200">
-    <iframe id="mapsEmbed" src="https://www.google.com/maps?q=Marigold%20-%20Via%20dell'Albola%2085%2C%20Riva%20del%20Garda&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+  <div class="md:w-1/2 min-h-[350px] bg-stone-200 relative">
+    <iframe id="mapsEmbed" src="https://www.google.com/maps?q=Marigold%20-%20Via%20dell%27Albola%2085%2C%20Riva%20del%20Garda&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
   </div>
 </section>
 
-<footer class="bg-dark text-gray-300 py-12 px-6">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
+<!-- Footer -->
+<footer class="bg-stone-950 text-stone-400 py-16 px-6 border-t border-stone-800">
+  <div class="max-w-7xl mx-auto grid sm:grid-cols-2 md:grid-cols-4 gap-12">
     <div>
-      <div class="flex items-center gap-3 mb-3">
-        <img src="/assets/brand/logo.png" class="w-9 h-9" alt="Marigold">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="/assets/brand/logo.png" class="w-9 h-9 object-contain" alt="Marigold">
         <span class="font-serif text-2xl text-white font-bold">Marigold</span>
       </div>
-      <p class="text-sm">Riva del Garda</p>
+      <p class="text-xs text-stone-500 leading-relaxed">Relax, Comfort e Libertà nel cuore di Riva del Garda.</p>
     </div>
+
     <div>
-      <h4 class="text-white font-semibold mb-3" data-i18n="footer.where">Dove siamo</h4>
-      <p class="text-sm leading-6">
+      <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4" data-i18n="footer.where">Dove siamo</h4>
+      <p class="text-xs leading-relaxed text-stone-400">
         Via dell'Albola, nr. 85<br>
         Riva del Garda (TN)<br>
         Italia<br><br>
-        CIN: IT022153C14X52ZJHK
+        <span class="text-stone-500">CIN: IT022153C14X52ZJHK</span>
       </p>
     </div>
+
     <div>
-      <h4 class="text-white font-semibold mb-3" data-i18n="footer.contact">Contattaci</h4>
-      <p class="text-sm leading-6">
-        <a class="hover:text-white" href="tel:+393933795105">+39 393 3795 105</a><br>
-        <a class="hover:text-white" href="tel:+393926232219">+39 392 6232 219</a><br>
-        <a class="hover:text-white underline" href="mailto:bbmarigold@gmail.com">bbmarigold@gmail.com</a>
+      <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4" data-i18n="footer.contact">Contattaci</h4>
+      <p class="text-xs leading-relaxed space-y-1">
+        <a class="hover:text-white block transition" href="tel:+393933795105">+39 393 3795 105</a>
+        <a class="hover:text-white block transition" href="tel:+393926232219">+39 392 6232 219</a>
+        <a class="hover:text-white block underline transition mt-2 text-coralLight" href="mailto:bbmarigold@gmail.com">bbmarigold@gmail.com</a>
       </p>
     </div>
+
     <div>
-      <h4 class="text-white font-semibold mb-3" data-i18n="footer.follow">Seguici</h4>
-      <div class="flex gap-3">
-        <a href="https://www.instagram.com/hellofrommarigold/" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-coral hover:text-white" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4" data-i18n="footer.follow">Seguici</h4>
+      <div class="flex gap-3 mb-6">
+        <a href="https://www.instagram.com/hellofrommarigold/" target="_blank" class="w-10 h-10 rounded-full bg-stone-900 border border-stone-800 flex items-center justify-center text-stone-300 hover:bg-coral hover:text-white hover:border-coral transition duration-300" aria-label="Instagram">
+          <i class="fa-brands fa-instagram text-base"></i>
+        </a>
       </div>
-      <div class="text-xs mt-6" data-i18n-html="footer.privacy">
-        Privacy & Cookie: i dati sono trattati per finalità di prenotazione e risposta alle richieste. Informativa completa disponibile nella <a href="#" id="openPrivacyFromFooter" class="underline text-coral">privacy policy</a>.
+      <div class="text-[11px] leading-relaxed text-stone-500" data-i18n-html="footer.privacy">
+        Privacy & Cookie: i dati sono trattati per finalità di prenotazione e risposta alle richieste. Informativa completa disponibile nella <a href="#" id="openPrivacyFromFooter" class="underline text-coralLight">privacy policy</a>.
       </div>
     </div>
   </div>
-  <div class="text-center text-xs mt-10">© <span id="year"></span> Marigold – Riva del Garda. All rights reserved.</div>
+
+  <div class="max-w-7xl mx-auto border-t border-stone-900 mt-12 pt-8 text-center text-xs text-stone-600">
+    © <span id="year"></span> Marigold – Riva del Garda. All rights reserved.
+  </div>
 </footer>
 
+<!-- Privacy Modal -->
 <div id="privacyModal" class="modal">
-  <div class="bg-white max-w-3xl w-[92%] rounded-xl p-6 shadow-xl overflow-y-auto max-h-[80vh]">
-    <div class="flex items-start justify-between mb-4">
-      <h3 class="text-xl font-semibold" data-i18n="policy.h">INFORMATIVA PRIVACY</h3>
-      <button id="closePrivacy" class="text-gray-400 hover:text-dark text-2xl leading-none">×</button>
+  <div class="bg-white max-w-2xl w-[92%] rounded-3xl p-8 shadow-2xl overflow-y-auto max-h-[85vh] relative">
+    <div class="flex items-start justify-between mb-6">
+      <h3 class="text-2xl font-serif font-bold text-stone-900" data-i18n="policy.h">INFORMATIVA PRIVACY</h3>
+      <button id="closePrivacy" class="w-8 h-8 rounded-full bg-stone-100 text-stone-500 hover:text-stone-900 flex items-center justify-center text-xl leading-none">×</button>
     </div>
-    <div class="space-y-5 text-sm leading-6 text-gray-700">
+    <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-stone-600">
       <p data-i18n="policy.p1"><strong>Di cosa si tratta?</strong> Quando ci scrivi, ci invii alcune informazioni su di te: nome, email e il tuo messaggio. Usiamo questi dati solo per risponderti e per gestire eventuali comunicazioni legate alla prenotazione.</p>
       <p data-i18n="policy.p2"><strong>Chi custodisce i tuoi dati?</strong> Marigold. Li teniamo al sicuro e non li cediamo, vendiamo o abbandoniamo.</p>
       <p data-i18n="policy.p3"><strong>Perché li usiamo?</strong> Per risponderti, darti informazioni e aiutarti prima/dopo una prenotazione. Niente newsletter e niente spam.</p>
-      <p data-i18n="policy.p4"><strong>Vuoi cancellarli?</strong> Scrivi a <a href="mailto:bbmarigold@gmail.com" class="underline">bbmarigold@gmail.com</a>.</p>
+      <p data-i18n="policy.p4"><strong>Vuoi cancellarli?</strong> Scrivi a <a href="mailto:bbmarigold@gmail.com" class="underline text-coral">bbmarigold@gmail.com</a>.</p>
     </div>
   </div>
 </div>
 
+<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<!-- Logica JavaScript originale integrata totalmente -->
 <script>
-  // Mobile menu
-  document.getElementById('mobile-menu-btn')?.addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('hidden'));
+  // Mobile menu toggle
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Titoli
-  const titles={ it:'Marigold – Relax, Comfort e Libertà a Riva del Garda', en:'Marigold – Relax, Comfort & Freedom in Riva del Garda' };
+  const titles = {
+    it: 'Marigold – Relax, Comfort e Libertà a Riva del Garda',
+    en: 'Marigold – Relax, Comfort & Freedom in Riva del Garda'
+  };
 
-  // I18N (chiavi essenziali, incluse quelle del footer)
-  const I18N = { it:{}, en:{} };
+  // I18N
+  const I18N = { it: {}, en: {} };
 
   I18N.it = {
-    'cookie.text':'Privacy & Cookie: i dati sono trattati per finalità di prenotazione e risposta alle richieste. Informativa completa disponibile nella <a href="#" id="openPrivacyFromBanner" class="text-coral underline">privacy policy</a>. Puoi accettare o rifiutare i cookie non essenziali.',
-    'cookie.accept':'Accetta','cookie.decline':'Rifiuta',
-    'nav.about':'Chi Siamo','nav.rooms':'Camere','nav.services':'Servizi','nav.distances':'Distanze','nav.gallery':'Galleria','nav.todo':'Cose da fare','nav.contact':'Contatti',
-    'nav.lang':'Lingua',
-    'cta.bookNow':'Prenota Ora','cta.bookNowUpper':'PRENOTA ORA','cta.search':'VERIFICA DISPONIBILITÀ',
-    'hero.line1':'Sentirsi a casa,','hero.line2':'respirare il Garda.','hero.sub':'Camere rinnovate e la libertà di vivere Riva del Garda al tuo ritmo.',
-    'trust.best':'Miglior tariffa garantita','trust.cancel':'Cancellazione flessibile',
-    'form.date':'Date','form.rooms':'Camere','form.adulti':'Adulti','form.bambini':'Bambini','form.agesHint':'Età bambini al momento del soggiorno (0–17 anni).','form.room':'Camera','form.adultiRoom':'Adulti','form.bambiniRoom':'Bambini','form.age':'Età','form.pickDates':'Seleziona prima le date del soggiorno per verificare la disponibilità.',
+    'cookie.text': 'Privacy & Cookie: i dati sono trattati per finalità di prenotazione e risposta alle richieste. Informativa completa disponibile nella <a href="#" id="openPrivacyFromBanner" class="text-coral underline">privacy policy</a>. Puoi accettare o rifiutare i cookie non essenziali.',
+    'cookie.accept': 'Accetta',
+    'cookie.decline': 'Rifiuta',
+    'nav.about': 'Chi Siamo', 'nav.rooms': 'Camere', 'nav.services': 'Servizi', 'nav.distances': 'Distanze', 'nav.gallery': 'Galleria', 'nav.todo': 'Cose da fare', 'nav.contact': 'Contatti',
+    'nav.lang': 'Lingua',
+    'cta.bookNow': 'Prenota Ora', 'cta.bookNowUpper': 'PRENOTA ORA', 'cta.search': 'VERIFICA DISPONIBILITÀ',
+    'hero.line1': 'Sentirsi a casa,', 'hero.line2': 'respirare il Garda.', 'hero.sub': 'Camere rinnovate e la libertà di vivere Riva del Garda al tuo ritmo.',
+    'trust.best': 'Miglior tariffa garantita', 'trust.cancel': 'Cancellazione flessibile',
+    'form.date': 'Date', 'form.rooms': 'Camere', 'form.adulti': 'Adulti', 'form.bambini': 'Bambini', 'form.agesHint': 'Età bambini al momento del soggiorno (0–17 anni).', 'form.room': 'Camera', 'form.adultiRoom': 'Adulti', 'form.bambiniRoom': 'Bambini', 'form.age': 'Età', 'form.pickDates': 'Seleziona prima le date del soggiorno per verificare la disponibilità.',
 
-    'about.kicker':'La Nostra Storia',
-    'about.h':'Benvenuti al Marigold.',
-    'about.p1':'Ristrutturato con cura nel 2018, in Via dell\'Albola, un quartiere silenzioso ma strategico. Rifugio ideale a due passi dal centro.',
-    'about.p2':'Accoglienza familiare e attenzione all\'ambiente grazie all\'impianto fotovoltaico. Parcheggio gratuito a 50 m.',
+    'about.kicker': 'La Nostra Storia',
+    'about.h': 'Benvenuti al Marigold.',
+    'about.p1': 'Ristrutturato con cura nel 2018, in Via dell\'Albola, un quartiere silenzioso ma strategico. Rifugio ideale a due passi dal centro.',
+    'about.p2': 'Accoglienza familiare e attenzione all\'ambiente grazie all\'impianto fotovoltaico. Parcheggio gratuito a 50 m.',
 
-    'services.h':'I NOSTRI SERVIZI',
-    // MODIFICA QUI SOTTO:
-    'services.flex.h':'Cancellazione Flessibile','services.flex.p':'Gratuita fino a 3 giorni prima della data di arrivo',
-    
-    'services.garden.h':'Giardino','services.garden.p':'Prenditi una pausa e rilassati all’aperto!',
-    'services.tv.h':'Smart TV','services.tv.p':'Giornata di pioggia? Goditi un bel film',
-    'services.wifi.h':'Free Wi-Fi','services.wifi.p':'Ultravelocità con la tecnologia fibra ottica',
-    'services.green.h':'Energia Verde','services.green.p':'Marigold è ecofriendly, grazie al contributo di un impianto fotovoltaico da 5kWh!',
-    'services.parking.h':'Parcheggio Gratuito','services.parking.p':'È pubblico, situato a 50 m dalla struttura',
-    'services.bike.h':'Posto bici','services.bike.p':'Al sicuro all’interno',
-    'services.ac.h':'Aria condizionata','services.ac.p':'Nuova in tutte le unità',
-    'services.quiet.h':'Quiet Zone','services.quiet.p':'Indisturbato dai rumori del traffico urbano',
+    'services.h': 'I NOSTRI SERVIZI',
+    'services.flex.h': 'Cancellazione Flessibile', 'services.flex.p': 'Gratuita fino a 3 giorni prima della data di arrivo',
+    'services.garden.h': 'Giardino', 'services.garden.p': 'Prenditi una pausa e rilassati all’aperto!',
+    'services.tv.h': 'Smart TV', 'services.tv.p': 'Giornata di pioggia? Goditi un bel film',
+    'services.wifi.h': 'Free Wi-Fi', 'services.wifi.p': 'Ultravelocità con la tecnologia fibra ottica',
+    'services.green.h': 'Energia Verde', 'services.green.p': 'Marigold è ecofriendly, grazie al contributo di un impianto fotovoltaico da 5kWh!',
+    'services.parking.h': 'Parcheggio Gratuito', 'services.parking.p': 'È pubblico, situato a 50 m dalla struttura',
+    'services.bike.h': 'Posto bici', 'services.bike.p': 'Al sicuro all’interno',
+    'services.ac.h': 'Aria condizionata', 'services.ac.p': 'Nuova in tutte le unità',
+    'services.quiet.h': 'Quiet Zone', 'services.quiet.p': 'Indisturbato dai rumori del traffico urbano',
 
-    'dist.h':'Distano a piedi:','rooms.h':'Le Nostre Camere','rooms.sub':'Design moderno, luce naturale e comfort totale.',
-    'rooms.from':'da',
-    'rooms.std.name':'Standard','rooms.del.name':'Deluxe','rooms.js.name':'Junior Suite','rooms.st.name':'Monolocale',
-    'rooms.std.meta':'2 Adulti · 22 m² · Bagno privato',
-    'rooms.del.meta':'2 Adulti · 22 m² · Balcone',
-    'rooms.js.meta':'Fino a 4 Ospiti · 40 m² · Cucina · Vista',
-    'rooms.st.meta':'Fino a 4 Ospiti · 40 m² · Cucina · Giardino',
+    'dist.h': 'Distano a piedi:', 'rooms.h': 'Le Nostre Camere', 'rooms.sub': 'Design moderno, luce naturale e comfort totale.',
+    'rooms.from': 'da',
+    'rooms.std.name': 'Standard', 'rooms.del.name': 'Deluxe', 'rooms.js.name': 'Junior Suite', 'rooms.st.name': 'Monolocale',
+    'rooms.std.meta': '2 Adulti · 22 m² · Bagno privato',
+    'rooms.del.meta': '2 Adulti · 22 m² · Balcone',
+    'rooms.js.meta': 'Fino a 4 Ospiti · 40 m² · Cucina · Vista',
+    'rooms.st.meta': 'Fino a 4 Ospiti · 40 m² · Cucina · Giardino',
 
-    'gallery.h':'Galleria','gallery.sub':'Uno sguardo a camere, dettagli e dintorni.',
-    'todo.h':'Cose da fare a Riva del Garda','todo.sub':'Esperienze a pochi minuti da Marigold.','todo.trek.h':'Trekking','todo.trek.p':'Sentieri vista lago, dal facile al panoramico.','todo.bike.h':'Bicicletta','todo.bike.p':'Piste ciclabili lungo lago e valli.','todo.ferrata.h':'Ferrata','todo.ferrata.p':'Vie attrezzate per tutti i livelli.','todo.varone.h':'Cascata del Varone','todo.varone.p':'Forra scenografica a pochi minuti d’auto.','todo.beach.h':'Spiaggia','todo.beach.p':'Prati, acqua trasparente, bar e servizi.','todo.sail.h':'Windsurf','todo.sail.p':'Brezze costanti: scuole e noleggi vicini.',
-    'contact.h':'Contattaci','contact.sub':'Preferisci scriverci direttamente? Scegli tu il canale.','contact.mail':'Scrivici via email','contact.wa':'WhatsApp','contact.call':'Chiamaci',
-    'visit.h':'Vieni a trovarci','visit.addr':'Via dell\'Albola, 85 · 38066 Riva del Garda (TN) · Italia','visit.directions':'Vedi indicazioni →',
-    'visit.bus':'Autostazione','visit.center':'Centro storico','visit.beach':'Spiaggia',
-    'policy.h':'INFORMATIVA PRIVACY','policy.p1':'Di cosa si tratta? Quando ci scrivi, ci invii alcune informazioni su di te: nome, email e il tuo messaggio. Usiamo questi dati solo per risponderti e per gestire eventuali comunicazioni legate alla prenotazione.','policy.p2':'Chi custodisce i tuoi dati? Marigold. Li teniamo al sicuro e non li cediamo, vendiamo o abbandoniamo.','policy.p3':'Perché li usiamo? Per risponderti, darti informazioni e aiutarti prima/dopo una prenotazione. Niente newsletter e niente spam.','policy.p4':'Vuoi cancellarli? Scrivi a bbmarigold@gmail.com.',
-    'footer.where':'Dove siamo','footer.contact':'Contattaci','footer.follow':'Seguici',
-    'footer.privacy':'Privacy & Cookie: i dati sono trattati per finalità di prenotazione e risposta alle richieste. Informativa completa disponibile nella <a href="#" id="openPrivacyFromFooter" class="underline text-coral">privacy policy</a>.'
+    'gallery.h': 'Galleria', 'gallery.sub': 'Uno sguardo a camere, dettagli e dintorni.',
+    'todo.h': 'Cose da fare a Riva del Garda', 'todo.sub': 'Esperienze a pochi minuti da Marigold.', 'todo.trek.h': 'Trekking', 'todo.trek.p': 'Sentieri vista lago, dal facile al panoramico.', 'todo.bike.h': 'Bicicletta', 'todo.bike.p': 'Piste ciclabili lungo lago e valli.', 'todo.ferrata.h': 'Ferrata', 'todo.ferrata.p': 'Vie attrezzate per tutti i livelli.', 'todo.varone.h': 'Cascata del Varone', 'todo.varone.p': 'Forra scenografica a pochi minuti d’auto.', 'todo.beach.h': 'Spiaggia', 'todo.beach.p': 'Prati, acqua trasparente, bar e servizi.', 'todo.sail.h': 'Windsurf', 'todo.sail.p': 'Brezze costanti: scuole e noleggi vicini.',
+    'contact.h': 'Contattaci', 'contact.sub': 'Preferisci scriverci direttamente? Scegli tu il canale.', 'contact.mail': 'Scrivici via email', 'contact.wa': 'WhatsApp', 'contact.call': 'Chiamaci',
+    'visit.h': 'Vieni a trovarci', 'visit.addr': 'Via dell\'Albola, 85 · 38066 Riva del Garda (TN) · Italia', 'visit.directions': 'Vedi indicazioni →',
+    'visit.bus': 'Autostazione', 'visit.center': 'Centro storico', 'visit.beach': 'Spiaggia',
+    'policy.h': 'INFORMATIVA PRIVACY', 'policy.p1': 'Di cosa si tratta? Quando ci scrivi, ci invii alcune informazioni su di te: nome, email e il tuo messaggio. Usiamo questi dati solo per risponderti e per gestire eventuali comunicazioni legate alla prenotazione.', 'policy.p2': 'Chi custodisce i tuoi dati? Marigold. Li teniamo al sicuro e non li cediamo, vendiamo o abbandoniamo.', 'policy.p3': 'Perché li usiamo? Per risponderti, darti informazioni e aiutarti prima/dopo una prenotazione. Niente newsletter e niente spam.', 'policy.p4': 'Vuoi cancellarli? Scrivi a bbmarigold@gmail.com.',
+    'footer.where': 'Dove siamo', 'footer.contact': 'Contattaci', 'footer.follow': 'Seguici',
+    'footer.privacy': 'Privacy & Cookie: i dati sono trattati per finalità di prenotazione e risposta alle richieste. Informativa completa disponibile nella <a href="#" id="openPrivacyFromFooter" class="underline text-coral">privacy policy</a>.'
   };
 
   I18N.en = {
-    'cookie.text':'Privacy & Cookies: data is processed only to handle booking requests. Read the full notice in the <a href="#" id="openPrivacyFromBanner" class="text-coral underline">privacy policy</a>. You can accept or decline non-essential cookies.',
-    'cookie.accept':'Accept','cookie.decline':'Decline',
-    'nav.about':'About','nav.rooms':'Rooms','nav.services':'Amenities','nav.distances':'Distances','nav.gallery':'Gallery','nav.todo':'Things to do','nav.contact':'Contact',
-    'nav.lang':'Language',
-    'cta.bookNow':'Book Now','cta.bookNowUpper':'BOOK NOW','cta.search':'CHECK AVAILABILITY',
-    'hero.line1':'Feel at home,','hero.line2':'breathe Lake Garda.','hero.sub':'Renovated rooms and the freedom to enjoy Riva del Garda at your own pace.',
-    'trust.best':'Best rate guaranteed','trust.cancel':'Flexible cancellation',
-    'form.date':'Dates','form.rooms':'Rooms','form.adulti':'Adults','form.bambini':'Children','form.agesHint':'Children ages at stay time (0–17).','form.room':'Room','form.adultiRoom':'Adults','form.bambiniRoom':'Children','form.age':'Age','form.pickDates':'Please pick your stay dates first to check availability.',
+    'cookie.text': 'Privacy & Cookies: data is processed only to handle booking requests. Read the full notice in the <a href="#" id="openPrivacyFromBanner" class="text-coral underline">privacy policy</a>. You can accept or decline non-essential cookies.',
+    'cookie.accept': 'Accept', 'cookie.decline': 'Decline',
+    'nav.about': 'About', 'nav.rooms': 'Rooms', 'nav.services': 'Amenities', 'nav.distances': 'Distances', 'nav.gallery': 'Gallery', 'nav.todo': 'Things to do', 'nav.contact': 'Contact',
+    'nav.lang': 'Language',
+    'cta.bookNow': 'Book Now', 'cta.bookNowUpper': 'BOOK NOW', 'cta.search': 'CHECK AVAILABILITY',
+    'hero.line1': 'Feel at home,', 'hero.line2': 'breathe Lake Garda.', 'hero.sub': 'Renovated rooms and the freedom to enjoy Riva del Garda at your own pace.',
+    'trust.best': 'Best rate guaranteed', 'trust.cancel': 'Flexible cancellation',
+    'form.date': 'Dates', 'form.rooms': 'Rooms', 'form.adulti': 'Adults', 'form.bambini': 'Children', 'form.agesHint': 'Children ages at stay time (0–17).', 'form.room': 'Room', 'form.adultiRoom': 'Adults', 'form.bambiniRoom': 'Children', 'form.age': 'Age', 'form.pickDates': 'Please pick your stay dates first to check availability.',
 
-    'about.kicker':'Our Story',
-    'about.h':'Welcome to Marigold.',
-    'about.p1':'Carefully renovated in 2018, on Via dell\'Albola, a quiet yet strategic area. An ideal retreat just steps from the town center.',
-    'about.p2':'Warm hospitality and environmental care thanks to a photovoltaic system. Free parking 50 meters away.',
+    'about.kicker': 'Our Story',
+    'about.h': 'Welcome to Marigold.',
+    'about.p1': 'Carefully renovated in 2018, on Via dell\'Albola, a quiet yet strategic area. An ideal retreat just steps from the town center.',
+    'about.p2': 'Warm hospitality and environmental care thanks to a photovoltaic system. Free parking 50 meters away.',
 
-    'services.h':'OUR AMENITIES',
-    // MODIFICA QUI SOTTO:
-    'services.flex.h':'Flexible Cancellation','services.flex.p':'Free up to 3 days before arrival',
-    
-    'services.garden.h':'Garden','services.garden.p':'Take a break and relax outdoors!',
-    'services.tv.h':'Smart TV','services.tv.p':'Rainy day? Enjoy a good movie',
-    'services.wifi.h':'Free Wi-Fi','services.wifi.p':'Ultra-fast fiber optic connection',
-    'services.green.h':'Green Energy','services.green.p':'Marigold is eco-friendly thanks to a 5kWh photovoltaic system!',
-    'services.parking.h':'Free Parking','services.parking.p':'Public parking, 50 m from the property',
-    'services.bike.h':'Bike Storage','services.bike.p':'Safe inside',
-    'services.ac.h':'Air Conditioning','services.ac.p':'New in all units',
-    'services.quiet.h':'Quiet Zone','services.quiet.p':'Away from urban traffic noise',
+    'services.h': 'OUR AMENITIES',
+    'services.flex.h': 'Flexible Cancellation', 'services.flex.p': 'Free up to 3 days before arrival',
+    'services.garden.h': 'Garden', 'services.garden.p': 'Take a break and relax outdoors!',
+    'services.tv.h': 'Smart TV', 'services.tv.p': 'Rainy day? Enjoy a good movie',
+    'services.wifi.h': 'Free Wi-Fi', 'services.wifi.p': 'Ultra-fast fiber optic connection',
+    'services.green.h': 'Green Energy', 'services.green.p': 'Marigold is eco-friendly thanks to a 5kWh photovoltaic system!',
+    'services.parking.h': 'Free Parking', 'services.parking.p': 'Public parking, 50 m from the property',
+    'services.bike.h': 'Bike Storage', 'services.bike.p': 'Safe inside',
+    'services.ac.h': 'Air Conditioning', 'services.ac.p': 'New in all units',
+    'services.quiet.h': 'Quiet Zone', 'services.quiet.p': 'Away from urban traffic noise',
 
-    'dist.h':'Within walking distance:','rooms.h':'Our Rooms','rooms.sub':'Modern design, daylight and full comfort.',
-    'rooms.from':'from',
-    'rooms.std.name':'Standard','rooms.del.name':'Deluxe','rooms.js.name':'Junior Suite','rooms.st.name':'Studio',
-    'rooms.std.meta':'2 Adults · 22 m² · Private bathroom',
-    'rooms.del.meta':'2 Adults · 22 m² · Balcony',
-    'rooms.js.meta':'Up to 4 Guests · 40 m² · Kitchen · View',
-    'rooms.st.meta':'Up to 4 Guests · 40 m² · Kitchen · Garden',
+    'dist.h': 'Within walking distance:', 'rooms.h': 'Our Rooms', 'rooms.sub': 'Modern design, daylight and full comfort.',
+    'rooms.from': 'from',
+    'rooms.std.name': 'Standard', 'rooms.del.name': 'Deluxe', 'rooms.js.name': 'Junior Suite', 'rooms.st.name': 'Studio',
+    'rooms.std.meta': '2 Adults · 22 m² · Private bathroom',
+    'rooms.del.meta': '2 Adults · 22 m² · Balcony',
+    'rooms.js.meta': 'Up to 4 Guests · 40 m² · Kitchen · View',
+    'rooms.st.meta': 'Up to 4 Guests · 40 m² · Kitchen · Garden',
 
-    'gallery.h':'Gallery','gallery.sub':'A glimpse of rooms, details and surroundings.',
-    'todo.h':'Things to do in Riva del Garda','todo.sub':'Experiences minutes away from Marigold.','todo.trek.h':'Hiking','todo.trek.p':'Lake-view trails from easy to panoramic.','todo.bike.h':'Cycling','todo.bike.p':'Bike paths along the lake and valleys.','todo.ferrata.h':'Via Ferrata','todo.ferrata.p':'Protected routes for all levels.','todo.varone.h':'Varone Waterfall','todo.varone.p':'Scenic gorge a short drive away.','todo.beach.h':'Beach','todo.beach.p':'Lawns, clear water, bars and services.','todo.sail.h':'Windsurf','todo.sail.p':'Steady breezes: schools and rentals nearby.',
-    'contact.h':'Contact us','contact.sub':'Prefer to write to us directly? Pick your channel.','contact.mail':'Email us','contact.wa':'WhatsApp','contact.call':'Call us',
-    'visit.h':'Come visit us','visit.addr':'Via dell\'Albola, 85 · 38066 Riva del Garda (TN) · Italy','visit.directions':'Get directions →',
-    'visit.bus':'Bus station','visit.center':'Old town','visit.beach':'Beach',
-    'policy.h':'PRIVACY POLICY','policy.p1':'What is this? When you write to us you share your name, email and message. We use this data only to reply and manage booking-related communications.','policy.p2':'Who keeps your data? Marigold. We keep it safe and never disclose it.','policy.p3':'Why do we use it? To reply, inform you and assist before/after a booking. No newsletters, no spam.','policy.p4':'Want it deleted? Email bbmarigold@gmail.com.',
-    'footer.where':'Where we are','footer.contact':'Contact us','footer.follow':'Follow us',
-    'footer.privacy':'Privacy & Cookies: data is processed to manage booking requests and replies only. Full information available in the <a href="#" id="openPrivacyFromFooter" class="underline text-coral">privacy policy</a>.'
+    'gallery.h': 'Gallery', 'gallery.sub': 'A glimpse of rooms, details and surroundings.',
+    'todo.h': 'Things to do in Riva del Garda', 'todo.sub': 'Experiences minutes away from Marigold.', 'todo.trek.h': 'Hiking', 'todo.trek.p': 'Lake-view trails from easy to panoramic.', 'todo.bike.h': 'Cycling', 'todo.bike.p': 'Bike paths along the lake and valleys.', 'todo.ferrata.h': 'Via Ferrata', 'todo.ferrata.p': 'Protected routes for all levels.', 'todo.varone.h': 'Varone Waterfall', 'todo.varone.p': 'Scenic gorge a short drive away.', 'todo.beach.h': 'Beach', 'todo.beach.p': 'Lawns, clear water, bars and services.', 'todo.sail.h': 'Windsurf', 'todo.sail.p': 'Steady breezes: schools and rentals nearby.',
+    'contact.h': 'Contact us', 'contact.sub': 'Prefer to write to us directly? Pick your channel.', 'contact.mail': 'Email us', 'contact.wa': 'WhatsApp', 'contact.call': 'Call us',
+    'visit.h': 'Come visit us', 'visit.addr': 'Via dell\'Albola, 85 · 38066 Riva del Garda (TN) · Italy', 'visit.directions': 'Get directions →',
+    'visit.bus': 'Bus station', 'visit.center': 'Old town', 'visit.beach': 'Beach',
+    'policy.h': 'PRIVACY POLICY', 'policy.p1': 'What is this? When you write to us you share your name, email and message. We use this data only to reply and manage booking-related communications.', 'policy.p2': 'Who keeps your data? Marigold. We keep it safe and never disclose it.', 'policy.p3': 'Why do we use it? To reply, inform you and assist before/after a booking. No newsletters, no spam.', 'policy.p4': 'Want it deleted? Email bbmarigold@gmail.com.',
+    'footer.where': 'Where we are', 'footer.contact': 'Contact us', 'footer.follow': 'Follow us',
+    'footer.privacy': 'Privacy & Cookies: data is processed to manage booking requests and replies only. Full information available in the <a href="#" id="openPrivacyFromFooter" class="underline text-coral">privacy policy</a>.'
   };
 
-  function applyI18n(lang){
-    document.querySelectorAll('[data-i18n]').forEach(el=>{
-      const k=el.getAttribute('data-i18n'); if(I18N[lang][k]) el.textContent=I18N[lang][k];
+  function applyI18n(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n'); if (I18N[lang][k]) el.textContent = I18N[lang][k];
     });
-    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-      const k=el.getAttribute('data-i18n-html'); if(I18N[lang][k]) el.innerHTML=I18N[lang][k];
-    });
-  }
-  function setDatePlaceholder(lang){
-    const dr=document.getElementById('daterange'); if(!dr) return;
-    dr.placeholder = (lang==='en') ? 'dd/mm/yyyy – dd/mm/yyyy' : 'gg/mm/aaaa – gg/mm/aaaa';
-  }
-
-  // Datepicker lun→dom con separatore ' - '
-  let fpInstance=null;
-  function initDatepicker(lang){
-    if(fpInstance){ fpInstance.destroy(); fpInstance=null; }
-    const enMonday={ firstDayOfWeek:1, rangeSeparator:' - ', weekdays:{ shorthand:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], longhand:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'] }, months:{ shorthand:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], longhand:['January','February','March','April','May','June','July','August','September','October','November','December'] } };
-    const itMonday=Object.assign({}, flatpickr.l10ns.it, { firstDayOfWeek:1, rangeSeparator:' - ' });
-    const locale=(lang==='it')?itMonday:enMonday;
-    fpInstance=flatpickr('#daterange',{
-		mode:'range',
-		minDate:new Date(),
-		dateFormat:'Y-m-d',
-		altInput:true,
-		altFormat:'d/m/Y',
-		allowInput:false,   // <-- Disabilita la digitazione (e blocca la tastiera)
-		disableMobile:true, // <-- Forza l'uso del tuo calendario elegante anche da smartphone
-		locale,
-      onChange:(d)=>{ if(d.length===2){ const pad=n=>String(n).padStart(2,'0'); const iso=x=>`${x.getFullYear()}-${pad(x.getMonth()+1)}-${pad(x.getDate())}`; checkin.value=iso(d[0]); checkout.value=iso(d[1]); refreshBookingLinks(); } }
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const k = el.getAttribute('data-i18n-html'); if (I18N[lang][k]) el.innerHTML = I18N[lang][k];
     });
   }
 
-	// Lingua & titoli
-	let _privacyDelegationBound = false;
-	function bindPrivacyLinks(){
-	  if (_privacyDelegationBound) return;   // evita doppioni se setLang la richiama
-	  _privacyDelegationBound = true;
+  function setDatePlaceholder(lang) {
+    const dr = document.getElementById('daterange'); if (!dr) return;
+    dr.placeholder = (lang === 'en') ? 'dd/mm/yyyy – dd/mm/yyyy' : 'gg/mm/aaaa – gg/mm/aaaa';
+  }
 
-	  document.addEventListener('click', (e) => {
-		const a = e.target.closest('#openPrivacyFromBanner, #openPrivacyFromFooter');
-		if(!a) return;
-		e.preventDefault();
-		privacyModal.classList.add('active');
-	  });
-	}
+  // Datepicker init
+  let fpInstance = null;
+  function initDatepicker(lang) {
+    if (fpInstance) { fpInstance.destroy(); fpInstance = null; }
+    const enMonday = { firstDayOfWeek: 1, rangeSeparator: ' - ', weekdays: { shorthand: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], longhand: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] }, months: { shorthand: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], longhand: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] } };
+    const itMonday = Object.assign({}, flatpickr.l10ns.it, { firstDayOfWeek: 1, rangeSeparator: ' - ' });
+    const locale = (lang === 'it') ? itMonday : enMonday;
+    fpInstance = flatpickr('#daterange', {
+      mode: 'range',
+      minDate: new Date(),
+      dateFormat: 'Y-m-d',
+      altInput: true,
+      altFormat: 'd/m/Y',
+      allowInput: false,
+      disableMobile: true,
+      locale,
+      onChange: (d) => {
+        if (d.length === 2) {
+          const pad = n => String(n).padStart(2, '0');
+          const iso = x => `${x.getFullYear()}-${pad(x.getMonth() + 1)}-${pad(x.getDate())}`;
+          checkin.value = iso(d[0]);
+          checkout.value = iso(d[1]);
+          refreshBookingLinks();
+        }
+      }
+    });
+  }
 
-  function setMapsLang(lang){
-    // Tentativo “best effort” (se Google lo rispetta): hl=en/it su embed + link esterno
-    const iframe=document.getElementById('mapsEmbed');
-    const link=document.getElementById('directionsLink');
-    const hl=(lang==='en')?'en':'it';
-    if(iframe){
-      const base='https://www.google.com/maps?q=Marigold%20-%20Via%20dell%27Albola%2085%2C%20Riva%20del%20Garda&output=embed';
+  let _privacyDelegationBound = false;
+  function bindPrivacyLinks() {
+    if (_privacyDelegationBound) return;
+    _privacyDelegationBound = true;
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('#openPrivacyFromBanner, #openPrivacyFromFooter');
+      if (!a) return;
+      e.preventDefault();
+      privacyModal.classList.add('active');
+    });
+  }
+
+  function setMapsLang(lang) {
+    const iframe = document.getElementById('mapsEmbed');
+    const link = document.getElementById('directionsLink');
+    const hl = (lang === 'en') ? 'en' : 'it';
+    if (iframe) {
+      const base = 'https://www.google.com/maps?q=Marigold%20-%20Via%20dell%27Albola%2085%2C%20Riva%20del%20Garda&output=embed';
       iframe.src = base + '&hl=' + hl;
     }
-    if(link){
-      const base='https://maps.google.com/?q=Marigold%20-%20Via%20dell%27Albola%2085%2C%20Riva%20del%20Garda';
+    if (link) {
+      const base = 'https://maps.google.com/?q=Marigold%20-%20Via%20dell%27Albola%2085%2C%20Riva%20del%20Garda';
       link.href = base + '&hl=' + hl;
     }
   }
 
-  // ✅ Email template IT/EN (mailto precompilato)
-  function updateEmailTemplate(lang){
+  function updateEmailTemplate(lang) {
     const link = document.getElementById('emailContact');
-    if(!link) return;
-
+    if (!link) return;
     const it = 'mailto:bbmarigold@gmail.com?subject=Richiesta%20informazioni%20-%20Marigold&body=Ciao%20Marigold%2C%0A%0ASto%20valutando%20un%20soggiorno%20e%20vorrei%20ricevere%20informazioni.%0A%0A-%20Check-in%3A%20____%0A-%20Check-out%3A%20____%0A-%20Numero%20ospiti%3A%20____%0A-%20Numero%20camere%3A%20____%0A-%20Richieste%20speciali%3A%20____%0A%0AGrazie%21%0A%0ANome%3A%20____%0ATelefono%20(opzionale)%3A%20____';
-
     const en = 'mailto:bbmarigold@gmail.com?subject=Information%20request%20-%20Marigold&body=Hello%20Marigold%2C%0A%0AI%20am%20planning%20a%20stay%20and%20would%20like%20to%20receive%20some%20information.%0A%0A-%20Check-in%3A%20____%0A-%20Check-out%3A%20____%0A-%20Number%20of%20guests%3A%20____%0A-%20Number%20of%20rooms%3A%20____%0A-%20Special%20requests%3A%20____%0A%0AThank%20you%21%0A%0AName%3A%20____%0APhone%20(optional)%3A%20____';
-
     link.href = (lang === 'en') ? en : it;
   }
 
-  function setLang(lang){
-    localStorage.setItem('lang',lang); document.documentElement.lang=lang;
-    document.title=(lang==='en'?titles.en:titles.it);
-    document.querySelectorAll('.book-direct').forEach(a=>a.href=(lang==='en')?'https://marigold.kross.travel/en':'https://marigold.kross.travel/');
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+    document.title = (lang === 'en' ? titles.en : titles.it);
+    document.querySelectorAll('.book-direct').forEach(a => a.href = (lang === 'en') ? 'https://marigold.kross.travel/en' : 'https://marigold.kross.travel/');
     applyI18n(lang); setDatePlaceholder(lang); initDatepicker(lang); bindPrivacyLinks(); renderRooms(); setMapsLang(lang);
-
-    // 🔧 FORZA AGGIORNAMENTO TESTI MENU MOBILE
-    applyI18n(lang);
-
-    // ✅ aggiorna template email in base alla lingua
     updateEmailTemplate(lang);
+
+    // Dynamic button state update
+    document.querySelectorAll('#lang-it, #lang-it-m').forEach(b => {
+      b.className = (lang === 'it') ? 'px-2.5 py-1 bg-white shadow-sm rounded-md text-stone-900 font-bold' : 'px-2.5 py-1 rounded-md text-stone-500 font-medium';
+    });
+    document.querySelectorAll('#lang-en, #lang-en-m').forEach(b => {
+      b.className = (lang === 'en') ? 'px-2.5 py-1 bg-white shadow-sm rounded-md text-stone-900 font-bold' : 'px-2.5 py-1 rounded-md text-stone-500 font-medium';
+    });
   }
 
-  // ====== Booking (Layout B) ======
-  const roomsSel=document.getElementById('rooms');
-  const adultsTot=document.getElementById('adultsTotal');
-  const childrenTot=document.getElementById('childrenTotal');
-  const inlineAgesWrap=document.getElementById('inlineAgesWrap');
-  const inlineAges=document.getElementById('inlineAges');
-  const roomsList=document.getElementById('roomsList');
-  const checkin=document.getElementById('checkin'); const checkout=document.getElementById('checkout');
+  // Booking Engine
+  const roomsSel = document.getElementById('rooms');
+  const adultsTot = document.getElementById('adultsTotal');
+  const childrenTot = document.getElementById('childrenTotal');
+  const inlineAgesWrap = document.getElementById('inlineAgesWrap');
+  const inlineAges = document.getElementById('inlineAges');
+  const roomsList = document.getElementById('roomsList');
+  const checkin = document.getElementById('checkin');
+  const checkout = document.getElementById('checkout');
 
-  // ✅ Keep selections when UI re-renders (e.g., language switch)
   let bookingState = {
     inlineAges: [],
     roomAdults: {},
@@ -836,252 +1175,276 @@
     roomAges: {}
   };
 
-  function snapshotBookingState(){
+  function snapshotBookingState() {
     const n = parseInt(roomsSel.value || '1', 10);
-
-    if(n === 1){
-      bookingState.inlineAges = Array.from(document.querySelectorAll('[data-inline-age]'))
-        .map(s => parseInt(s.value, 10));
+    if (n === 1) {
+      bookingState.inlineAges = Array.from(document.querySelectorAll('[data-inline-age]')).map(s => parseInt(s.value, 10));
       return;
     }
-
     bookingState.roomAdults = {};
     bookingState.roomChildren = {};
     bookingState.roomAges = {};
-
-    for(let r=1; r<=n; r++){
+    for (let r = 1; r <= n; r++) {
       const ad = document.querySelector(`[data-room-adults="${r}"]`);
       const ch = document.querySelector(`[data-room-children="${r}"]`);
-
       bookingState.roomAdults[r] = ad ? parseInt(ad.value, 10) : 2;
       bookingState.roomChildren[r] = ch ? parseInt(ch.value, 10) : 0;
-
-      bookingState.roomAges[r] = Array.from(document.querySelectorAll(`[data-room-age^="${r}-"]`))
-        .map(s => parseInt(s.value, 10));
+      bookingState.roomAges[r] = Array.from(document.querySelectorAll(`[data-room-age^="${r}-"]`)).map(s => parseInt(s.value, 10));
     }
   }
 
+  function makeNumberSelect(min, max, def) {
+    const s = document.createElement('select');
+    s.className = 'w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5 text-xs text-stone-800 font-semibold focus:border-coral outline-none';
+    for (let i = min; i <= max; i++) {
+      const o = document.createElement('option');
+      o.value = String(i); o.textContent = String(i);
+      if (i === def) o.selected = true;
+      s.appendChild(o);
+    }
+    return s;
+  }
 
-  function makeNumberSelect(min,max,def){ const s=document.createElement('select'); s.className='w-full bg-gray-50 border border-gray-200 rounded p-2'; for(let i=min;i<=max;i++){ const o=document.createElement('option'); o.value=String(i); o.textContent=String(i); if(i===def) o.selected=true; s.appendChild(o);} return s;}
-  function makeAgeSelect(def=6){ const s=document.createElement('select'); s.className='w-full bg-gray-50 border border-gray-200 rounded p-2'; for(let i=0;i<=17;i++){ const o=document.createElement('option'); o.value=i; o.textContent=i; if(i===def) o.selected=true; s.appendChild(o);} return s;}
+  function makeAgeSelect(def = 6) {
+    const s = document.createElement('select');
+    s.className = 'w-full bg-stone-50 border border-stone-200 rounded-xl p-2.5 text-xs text-stone-800 font-semibold focus:border-coral outline-none';
+    for (let i = 0; i <= 17; i++) {
+      const o = document.createElement('option');
+      o.value = i; o.textContent = i;
+      if (i === def) o.selected = true;
+      s.appendChild(o);
+    }
+    return s;
+  }
 
-  function renderRooms(){
+  function renderRooms() {
     snapshotBookingState();
-    const n=parseInt(roomsSel.value||'1',10);
-    roomsList.classList.toggle('hidden', n===1);
-    inlineAgesWrap.classList.toggle('hidden', !(n===1 && parseInt(childrenTot.value||'0',10)>0));
-    inlineAges.innerHTML='';
+    const n = parseInt(roomsSel.value || '1', 10);
+    roomsList.classList.toggle('hidden', n === 1);
+    inlineAgesWrap.classList.toggle('hidden', !(n === 1 && parseInt(childrenTot.value || '0', 10) > 0));
+    inlineAges.innerHTML = '';
 
-    if(n===1){
-      const kids=parseInt(childrenTot.value||'0',10);
-      if(kids>0){
-        const lang=localStorage.getItem('lang')||'it';
-        for(let i=0;i<kids;i++){
-          const box=document.createElement('div'); box.className='w-[120px]';
-          const label=document.createElement('label'); label.className='text-xs text-gray-500'; const agePrefix = (lang==='en' ? 'Child age' : 'Età bambino'); label.textContent = agePrefix+' '+(i+1);
-          const defAge = (bookingState.inlineAges[i] ?? 6); const sel=makeAgeSelect(defAge); sel.setAttribute('data-inline-age', i);
+    if (n === 1) {
+      const kids = parseInt(childrenTot.value || '0', 10);
+      if (kids > 0) {
+        const lang = localStorage.getItem('lang') || 'it';
+        for (let i = 0; i < kids; i++) {
+          const box = document.createElement('div'); box.className = 'w-[120px]';
+          const label = document.createElement('label'); label.className = 'text-[10px] uppercase font-bold text-stone-400 block mb-1';
+          label.textContent = (lang === 'en' ? 'Child age' : 'Età bambino') + ' ' + (i + 1);
+          const defAge = (bookingState.inlineAges[i] ?? 6);
+          const sel = makeAgeSelect(defAge); sel.setAttribute('data-inline-age', i);
           box.appendChild(label); box.appendChild(sel); inlineAges.appendChild(box);
         }
       }
-      roomsList.innerHTML='';
+      roomsList.innerHTML = '';
     } else {
-      roomsList.innerHTML='';
-      const lang=localStorage.getItem('lang')||'it';
-      for(let r=1;r<=n;r++){
-        const card=document.createElement('div'); card.className='border border-gray-200 rounded-lg p-3 bg-white mb-3';
-        const title=document.createElement('div'); title.className='font-semibold mb-2'; title.textContent=(lang==='en'?'Room':'Camera')+' '+r;
-        const grid=document.createElement('div'); grid.className='grid grid-cols-12 gap-2';
-        const adW=document.createElement('div'); adW.className='col-span-6'; const adL=document.createElement('label'); adL.className='text-xs text-gray-500'; adL.textContent=(lang==='en'?'Adults':'Adulti'); const adS=makeNumberSelect(1,4,(bookingState.roomAdults[r] ?? 2)); adS.setAttribute('data-room-adults', r); adW.appendChild(adL); adW.appendChild(adS);
-        const chW=document.createElement('div'); chW.className='col-span-6'; const chL=document.createElement('label'); chL.className='text-xs text-gray-500'; chL.textContent=(lang==='en'?'Children':'Bambini'); const chS=makeNumberSelect(0,4,(bookingState.roomChildren[r] ?? 0)); chS.setAttribute('data-room-children', r); chW.appendChild(chL); chW.appendChild(chS);
+      roomsList.innerHTML = '';
+      const lang = localStorage.getItem('lang') || 'it';
+      for (let r = 1; r <= n; r++) {
+        const card = document.createElement('div'); card.className = 'border border-stone-200/80 rounded-2xl p-4 bg-white/90 mb-3';
+        const title = document.createElement('div'); title.className = 'font-bold text-xs uppercase tracking-wider text-stone-800 mb-3';
+        title.textContent = (lang === 'en' ? 'Room' : 'Camera') + ' ' + r;
+        const grid = document.createElement('div'); grid.className = 'grid grid-cols-12 gap-3';
+        const adW = document.createElement('div'); adW.className = 'col-span-6';
+        const adL = document.createElement('label'); adL.className = 'text-[10px] font-bold text-stone-400 block uppercase mb-1';
+        adL.textContent = (lang === 'en' ? 'Adults' : 'Adulti');
+        const adS = makeNumberSelect(1, 4, (bookingState.roomAdults[r] ?? 2)); adS.setAttribute('data-room-adults', r);
+        adW.appendChild(adL); adW.appendChild(adS);
+
+        const chW = document.createElement('div'); chW.className = 'col-span-6';
+        const chL = document.createElement('label'); chL.className = 'text-[10px] font-bold text-stone-400 block uppercase mb-1';
+        chL.textContent = (lang === 'en' ? 'Children' : 'Bambini');
+        const chS = makeNumberSelect(0, 4, (bookingState.roomChildren[r] ?? 0)); chS.setAttribute('data-room-children', r);
+        chW.appendChild(chL); chW.appendChild(chS);
+
         grid.appendChild(adW); grid.appendChild(chW);
-        const agesRow=document.createElement('div'); agesRow.className='col-span-12 flex flex-wrap gap-2 mt-2'; agesRow.setAttribute('data-room-ages', r);
-        function renderAges(){ agesRow.innerHTML=''; const k=parseInt(chS.value||'0',10); for(let i=0;i<k;i++){ const c=document.createElement('div'); c.style.width='120px'; const l=document.createElement('label'); l.className='text-xs text-gray-500'; const agePrefix = (lang==='en' ? 'Child age' : 'Età bambino'); l.textContent = agePrefix+' '+(i+1); const defAge = (bookingState.roomAges[r]?.[i] ?? 6); const s=makeAgeSelect(defAge); s.setAttribute('data-room-age', `${r}-${i}`); c.appendChild(l); c.appendChild(s); agesRow.appendChild(c);} }
-        chS.addEventListener('change',()=>{ renderAges(); updateTotals(); refreshBookingLinks(); });
-        adS.addEventListener('change',()=>{ updateTotals(); refreshBookingLinks(); });
+        const agesRow = document.createElement('div'); agesRow.className = 'col-span-12 flex flex-wrap gap-3 mt-2'; agesRow.setAttribute('data-room-ages', r);
+
+        function renderAges() {
+          agesRow.innerHTML = '';
+          const k = parseInt(chS.value || '0', 10);
+          for (let i = 0; i < k; i++) {
+            const c = document.createElement('div'); c.style.width = '120px';
+            const l = document.createElement('label'); l.className = 'text-[10px] font-bold text-stone-400 block uppercase mb-1';
+            l.textContent = (lang === 'en' ? 'Child age' : 'Età bambino') + ' ' + (i + 1);
+            const defAge = (bookingState.roomAges[r]?.[i] ?? 6);
+            const s = makeAgeSelect(defAge); s.setAttribute('data-room-age', `${r}-${i}`);
+            c.appendChild(l); c.appendChild(s); agesRow.appendChild(c);
+          }
+        }
+        chS.addEventListener('change', () => { renderAges(); updateTotals(); refreshBookingLinks(); });
+        adS.addEventListener('change', () => { updateTotals(); refreshBookingLinks(); });
         renderAges(); card.appendChild(title); card.appendChild(grid); card.appendChild(agesRow); roomsList.appendChild(card);
       }
     }
     updateTotals(); refreshBookingLinks();
   }
 
-  function updateTotals(){
-    const n=parseInt(roomsSel.value||'1',10);
-    if(n===1){ return; }
-    let A=0,C=0;
-    document.querySelectorAll('[data-room-adults]').forEach(s=>A+=parseInt(s.value,10));
-    document.querySelectorAll('[data-room-children]').forEach(s=>C+=parseInt(s.value,10));
-    adultsTot.value=A; childrenTot.value=C;
+  function updateTotals() {
+    const n = parseInt(roomsSel.value || '1', 10);
+    if (n === 1) return;
+    let A = 0, C = 0;
+    document.querySelectorAll('[data-room-adults]').forEach(s => A += parseInt(s.value, 10));
+    document.querySelectorAll('[data-room-children]').forEach(s => C += parseInt(s.value, 10));
+    adultsTot.value = A; childrenTot.value = C;
   }
 
-  const KROSS_STEP1='https://marigold.kross.travel/book/step1';
-  function buildKrossUrl(){
-    const from=checkin.value, to=checkout.value;
-    const today=new Date(); const pad=n=>String(n).padStart(2,'0'); const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-    let f=from, t=to; if(!f||!t){ f=iso(today); const nx=new Date(today); nx.setDate(nx.getDate()+1); t=iso(nx); }
-    const rooms=parseInt(roomsSel.value||'1',10);
-    const lang=(localStorage.getItem('lang')==='en'?'en':'it');
+  const KROSS_STEP1 = 'https://marigold.kross.travel/book/step1';
+  function buildKrossUrl() {
+    const from = checkin.value, to = checkout.value;
+    const today = new Date(); const pad = n => String(n).padStart(2, '0'); const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    let f = from, t = to; if (!f || !t) { f = iso(today); const nx = new Date(today); nx.setDate(nx.getDate() + 1); t = iso(nx); }
+    const rooms = parseInt(roomsSel.value || '1', 10);
+    const lang = (localStorage.getItem('lang') === 'en' ? 'en' : 'it');
 
-    let A=parseInt(adultsTot.value||'2',10);
-    let C=parseInt(childrenTot.value||'0',10);
-    let guestsRooms='';
+    let A = parseInt(adultsTot.value || '2', 10);
+    let C = parseInt(childrenTot.value || '0', 10);
+    let guestsRooms = '';
 
-    if(rooms===1){
-      const ages = Array.from(document.querySelectorAll('[data-inline-age]')).map(s=>parseInt(s.value||'6',10));
-      const agesCsv = (C>0 && ages.length===C) ? ','+ages.join(',') : '';
+    if (rooms === 1) {
+      const ages = Array.from(document.querySelectorAll('[data-inline-age]')).map(s => parseInt(s.value || '6', 10));
+      const agesCsv = (C > 0 && ages.length === C) ? ',' + ages.join(',') : '';
       guestsRooms = `${A},${C}${agesCsv};`;
     } else {
-      A=0; C=0;
-      for(let r=1;r<=rooms;r++){
-        const a=parseInt(document.querySelector(`[data-room-adults="${r}"]`).value,10);
-        const c=parseInt(document.querySelector(`[data-room-children="${r}"]`).value,10);
-        A+=a; C+=c;
-        const ages=[]; document.querySelectorAll(`[data-room-age^="${r}-"]`).forEach(sel=>ages.push(parseInt(sel.value||'6',10)));
-        const agesCsv=(c>0 && ages.length===c)?','+ages.join(','):'';
+      A = 0; C = 0;
+      for (let r = 1; r <= rooms; r++) {
+        const a = parseInt(document.querySelector(`[data-room-adults="${r}"]`).value, 10);
+        const c = parseInt(document.querySelector(`[data-room-children="${r}"]`).value, 10);
+        A += a; C += c;
+        const ages = []; document.querySelectorAll(`[data-room-age^="${r}-"]`).forEach(sel => ages.push(parseInt(sel.value || '6', 10)));
+        const agesCsv = (c > 0 && ages.length === c) ? ',' + ages.join(',') : '';
         guestsRooms += `${a},${c}${agesCsv};`;
       }
     }
-    const guests=A+C;
-    const params=new URLSearchParams({ adults:A, children:C, rooms, guests, n_guests:guests, guests_rooms:guestsRooms, kross_lang:lang, from:f, to:t });
+    const guests = A + C;
+    const params = new URLSearchParams({ adults: A, children: C, rooms, guests, n_guests: guests, guests_rooms: guestsRooms, kross_lang: lang, from: f, to: t });
     return `${KROSS_STEP1}?${params.toString()}`;
   }
 
-  function refreshBookingLinks(){
-    const lang=(localStorage.getItem('lang')==='en'?'en':'it');
-    const url=buildKrossUrl();
-    document.querySelectorAll('.book-param,#btnSearch').forEach(a=>a.setAttribute('href',url));
+  function refreshBookingLinks() {
+    const lang = (localStorage.getItem('lang') === 'en' ? 'en' : 'it');
+    const url = buildKrossUrl();
+    document.querySelectorAll('.book-param,#btnSearch').forEach(a => a.setAttribute('href', url));
 
-    // I bottoni "Prenota"/"Prenota Ora" portano con sé la ricerca SE ci sono le date,
-    // altrimenti puntano alla home di Kross (nella lingua giusta).
-    const home = (lang==='en') ? 'https://marigold.kross.travel/en' : 'https://marigold.kross.travel/';
+    const home = (lang === 'en') ? 'https://marigold.kross.travel/en' : 'https://marigold.kross.travel/';
     const directUrl = (checkin.value && checkout.value) ? url : home;
-    document.querySelectorAll('.book-direct').forEach(a=>a.setAttribute('href', directUrl));
+    document.querySelectorAll('.book-direct').forEach(a => a.setAttribute('href', directUrl));
 
-    // WhatsApp precompilato (localizzato IT/EN)
-    const t = (lang==='en')
-      ? { hi:'Hello Marigold! Stay enquiry.', in:'Check-in', out:'Check-out', na:'(n/a)', room:'Room', adults:'Adults', children:'Children', ages:'ages' }
-      : { hi:'Ciao Marigold! Info soggiorno.', in:'Check-in', out:'Check-out', na:'(n.d.)', room:'Camera', adults:'Adulti', children:'Bambini', ages:'età' };
+    const t = (lang === 'en')
+      ? { hi: 'Hello Marigold! Stay enquiry.', in: 'Check-in', out: 'Check-out', na: '(n/a)', room: 'Room', adults: 'Adults', children: 'Children', ages: 'ages' }
+      : { hi: 'Ciao Marigold! Info soggiorno.', in: 'Check-in', out: 'Check-out', na: '(n.d.)', room: 'Camera', adults: 'Adulti', children: 'Bambini', ages: 'età' };
 
-    const n=parseInt(roomsSel.value||'1',10);
-    const lines=[];
-    if(n===1){
-      const ages = Array.from(document.querySelectorAll('[data-inline-age]')).map(s=>s.value).join(',');
-      lines.push(`${t.room} 1: ${t.adults} ${adultsTot.value}, ${t.children} ${childrenTot.value}${ages?` (${t.ages}: ${ages})`:''}`);
+    const n = parseInt(roomsSel.value || '1', 10);
+    const lines = [];
+    if (n === 1) {
+      const ages = Array.from(document.querySelectorAll('[data-inline-age]')).map(s => s.value).join(',');
+      lines.push(`${t.room} 1: ${t.adults} ${adultsTot.value}, ${t.children} ${childrenTot.value}${ages ? ` (${t.ages}: ${ages})` : ''}`);
     } else {
-      for(let r=1;r<=n;r++){
-        const a=document.querySelector(`[data-room-adults="${r}"]`).value;
-        const c=document.querySelector(`[data-room-children="${r}"]`).value;
-        const ages=Array.from(document.querySelectorAll(`[data-room-age^="${r}-"]`)).map(s=>s.value).join(',');
-        lines.push(`${t.room} ${r}: ${t.adults} ${a}, ${t.children} ${c}${ages?` (${t.ages}: ${ages})`:''}`);
+      for (let r = 1; r <= n; r++) {
+        const a = document.querySelector(`[data-room-adults="${r}"]`).value;
+        const c = document.querySelector(`[data-room-children="${r}"]`).value;
+        const ages = Array.from(document.querySelectorAll(`[data-room-age^="${r}-"]`)).map(s => s.value).join(',');
+        lines.push(`${t.room} ${r}: ${t.adults} ${a}, ${t.children} ${c}${ages ? ` (${t.ages}: ${ages})` : ''}`);
       }
     }
-    const msg=encodeURIComponent(
-      `${t.hi}\n`+
-      `${t.in}: ${checkin.value||t.na}\n`+
-      `${t.out}: ${checkout.value||t.na}\n`+
+    const msg = encodeURIComponent(
+      `${t.hi}\n` +
+      `${t.in}: ${checkin.value || t.na}\n` +
+      `${t.out}: ${checkout.value || t.na}\n` +
       lines.join('\n')
     );
-    document.getElementById('waMain').href=`https://wa.me/393933795105?text=${msg}`;
+    document.getElementById('waMain').href = `https://wa.me/393933795105?text=${msg}`;
   }
 
-  roomsSel.addEventListener('change',renderRooms);
-  adultsTot.addEventListener('change',()=>{ if(parseInt(roomsSel.value)==1) refreshBookingLinks(); });
-  childrenTot.addEventListener('change',()=>{ renderRooms(); refreshBookingLinks(); });
+  roomsSel.addEventListener('change', renderRooms);
+  adultsTot.addEventListener('change', () => { if (parseInt(roomsSel.value) == 1) refreshBookingLinks(); });
+  childrenTot.addEventListener('change', () => { renderRooms(); refreshBookingLinks(); });
 
-  // ===== Gestione click di prenotazione (unificata) =====
-  // - se ci sono le date  -> apri Kross portando date + ospiti già selezionati
-  // - se mancano le date  -> NON inventarle: porta l'utente sul calendario con avviso gentile
-  // - traccia l'evento in GA (solo con consenso cookie)
-  function trackBookClick(eventName, label){
-    try{
-      if(window.gtag && localStorage.getItem('mgd_cookie_consent')==='accepted'){
-        window.gtag('event', eventName, { event_category:'Booking', event_label: label });
+  function trackBookClick(eventName, label) {
+    try {
+      if (window.gtag && localStorage.getItem('mgd_cookie_consent') === 'accepted') {
+        window.gtag('event', eventName, { event_category: 'Booking', event_label: label });
       }
-    }catch(_){}
+    } catch (_) { }
   }
 
-  function promptForDates(){
-    document.querySelector('.booking-card')?.scrollIntoView({ behavior:'smooth', block:'center' });
-    const hint=document.getElementById('dateHint');
-    if(hint){
+  function promptForDates() {
+    document.querySelector('.booking-card')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const hint = document.getElementById('dateHint');
+    if (hint) {
       hint.classList.remove('hidden');
       clearTimeout(window._dateHintT);
-      window._dateHintT=setTimeout(()=>hint.classList.add('hidden'), 6000);
+      window._dateHintT = setTimeout(() => hint.classList.add('hidden'), 6000);
     }
-    const dr=document.getElementById('daterange');
-    if(dr){ dr.classList.remove('date-missing'); void dr.offsetWidth; dr.classList.add('date-missing'); }
-    setTimeout(()=>{ try{ fpInstance && fpInstance.open(); }catch(_){ } }, 450);
+    const dr = document.getElementById('daterange');
+    if (dr) { dr.classList.remove('date-missing'); void dr.offsetWidth; dr.classList.add('date-missing'); }
+    setTimeout(() => { try { fpInstance && fpInstance.open(); } catch (_) { } }, 450);
   }
 
-  function handleBookingClick(e, eventName, label){
-    if(checkin.value && checkout.value){
-      if(e) e.preventDefault();
+  function handleBookingClick(e, eventName, label) {
+    if (checkin.value && checkout.value) {
+      if (e) e.preventDefault();
       trackBookClick(eventName, label);
       window.location.href = buildKrossUrl();
     } else {
-      if(e) e.preventDefault();
+      if (e) e.preventDefault();
       trackBookClick('booking_no_dates', label);
       promptForDates();
     }
   }
 
-  // Bottone principale (la metrica di conversione più importante)
-  document.getElementById('btnSearch')?.addEventListener('click', e=>handleBookingClick(e, 'check_availability', 'Verifica disponibilità'));
-  // "Prenota Ora" (navbar/mobile) e "Prenota" sotto ogni camera
-  document.querySelectorAll('.book-direct').forEach(a=>{
-    a.addEventListener('click', e=>handleBookingClick(e, 'book_click', (a.textContent||'Prenota').trim()));
+  document.getElementById('btnSearch')?.addEventListener('click', e => handleBookingClick(e, 'check_availability', 'Verifica disponibilità'));
+  document.querySelectorAll('.book-direct').forEach(a => {
+    a.addEventListener('click', e => handleBookingClick(e, 'book_click', (a.textContent || 'Prenota').trim()));
   });
 
-  // Swiper
-  new Swiper('.mySwiper',{ loop:true, slidesPerView:1, spaceBetween:16, autoplay:{delay:3500,disableOnInteraction:false}, pagination:{el:'.swiper-pagination',clickable:true}, navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'}, breakpoints:{768:{slidesPerView:2},1024:{slidesPerView:3}} });
+  // Swiper Init
+  new Swiper('.mySwiper', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+  });
 
   // Privacy modal + cookie
-  const privacyModal=document.getElementById('privacyModal');
-  document.getElementById('closePrivacy').onclick=()=>privacyModal.classList.remove('active');
-  privacyModal.addEventListener('click',(e)=>{ if(e.target===privacyModal) privacyModal.classList.remove('active'); });
-  const cookieKey='mgd_cookie_consent', banner=document.getElementById('cookieBanner');
-  const saved=localStorage.getItem(cookieKey); if(saved==='accepted'||saved==='declined'){ banner.style.display='none'; }
-  document.getElementById('cookieAccept').onclick=()=>{ localStorage.setItem(cookieKey,'accepted'); banner.style.display='none'; };
-  document.getElementById('cookieDecline').onclick=()=>{ localStorage.setItem(cookieKey,'declined'); banner.style.display='none'; };
+  const privacyModal = document.getElementById('privacyModal');
+  document.getElementById('closePrivacy').onclick = () => privacyModal.classList.remove('active');
+  privacyModal.addEventListener('click', (e) => { if (e.target === privacyModal) privacyModal.classList.remove('active'); });
+  const cookieKey = 'mgd_cookie_consent', banner = document.getElementById('cookieBanner');
+  const saved = localStorage.getItem(cookieKey); if (saved === 'accepted' || saved === 'declined') { banner.style.display = 'none'; }
+  document.getElementById('cookieAccept').onclick = () => { localStorage.setItem(cookieKey, 'accepted'); banner.style.display = 'none'; };
+  document.getElementById('cookieDecline').onclick = () => { localStorage.setItem(cookieKey, 'declined'); banner.style.display = 'none'; };
 
-  // Lingua
-  function bindLangButtons(){
-    ['lang-it','lang-en','lang-it-m','lang-en-m'].forEach(id=>{
-      const el=document.getElementById(id);
-      if(!el) return;
-      el.addEventListener('click',()=>{
+  function bindLangButtons() {
+    ['lang-it', 'lang-en', 'lang-it-m', 'lang-en-m'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('click', () => {
         setLang(id.includes('en') ? 'en' : 'it');
-        // chiudi il menu mobile dopo la scelta
         document.getElementById('mobile-menu')?.classList.add('hidden');
       });
     });
   }
 
-  // ✅ FIX: chiudi menu mobile quando clicchi una voce (sezione)
-  function bindMobileNavAutoClose(){
-    document.querySelectorAll('#mobile-menu a').forEach(a=>{
-      a.addEventListener('click',()=>{
+  function bindMobileNavAutoClose() {
+    document.querySelectorAll('#mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => {
         document.getElementById('mobile-menu')?.classList.add('hidden');
       });
     });
   }
 
-  // ===== Scelta lingua all'avvio (regola a priorità) =====
-  // 1) Scelta esplicita salvata dall'utente -> ha la precedenza assoluta
-  // 2) Override via URL (?lang=it / ?lang=en) -> utile per link condivisi/campagne
-  // 3) Lingue del browser: se l'utente "parla" italiano -> IT, altrimenti EN
-  //    (un ospite straniero, es. tedesco/olandese, legge meglio l'inglese dell'italiano)
-  function detectLang(){
+  function detectLang() {
     const saved = localStorage.getItem('lang');
-    if(saved==='it' || saved==='en') return saved;
-
+    if (saved === 'it' || saved === 'en') return saved;
     const urlLang = new URLSearchParams(location.search).get('lang');
-    if(urlLang==='it' || urlLang==='en') return urlLang;
-
-    const langs = (navigator.languages && navigator.languages.length)
-      ? navigator.languages
-      : [navigator.language || ''];
-    const speaksItalian = langs.some(l => (l||'').toLowerCase().startsWith('it'));
-    return speaksItalian ? 'it' : 'en';
+    if (urlLang === 'it' || urlLang === 'en') return urlLang;
+    const langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+    return langs.some(l => (l || '').toLowerCase().startsWith('it')) ? 'it' : 'en';
   }
 
   const langInit = detectLang();
@@ -1091,9 +1454,7 @@
   renderRooms();
 </script>
 
-<!-- Google Analytics 4
-     Caricato SOLO dopo accettazione Privacy & Cookie (GDPR compliant)
-     Nessun tracciamento prima del consenso -->
+<!-- Google Analytics 4 -->
 <script>
   const GA_ID = 'G-S5F6RK1GEN';
   const COOKIE_KEY = 'mgd_cookie_consent';
@@ -1101,81 +1462,67 @@
   function loadGA() {
     if (window.gaLoaded) return;
     window.gaLoaded = true;
-
-    // Load gtag.js
     const s = document.createElement('script');
     s.async = true;
     s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
     document.head.appendChild(s);
 
-    // Init GA
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     window.gtag = gtag;
 
     gtag('js', new Date());
-    gtag('config', GA_ID, {
-      anonymize_ip: true
-    });
+    gtag('config', GA_ID, { anonymize_ip: true });
   }
 
-  // Accept cookies
   document.getElementById('cookieAccept')?.addEventListener('click', () => {
     localStorage.setItem(COOKIE_KEY, 'accepted');
     loadGA();
     document.getElementById('cookieBanner').style.display = 'none';
   });
 
-  // Decline cookies
   document.getElementById('cookieDecline')?.addEventListener('click', () => {
     localStorage.setItem(COOKIE_KEY, 'declined');
     document.getElementById('cookieBanner').style.display = 'none';
   });
 
-  // Load GA if already accepted
   if (localStorage.getItem(COOKIE_KEY) === 'accepted') {
     loadGA();
     document.getElementById('cookieBanner').style.display = 'none';
   }
-
-  // NB: il tracciamento dei click di prenotazione (#btnSearch "Verifica disponibilità"
-  // e i bottoni "Prenota"/"Prenota Ora") è centralizzato in handleBookingClick:
-  // eventi GA 'check_availability' e 'book_click', inviati solo con consenso cookie.
 </script>
 
+<!-- Motion Reveal and Scroll Logic -->
 <script>
-  // ===== Motion: scroll reveal + nav scroll state (self-contained, plug & play) =====
   (function(){
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // stagger index for grouped reveals
-    document.querySelectorAll('[data-reveal-group]').forEach(g=>{
-      Array.from(g.children).forEach((c,i)=>c.style.setProperty('--i', i));
+    document.querySelectorAll('[data-reveal-group]').forEach(g => {
+      Array.from(g.children).forEach((c, i) => c.style.setProperty('--i', i));
     });
 
     const targets = document.querySelectorAll('[data-reveal],[data-reveal-group]');
-    if(reduce || !('IntersectionObserver' in window)){
-      targets.forEach(t=>t.classList.add('is-visible'));
+    if (reduce || !('IntersectionObserver' in window)) {
+      targets.forEach(t => t.classList.add('is-visible'));
     } else {
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
         });
-      }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
-      targets.forEach(t=>io.observe(t));
+      }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+      targets.forEach(t => io.observe(t));
     }
 
-    // navbar solid-on-scroll (hysteresis: dead zone 20–60px avoids flicker)
     const nav = document.getElementById('siteNav');
-    if(nav){
+    if (nav) {
       let scrolled = false;
-      const onScroll = ()=>{
+      const onScroll = () => {
         const y = window.scrollY;
-        if(!scrolled && y > 60){ scrolled = true; nav.classList.add('nav-scrolled'); }
-        else if(scrolled && y < 20){ scrolled = false; nav.classList.remove('nav-scrolled'); }
+        if (!scrolled && y > 40) { scrolled = true; nav.classList.add('nav-scrolled'); }
+        else if (scrolled && y < 20) { scrolled = false; nav.classList.remove('nav-scrolled'); }
       };
       onScroll();
-      window.addEventListener('scroll', onScroll, { passive:true });
+      window.addEventListener('scroll', onScroll, { passive: true });
     }
   })();
 </script>
