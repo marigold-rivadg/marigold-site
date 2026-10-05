@@ -1,4 +1,4 @@
-cd "C:\Users\MediDanaj\OneDrive - BI Network\Desktop\Personal\Marigold\marigold-site"
+cd "C:\Users\MediDanaj\Desktop\Personal\Marigold\marigold-site"
 
 git checkout dev
 git add .
