@@ -22,6 +22,7 @@
   <meta property="og:image:alt" content="Camera del B&amp;B Marigold a Riva del Garda">
   <meta property="og:locale" content="it_IT">
   <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
 
   <!-- ===== Twitter / X Card ===== -->
   <meta name="twitter:card" content="summary_large_image">
@@ -148,8 +149,29 @@
 	    background:var(--grad-coral);border-radius:999px;transform:scaleX(0);transform-origin:left;
 	    transition:transform .3s var(--ease)}
 	  .nav-link:hover::after{transform:scaleX(1)}
-	  #lang-it,#lang-en,#lang-it-m,#lang-en-m{transition:all .2s var(--ease)}
-	  #lang-it:hover,#lang-en:hover,#lang-it-m:hover,#lang-en-m:hover{border-color:var(--coral);color:var(--coral-deeper)}
+	  /* ===== Selettore lingua (dropdown) ===== */
+	  .lang-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem .8rem;border-radius:999px;
+	    border:1px solid var(--line);background:rgba(255,255,255,.7);font-size:.75rem;font-weight:700;
+	    letter-spacing:.08em;text-transform:none;color:var(--ink);cursor:pointer;transition:all .25s var(--ease)}
+	  .lang-btn:hover,.lang-btn[aria-expanded="true"]{border-color:var(--coral);color:var(--coral-deeper);background:#fff}
+	  .lang-btn .lang-chev{font-size:.6rem;transition:transform .25s var(--ease)}
+	  .lang-btn[aria-expanded="true"] .lang-chev{transform:rotate(180deg)}
+	  .lang-menu{position:absolute;right:0;top:calc(100% + 10px);min-width:11rem;margin:0;padding:.4rem;list-style:none;
+	    background:#fff;border:1px solid var(--line);border-radius:1rem;box-shadow:var(--shadow-lift);
+	    opacity:0;visibility:hidden;transform:translateY(-6px) scale(.98);transform-origin:top right;
+	    transition:opacity .2s var(--ease),transform .25s var(--ease),visibility 0s linear .25s;z-index:60}
+	  .lang-menu.open{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+	  .lang-menu button{display:flex;align-items:center;gap:.75rem;width:100%;padding:.6rem .7rem;border:0;border-radius:.7rem;
+	    background:transparent;text-align:left;font-size:.9rem;font-weight:400;letter-spacing:0;text-transform:none;
+	    color:var(--ink);cursor:pointer;transition:background .2s var(--ease)}
+	  .lang-menu button:hover{background:rgba(255,174,163,.18)}
+	  .lang-code{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:1.5rem;border-radius:.4rem;
+	    background:var(--cream);font-size:.7rem;font-weight:800;letter-spacing:.06em;color:var(--ink-soft)}
+	  .lang-name{flex:1}
+	  .lang-tick{font-size:.75rem;color:var(--coral-deeper);opacity:0}
+	  .lang-menu button.is-active{font-weight:700}
+	  .lang-menu button.is-active .lang-code{background:var(--grad-coral);color:#fff}
+	  .lang-menu button.is-active .lang-tick{opacity:1}
 
 	  /* ===== Buttons ===== */
 	  .btn-grad{background:var(--grad-coral);position:relative;overflow:hidden;isolation:isolate;
@@ -319,12 +341,32 @@
         <a href="#da-fare" class="nav-link hover:text-coral" data-i18n="nav.todo">Cose da fare</a>
         <a href="#contatti" class="nav-link hover:text-coral" data-i18n="nav.contact">Contatti</a>
         <a class="btn-grad lift text-white px-6 py-3 rounded-full shadow-md transition book-direct" data-i18n="cta.bookNow" href="https://marigold.kross.travel/">Prenota Ora</a>
-        <div class="ml-2 flex gap-2 items-center text-xs normal-case">
-          <button id="lang-it" class="px-2 py-1 rounded border">IT</button>
-          <button id="lang-en" class="px-2 py-1 rounded border">EN</button>
+        <div class="ml-2 normal-case">
+          <div class="lang-switch relative">
+            <button type="button" class="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Lingua / Language / Sprache">
+              <i class="fa-solid fa-globe"></i><span class="lang-current">IT</span><i class="fa-solid fa-chevron-down lang-chev"></i>
+            </button>
+            <ul class="lang-menu" role="listbox">
+              <li><button type="button" role="option" data-lang="it" aria-selected="false"><span class="lang-code">IT</span><span class="lang-name">Italiano</span><i class="fa-solid fa-check lang-tick"></i></button></li>
+              <li><button type="button" role="option" data-lang="en" aria-selected="false"><span class="lang-code">EN</span><span class="lang-name">English</span><i class="fa-solid fa-check lang-tick"></i></button></li>
+              <li><button type="button" role="option" data-lang="de" aria-selected="false"><span class="lang-code">DE</span><span class="lang-name">Deutsch</span><i class="fa-solid fa-check lang-tick"></i></button></li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="md:hidden"><button id="mobile-menu-btn" class="p-2"><i class="fas fa-bars text-2xl"></i></button></div>
+      <div class="md:hidden flex items-center gap-1">
+        <div class="lang-switch relative">
+          <button type="button" class="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Lingua / Language / Sprache">
+            <i class="fa-solid fa-globe"></i><span class="lang-current">IT</span><i class="fa-solid fa-chevron-down lang-chev"></i>
+          </button>
+          <ul class="lang-menu" role="listbox">
+            <li><button type="button" role="option" data-lang="it" aria-selected="false"><span class="lang-code">IT</span><span class="lang-name">Italiano</span><i class="fa-solid fa-check lang-tick"></i></button></li>
+            <li><button type="button" role="option" data-lang="en" aria-selected="false"><span class="lang-code">EN</span><span class="lang-name">English</span><i class="fa-solid fa-check lang-tick"></i></button></li>
+            <li><button type="button" role="option" data-lang="de" aria-selected="false"><span class="lang-code">DE</span><span class="lang-name">Deutsch</span><i class="fa-solid fa-check lang-tick"></i></button></li>
+          </ul>
+        </div>
+        <button id="mobile-menu-btn" class="p-2" aria-label="Menu"><i class="fas fa-bars text-2xl"></i></button>
+      </div>
     </div>
   </div>
   <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
@@ -336,11 +378,6 @@
     <a href="#da-fare" class="block py-4 px-6 border-b" data-i18n="nav.todo">Cose da fare</a>
     <a href="#contatti" class="block py-4 px-6 border-b" data-i18n="nav.contact">Contatti</a>
     <a class="block py-4 px-6 text-coral font-bold text-center bg-gray-50 book-direct" data-i18n="cta.bookNowUpper" href="https://marigold.kross.travel/">PRENOTA ORA</a>
-    <div class="py-4 px-6 border-t flex items-center gap-2">
-      <span class="text-xs uppercase tracking-[0.15em] text-gray-500" data-i18n="nav.lang">Lingua</span>
-      <button id="lang-it-m" class="px-2 py-1 rounded border">IT</button>
-      <button id="lang-en-m" class="px-2 py-1 rounded border">EN</button>
-    </div>
   </div>
 </nav>
 
@@ -635,10 +672,29 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Titoli
-  const titles={ it:'Marigold – Relax, Comfort e Libertà a Riva del Garda', en:'Marigold – Relax, Comfort & Freedom in Riva del Garda' };
+  const titles={ it:'Marigold – Relax, Comfort e Libertà a Riva del Garda', en:'Marigold – Relax, Comfort & Freedom in Riva del Garda', de:'Marigold – Entspannung, Komfort & Freiheit in Riva del Garda' };
+
+  // ===== Lingue supportate (it, en, de) – punto unico di configurazione =====
+  const SUPPORTED_LANGS=['it','en','de'];
+  const normLang=l=>SUPPORTED_LANGS.includes(l)?l:'it';
+  const getLang=()=>normLang(localStorage.getItem('lang'));
+  // ⚠️ Kross (booking engine): DE puntato su EN finché non confermi che Kross supporta il tedesco.
+  //    Se lo supporta: de:'https://marigold.kross.travel/de' e KROSS_LANG.de:'de'
+  const KROSS_HOME={ it:'https://marigold.kross.travel/', en:'https://marigold.kross.travel/en', de:'https://marigold.kross.travel/en' };
+  const KROSS_LANG={ it:'it', en:'en', de:'en' };
+  const UI_TXT={
+    it:{ room:'Camera', adults:'Adulti', children:'Bambini', childAge:'Età bambino' },
+    en:{ room:'Room', adults:'Adults', children:'Children', childAge:'Child age' },
+    de:{ room:'Zimmer', adults:'Erwachsene', children:'Kinder', childAge:'Alter Kind' }
+  };
+  const WA_TXT={
+    it:{ hi:'Ciao Marigold! Info soggiorno.', in:'Check-in', out:'Check-out', na:'(n.d.)', room:'Camera', adults:'Adulti', children:'Bambini', ages:'età' },
+    en:{ hi:'Hello Marigold! Stay enquiry.', in:'Check-in', out:'Check-out', na:'(n/a)', room:'Room', adults:'Adults', children:'Children', ages:'ages' },
+    de:{ hi:'Hallo Marigold! Anfrage zum Aufenthalt.', in:'Check-in', out:'Check-out', na:'(k. A.)', room:'Zimmer', adults:'Erwachsene', children:'Kinder', ages:'Alter' }
+  };
 
   // I18N (chiavi essenziali, incluse quelle del footer)
-  const I18N = { it:{}, en:{} };
+  const I18N = { it:{}, en:{}, de:{} };
 
   I18N.it = {
     'cookie.text':'Privacy & Cookie: i dati sono trattati per finalità di prenotazione e risposta alle richieste. Informativa completa disponibile nella <a href="#" id="openPrivacyFromBanner" class="text-coral underline">privacy policy</a>. Puoi accettare o rifiutare i cookie non essenziali.',
@@ -732,6 +788,51 @@
     'footer.privacy':'Privacy & Cookies: data is processed to manage booking requests and replies only. Full information available in the <a href="#" id="openPrivacyFromFooter" class="underline text-coral">privacy policy</a>.'
   };
 
+  I18N.de = {
+    'cookie.text':'Datenschutz & Cookies: Die Daten werden ausschließlich zur Bearbeitung von Buchungs- und Kontaktanfragen verarbeitet. Alle Informationen finden Sie in unserer <a href="#" id="openPrivacyFromBanner" class="text-coral underline">Datenschutzerklärung</a>. Sie können nicht notwendige Cookies akzeptieren oder ablehnen.',
+    'cookie.accept':'Akzeptieren','cookie.decline':'Ablehnen',
+    'nav.about':'Über uns','nav.rooms':'Zimmer','nav.services':'Ausstattung','nav.distances':'Entfernungen','nav.gallery':'Galerie','nav.todo':'Aktivitäten','nav.contact':'Kontakt',
+    'nav.lang':'Sprache',
+    'cta.bookNow':'Jetzt buchen','cta.bookNowUpper':'JETZT BUCHEN','cta.search':'VERFÜGBARKEIT PRÜFEN',
+    'hero.line1':'Zuhause ankommen,','hero.line2':'den Gardasee spüren.','hero.sub':'Renovierte Zimmer und die Freiheit, Riva del Garda in Ihrem eigenen Tempo zu erleben.',
+    'trust.best':'Bestpreisgarantie','trust.cancel':'Flexible Stornierung',
+    'form.date':'Reisedaten','form.rooms':'Zimmer','form.adulti':'Erwachsene','form.bambini':'Kinder','form.agesHint':'Alter der Kinder zum Zeitpunkt des Aufenthalts (0–17 Jahre).','form.room':'Zimmer','form.adultiRoom':'Erwachsene','form.bambiniRoom':'Kinder','form.age':'Alter','form.pickDates':'Bitte wählen Sie zuerst Ihre Aufenthaltsdaten, um die Verfügbarkeit zu prüfen.',
+
+    'about.kicker':'Unsere Geschichte',
+    'about.h':'Willkommen im Marigold.',
+    'about.p1':'2018 liebevoll renoviert, in der Via dell\'Albola, einem ruhigen und dennoch zentralen Viertel. Ein idealer Rückzugsort, nur wenige Schritte vom Zentrum entfernt.',
+    'about.p2':'Familiäre Gastfreundschaft und Umweltbewusstsein dank Photovoltaikanlage. Kostenloser Parkplatz in 50 m Entfernung.',
+
+    'services.h':'UNSERE AUSSTATTUNG',
+    'services.flex.h':'Flexible Stornierung','services.flex.p':'Kostenlos bis 3 Tage vor Anreise',
+
+    'services.garden.h':'Garten','services.garden.p':'Einfach mal draußen entspannen!',
+    'services.tv.h':'Smart-TV','services.tv.p':'Regnerischer Tag? Genießen Sie einen guten Film',
+    'services.wifi.h':'Kostenloses WLAN','services.wifi.p':'Ultraschnell dank Glasfaser',
+    'services.green.h':'Grüne Energie','services.green.p':'Marigold ist umweltfreundlich – dank einer 5-kWh-Photovoltaikanlage!',
+    'services.parking.h':'Kostenloser Parkplatz','services.parking.p':'Öffentlicher Parkplatz, 50 m vom Haus entfernt',
+    'services.bike.h':'Fahrradstellplatz','services.bike.p':'Sicher im Inneren',
+    'services.ac.h':'Klimaanlage','services.ac.p':'Neu in allen Einheiten',
+    'services.quiet.h':'Ruhige Lage','services.quiet.p':'Fernab vom Verkehrslärm',
+
+    'dist.h':'Zu Fuß erreichbar:','rooms.h':'Unsere Zimmer','rooms.sub':'Modernes Design, Tageslicht und rundum Komfort.',
+    'rooms.from':'ab',
+    'rooms.std.name':'Standard','rooms.del.name':'Deluxe','rooms.js.name':'Junior Suite','rooms.st.name':'Studio',
+    'rooms.std.meta':'2 Erwachsene · 22 m² · Eigenes Bad',
+    'rooms.del.meta':'2 Erwachsene · 22 m² · Balkon',
+    'rooms.js.meta':'Bis zu 4 Gäste · 40 m² · Küche · Aussicht',
+    'rooms.st.meta':'Bis zu 4 Gäste · 40 m² · Küche · Garten',
+
+    'gallery.h':'Galerie','gallery.sub':'Ein Blick auf Zimmer, Details und Umgebung.',
+    'todo.h':'Aktivitäten in Riva del Garda','todo.sub':'Erlebnisse nur wenige Minuten vom Marigold entfernt.','todo.trek.h':'Wandern','todo.trek.p':'Wege mit Seeblick, von leicht bis panoramisch.','todo.bike.h':'Radfahren','todo.bike.p':'Radwege entlang des Sees und durch die Täler.','todo.ferrata.h':'Klettersteig','todo.ferrata.p':'Gesicherte Routen für jedes Niveau.','todo.varone.h':'Varone-Wasserfall','todo.varone.p':'Spektakuläre Schlucht, nur wenige Autominuten entfernt.','todo.beach.h':'Strand','todo.beach.p':'Liegewiesen, klares Wasser, Bars und Service.','todo.sail.h':'Windsurfen','todo.sail.p':'Stetiger Wind: Schulen und Verleih in der Nähe.',
+    'contact.h':'Kontakt','contact.sub':'Sie möchten uns direkt schreiben? Wählen Sie Ihren Kanal.','contact.mail':'Per E-Mail schreiben','contact.wa':'WhatsApp','contact.call':'Anrufen',
+    'visit.h':'Besuchen Sie uns','visit.addr':'Via dell\'Albola, 85 · 38066 Riva del Garda (TN) · Italien','visit.directions':'Route anzeigen →',
+    'visit.bus':'Busbahnhof','visit.center':'Altstadt','visit.beach':'Strand',
+    'policy.h':'DATENSCHUTZERKLÄRUNG','policy.p1':'Worum geht es? Wenn Sie uns schreiben, übermitteln Sie uns Ihren Namen, Ihre E-Mail-Adresse und Ihre Nachricht. Wir verwenden diese Daten ausschließlich, um Ihnen zu antworten und buchungsbezogene Mitteilungen zu verwalten.','policy.p2':'Wer bewahrt Ihre Daten auf? Marigold. Wir bewahren sie sicher auf und geben sie nicht weiter.','policy.p3':'Warum verwenden wir sie? Um Ihnen zu antworten, Sie zu informieren und Sie vor/nach einer Buchung zu unterstützen. Kein Newsletter, kein Spam.','policy.p4':'Möchten Sie Ihre Daten löschen lassen? Schreiben Sie an bbmarigold@gmail.com.',
+    'footer.where':'So finden Sie uns','footer.contact':'Kontakt','footer.follow':'Folgen Sie uns',
+    'footer.privacy':'Datenschutz & Cookies: Die Daten werden ausschließlich zur Bearbeitung von Buchungsanfragen und Antworten verarbeitet. Weitere Informationen in der <a href="#" id="openPrivacyFromFooter" class="underline text-coral">Datenschutzerklärung</a>.'
+  };
+
   function applyI18n(lang){
     document.querySelectorAll('[data-i18n]').forEach(el=>{
       const k=el.getAttribute('data-i18n'); if(I18N[lang][k]) el.textContent=I18N[lang][k];
@@ -742,7 +843,7 @@
   }
   function setDatePlaceholder(lang){
     const dr=document.getElementById('daterange'); if(!dr) return;
-    dr.placeholder = (lang==='en') ? 'dd/mm/yyyy – dd/mm/yyyy' : 'gg/mm/aaaa – gg/mm/aaaa';
+    dr.placeholder = ({ it:'gg/mm/aaaa – gg/mm/aaaa', en:'dd/mm/yyyy – dd/mm/yyyy', de:'TT.MM.JJJJ – TT.MM.JJJJ' })[lang] || 'gg/mm/aaaa – gg/mm/aaaa';
   }
 
   // Datepicker lun→dom con separatore ' - '
@@ -751,13 +852,14 @@
     if(fpInstance){ fpInstance.destroy(); fpInstance=null; }
     const enMonday={ firstDayOfWeek:1, rangeSeparator:' - ', weekdays:{ shorthand:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], longhand:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'] }, months:{ shorthand:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], longhand:['January','February','March','April','May','June','July','August','September','October','November','December'] } };
     const itMonday=Object.assign({}, flatpickr.l10ns.it, { firstDayOfWeek:1, rangeSeparator:' - ' });
-    const locale=(lang==='it')?itMonday:enMonday;
+    const deMonday={ firstDayOfWeek:1, rangeSeparator:' - ', weekdays:{ shorthand:['So','Mo','Di','Mi','Do','Fr','Sa'], longhand:['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'] }, months:{ shorthand:['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'], longhand:['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'] } };
+    const locale=(lang==='it')?itMonday:(lang==='de')?deMonday:enMonday;
     fpInstance=flatpickr('#daterange',{
 		mode:'range',
 		minDate:new Date(),
 		dateFormat:'Y-m-d',
 		altInput:true,
-		altFormat:'d/m/Y',
+		altFormat:(lang==='de'?'d.m.Y':'d/m/Y'),
 		allowInput:false,   // <-- Disabilita la digitazione (e blocca la tastiera)
 		disableMobile:true, // <-- Forza l'uso del tuo calendario elegante anche da smartphone
 		locale,
@@ -783,7 +885,7 @@
     // Tentativo “best effort” (se Google lo rispetta): hl=en/it su embed + link esterno
     const iframe=document.getElementById('mapsEmbed');
     const link=document.getElementById('directionsLink');
-    const hl=(lang==='en')?'en':'it';
+    const hl=(lang==='de')?'de':(lang==='en')?'en':'it';
     if(iframe){
       const base='https://www.google.com/maps?q=Marigold%20-%20Via%20dell%27Albola%2085%2C%20Riva%20del%20Garda&output=embed';
       iframe.src = base + '&hl=' + hl;
@@ -803,13 +905,18 @@
 
     const en = 'mailto:bbmarigold@gmail.com?subject=Information%20request%20-%20Marigold&body=Hello%20Marigold%2C%0A%0AI%20am%20planning%20a%20stay%20and%20would%20like%20to%20receive%20some%20information.%0A%0A-%20Check-in%3A%20____%0A-%20Check-out%3A%20____%0A-%20Number%20of%20guests%3A%20____%0A-%20Number%20of%20rooms%3A%20____%0A-%20Special%20requests%3A%20____%0A%0AThank%20you%21%0A%0AName%3A%20____%0APhone%20(optional)%3A%20____';
 
-    link.href = (lang === 'en') ? en : it;
+    const de = 'mailto:bbmarigold@gmail.com?subject=' + encodeURIComponent('Informationsanfrage - Marigold')
+      + '&body=' + encodeURIComponent('Hallo Marigold,\n\nich plane einen Aufenthalt und hätte gern einige Informationen.\n\n- Check-in: ____\n- Check-out: ____\n- Anzahl Gäste: ____\n- Anzahl Zimmer: ____\n- Besondere Wünsche: ____\n\nVielen Dank!\n\nName: ____\nTelefon (optional): ____');
+
+    link.href = (lang === 'de') ? de : (lang === 'en') ? en : it;
   }
 
   function setLang(lang){
+    lang=normLang(lang);
     localStorage.setItem('lang',lang); document.documentElement.lang=lang;
-    document.title=(lang==='en'?titles.en:titles.it);
-    document.querySelectorAll('.book-direct').forEach(a=>a.href=(lang==='en')?'https://marigold.kross.travel/en':'https://marigold.kross.travel/');
+    document.title=titles[lang]||titles.it;
+    document.querySelectorAll('.book-direct').forEach(a=>a.href=KROSS_HOME[lang]);
+    updateLangUI(lang);
     applyI18n(lang); setDatePlaceholder(lang); initDatepicker(lang); bindPrivacyLinks(); renderRooms(); setMapsLang(lang);
 
     // 🔧 FORZA AGGIORNAMENTO TESTI MENU MOBILE
@@ -875,10 +982,10 @@
     if(n===1){
       const kids=parseInt(childrenTot.value||'0',10);
       if(kids>0){
-        const lang=localStorage.getItem('lang')||'it';
+        const lang=getLang();
         for(let i=0;i<kids;i++){
           const box=document.createElement('div'); box.className='w-[120px]';
-          const label=document.createElement('label'); label.className='text-xs text-gray-500'; const agePrefix = (lang==='en' ? 'Child age' : 'Età bambino'); label.textContent = agePrefix+' '+(i+1);
+          const label=document.createElement('label'); label.className='text-xs text-gray-500'; const agePrefix = UI_TXT[lang].childAge; label.textContent = agePrefix+' '+(i+1);
           const defAge = (bookingState.inlineAges[i] ?? 6); const sel=makeAgeSelect(defAge); sel.setAttribute('data-inline-age', i);
           box.appendChild(label); box.appendChild(sel); inlineAges.appendChild(box);
         }
@@ -886,16 +993,16 @@
       roomsList.innerHTML='';
     } else {
       roomsList.innerHTML='';
-      const lang=localStorage.getItem('lang')||'it';
+      const lang=getLang();
       for(let r=1;r<=n;r++){
         const card=document.createElement('div'); card.className='border border-gray-200 rounded-lg p-3 bg-white mb-3';
-        const title=document.createElement('div'); title.className='font-semibold mb-2'; title.textContent=(lang==='en'?'Room':'Camera')+' '+r;
+        const title=document.createElement('div'); title.className='font-semibold mb-2'; title.textContent=UI_TXT[lang].room+' '+r;
         const grid=document.createElement('div'); grid.className='grid grid-cols-12 gap-2';
-        const adW=document.createElement('div'); adW.className='col-span-6'; const adL=document.createElement('label'); adL.className='text-xs text-gray-500'; adL.textContent=(lang==='en'?'Adults':'Adulti'); const adS=makeNumberSelect(1,4,(bookingState.roomAdults[r] ?? 2)); adS.setAttribute('data-room-adults', r); adW.appendChild(adL); adW.appendChild(adS);
-        const chW=document.createElement('div'); chW.className='col-span-6'; const chL=document.createElement('label'); chL.className='text-xs text-gray-500'; chL.textContent=(lang==='en'?'Children':'Bambini'); const chS=makeNumberSelect(0,4,(bookingState.roomChildren[r] ?? 0)); chS.setAttribute('data-room-children', r); chW.appendChild(chL); chW.appendChild(chS);
+        const adW=document.createElement('div'); adW.className='col-span-6'; const adL=document.createElement('label'); adL.className='text-xs text-gray-500'; adL.textContent=UI_TXT[lang].adults; const adS=makeNumberSelect(1,4,(bookingState.roomAdults[r] ?? 2)); adS.setAttribute('data-room-adults', r); adW.appendChild(adL); adW.appendChild(adS);
+        const chW=document.createElement('div'); chW.className='col-span-6'; const chL=document.createElement('label'); chL.className='text-xs text-gray-500'; chL.textContent=UI_TXT[lang].children; const chS=makeNumberSelect(0,4,(bookingState.roomChildren[r] ?? 0)); chS.setAttribute('data-room-children', r); chW.appendChild(chL); chW.appendChild(chS);
         grid.appendChild(adW); grid.appendChild(chW);
         const agesRow=document.createElement('div'); agesRow.className='col-span-12 flex flex-wrap gap-2 mt-2'; agesRow.setAttribute('data-room-ages', r);
-        function renderAges(){ agesRow.innerHTML=''; const k=parseInt(chS.value||'0',10); for(let i=0;i<k;i++){ const c=document.createElement('div'); c.style.width='120px'; const l=document.createElement('label'); l.className='text-xs text-gray-500'; const agePrefix = (lang==='en' ? 'Child age' : 'Età bambino'); l.textContent = agePrefix+' '+(i+1); const defAge = (bookingState.roomAges[r]?.[i] ?? 6); const s=makeAgeSelect(defAge); s.setAttribute('data-room-age', `${r}-${i}`); c.appendChild(l); c.appendChild(s); agesRow.appendChild(c);} }
+        function renderAges(){ agesRow.innerHTML=''; const k=parseInt(chS.value||'0',10); for(let i=0;i<k;i++){ const c=document.createElement('div'); c.style.width='120px'; const l=document.createElement('label'); l.className='text-xs text-gray-500'; const agePrefix = UI_TXT[lang].childAge; l.textContent = agePrefix+' '+(i+1); const defAge = (bookingState.roomAges[r]?.[i] ?? 6); const s=makeAgeSelect(defAge); s.setAttribute('data-room-age', `${r}-${i}`); c.appendChild(l); c.appendChild(s); agesRow.appendChild(c);} }
         chS.addEventListener('change',()=>{ renderAges(); updateTotals(); refreshBookingLinks(); });
         adS.addEventListener('change',()=>{ updateTotals(); refreshBookingLinks(); });
         renderAges(); card.appendChild(title); card.appendChild(grid); card.appendChild(agesRow); roomsList.appendChild(card);
@@ -919,7 +1026,7 @@
     const today=new Date(); const pad=n=>String(n).padStart(2,'0'); const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
     let f=from, t=to; if(!f||!t){ f=iso(today); const nx=new Date(today); nx.setDate(nx.getDate()+1); t=iso(nx); }
     const rooms=parseInt(roomsSel.value||'1',10);
-    const lang=(localStorage.getItem('lang')==='en'?'en':'it');
+    const lang=getLang();
 
     let A=parseInt(adultsTot.value||'2',10);
     let C=parseInt(childrenTot.value||'0',10);
@@ -941,25 +1048,23 @@
       }
     }
     const guests=A+C;
-    const params=new URLSearchParams({ adults:A, children:C, rooms, guests, n_guests:guests, guests_rooms:guestsRooms, kross_lang:lang, from:f, to:t });
+    const params=new URLSearchParams({ adults:A, children:C, rooms, guests, n_guests:guests, guests_rooms:guestsRooms, kross_lang:(KROSS_LANG[lang]||'it'), from:f, to:t });
     return `${KROSS_STEP1}?${params.toString()}`;
   }
 
   function refreshBookingLinks(){
-    const lang=(localStorage.getItem('lang')==='en'?'en':'it');
+    const lang=getLang();
     const url=buildKrossUrl();
     document.querySelectorAll('.book-param,#btnSearch').forEach(a=>a.setAttribute('href',url));
 
     // I bottoni "Prenota"/"Prenota Ora" portano con sé la ricerca SE ci sono le date,
     // altrimenti puntano alla home di Kross (nella lingua giusta).
-    const home = (lang==='en') ? 'https://marigold.kross.travel/en' : 'https://marigold.kross.travel/';
+    const home = KROSS_HOME[lang];
     const directUrl = (checkin.value && checkout.value) ? url : home;
     document.querySelectorAll('.book-direct').forEach(a=>a.setAttribute('href', directUrl));
 
     // WhatsApp precompilato (localizzato IT/EN)
-    const t = (lang==='en')
-      ? { hi:'Hello Marigold! Stay enquiry.', in:'Check-in', out:'Check-out', na:'(n/a)', room:'Room', adults:'Adults', children:'Children', ages:'ages' }
-      : { hi:'Ciao Marigold! Info soggiorno.', in:'Check-in', out:'Check-out', na:'(n.d.)', room:'Camera', adults:'Adulti', children:'Bambini', ages:'età' };
+    const t = WA_TXT[lang];
 
     const n=parseInt(roomsSel.value||'1',10);
     const lines=[];
@@ -1045,13 +1150,40 @@
 
   // Lingua
   function bindLangButtons(){
-    ['lang-it','lang-en','lang-it-m','lang-en-m'].forEach(id=>{
-      const el=document.getElementById(id);
-      if(!el) return;
-      el.addEventListener('click',()=>{
-        setLang(id.includes('en') ? 'en' : 'it');
-        // chiudi il menu mobile dopo la scelta
-        document.getElementById('mobile-menu')?.classList.add('hidden');
+    const switches=document.querySelectorAll('.lang-switch');
+    const closeAll=()=>switches.forEach(s=>{
+      s.querySelector('.lang-menu')?.classList.remove('open');
+      s.querySelector('.lang-btn')?.setAttribute('aria-expanded','false');
+    });
+    switches.forEach(sw=>{
+      const btn=sw.querySelector('.lang-btn'), menu=sw.querySelector('.lang-menu');
+      if(!btn||!menu) return;
+      btn.addEventListener('click',e=>{
+        e.stopPropagation();
+        const willOpen=!menu.classList.contains('open');
+        closeAll();
+        if(willOpen){ menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      });
+      menu.querySelectorAll('[data-lang]').forEach(opt=>{
+        opt.addEventListener('click',()=>{
+          setLang(opt.getAttribute('data-lang'));
+          closeAll();
+          document.getElementById('mobile-menu')?.classList.add('hidden');
+        });
+      });
+    });
+    document.addEventListener('click',closeAll);
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAll(); });
+  }
+
+  // Evidenzia la lingua attiva (etichetta del bottone + spunta nel menu)
+  function updateLangUI(lang){
+    document.querySelectorAll('.lang-switch').forEach(sw=>{
+      const cur=sw.querySelector('.lang-current'); if(cur) cur.textContent=lang.toUpperCase();
+      sw.querySelectorAll('[data-lang]').forEach(o=>{
+        const on=o.getAttribute('data-lang')===lang;
+        o.setAttribute('aria-selected', on?'true':'false');
+        o.classList.toggle('is-active', on);
       });
     });
   }
@@ -1067,21 +1199,22 @@
 
   // ===== Scelta lingua all'avvio (regola a priorità) =====
   // 1) Scelta esplicita salvata dall'utente -> ha la precedenza assoluta
-  // 2) Override via URL (?lang=it / ?lang=en) -> utile per link condivisi/campagne
-  // 3) Lingue del browser: se l'utente "parla" italiano -> IT, altrimenti EN
-  //    (un ospite straniero, es. tedesco/olandese, legge meglio l'inglese dell'italiano)
+  // 2) Override via URL (?lang=it / ?lang=en / ?lang=de) -> utile per link condivisi/campagne
+  // 3) Lingue del browser: italiano -> IT (regola invariata), altrimenti tedesco -> DE, altrimenti EN
   function detectLang(){
     const saved = localStorage.getItem('lang');
-    if(saved==='it' || saved==='en') return saved;
+    if(SUPPORTED_LANGS.includes(saved)) return saved;
 
     const urlLang = new URLSearchParams(location.search).get('lang');
-    if(urlLang==='it' || urlLang==='en') return urlLang;
+    if(SUPPORTED_LANGS.includes(urlLang)) return urlLang;
 
     const langs = (navigator.languages && navigator.languages.length)
       ? navigator.languages
       : [navigator.language || ''];
-    const speaksItalian = langs.some(l => (l||'').toLowerCase().startsWith('it'));
-    return speaksItalian ? 'it' : 'en';
+    const has = p => langs.some(l => (l||'').toLowerCase().startsWith(p));
+    if(has('it')) return 'it';
+    if(has('de')) return 'de';
+    return 'en';
   }
 
   const langInit = detectLang();
