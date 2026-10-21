@@ -301,6 +301,95 @@
 	    html{scroll-behavior:auto}
 	  }
 	</style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style id="glow-up">
+:root{--marigold:#f59e1b;--ember:#e8590c;--night:#22160f;--night2:#2f1f16;--paper:#f8f1e4;--ink:#2a1d15}
+body{font-family:'Instrument Sans',system-ui,sans-serif!important;background:var(--paper)!important;color:var(--ink)}
+.font-serif,h1,h2,h3.font-serif{font-family:'Fraunces',Georgia,serif!important;font-optical-sizing:auto;text-wrap:balance}
+body::before{background:radial-gradient(60vw 40vh at 85% -8%,rgba(245,158,27,.14),transparent 60%),radial-gradient(48vw 38vh at -6% 12%,rgba(255,174,163,.14),transparent 60%)}
+/* progress */
+#glowBar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--marigold),var(--ember));z-index:90}
+/* nav */
+#siteNav{background:rgba(248,241,228,.7)!important;box-shadow:none!important}
+#siteNav.nav-scrolled{background:rgba(248,241,228,.92)!important;box-shadow:0 1px 0 rgba(42,29,21,.1)!important}
+#siteNav .uppercase{text-transform:none!important;letter-spacing:.01em!important;font-weight:500!important;font-size:.95rem!important}
+#siteNav .btn-grad{font-weight:600}
+/* hero */
+header.hero-bg{min-height:92vh!important;align-items:flex-start!important;justify-content:flex-start!important;padding-top:10vh}
+.hero-media::after{background:linear-gradient(100deg,rgba(34,22,15,.82) 0%,rgba(34,22,15,.45) 55%,rgba(34,22,15,.15) 100%),linear-gradient(180deg,transparent 55%,rgba(34,22,15,.75) 100%)!important}
+.hero-content{text-align:left!important;margin:0 auto!important;max-width:80rem!important;width:100%;padding:0 1.5rem}
+.hero-content h1{font-size:clamp(3.1rem,9.2vw,8.6rem)!important;font-weight:300!important;line-height:.95!important;letter-spacing:-.035em!important;text-shadow:none!important}
+.hero-accent{font-style:italic;font-weight:400;background:linear-gradient(100deg,#ffd27a,#ff9b6b 60%,#ffb3a8);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.hero-content>p{margin-left:0!important;max-width:30rem!important;font-size:1.2rem!important;color:rgba(255,246,232,.88)!important;text-shadow:none!important}
+.hero-flower{position:absolute;right:-14vmin;top:-8vmin;width:78vmin;height:78vmin;z-index:1;opacity:.9;pointer-events:none;mix-blend-mode:screen;will-change:transform}
+.booking-card{margin-top:2.5rem;text-align:left;background:rgba(252,247,238,.96)!important;border-radius:1.6rem!important}
+.booking-card::before{display:none}
+.booking-card label{text-transform:none!important;font-size:.78rem!important;letter-spacing:.02em;color:#8a7a6c!important;font-weight:600}
+.booking-card input,.booking-card select{background:#fff!important;border-radius:.8rem!important;padding:.7rem .8rem!important}
+#btnSearch{border-radius:.8rem!important;background:var(--ink)!important;box-shadow:none!important;text-transform:none;letter-spacing:.01em}
+#btnSearch:hover{background:var(--ember)!important}
+#btnSearch::before,#btnSearch::after{display:none}
+/* titles */
+.title-accent::after{display:none}
+.title-accent{padding-bottom:0}
+section h2{font-weight:400!important;font-size:clamp(2.2rem,5vw,4rem)!important;letter-spacing:-.03em;line-height:1.02}
+.eyebrow{font-family:'Fraunces',serif;font-style:italic;text-transform:none!important;letter-spacing:0!important;font-size:1.15rem!important;color:var(--ember)!important;font-weight:400!important}
+/* about */
+#chi-siamo{padding-top:13rem!important;padding-bottom:6rem!important}
+#chi-siamo img{border-radius:12rem 12rem 1.2rem 1.2rem!important;box-shadow:0 40px 80px -40px rgba(42,29,21,.55)!important;aspect-ratio:4/5;object-fit:cover}
+#chi-siamo p{font-size:1.12rem;line-height:1.75;color:#5b4a3d!important;max-width:32rem}
+/* services */
+#servizi{background:var(--paper)!important;padding-top:5rem!important}
+#servizi .grid{gap:0!important}
+#servizi .grid>div{padding:2.2rem 1.5rem;border-top:1px solid rgba(42,29,21,.14);text-align:left!important}
+#servizi .grid>div .svc-ico{margin:0 0 1rem!important;background:transparent!important;box-shadow:none!important;width:auto;height:auto;justify-content:start;font-size:1.6rem;color:var(--ember)}
+#servizi .grid>div:hover .svc-ico{background:transparent!important;color:var(--marigold);box-shadow:none!important;transform:scale(1.15) rotate(-6deg)}
+#servizi h3{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:500}
+#servizi p{font-style:normal!important;color:#6d5c4e!important}
+#servizi h2{text-align:left!important;margin-bottom:2rem!important}
+/* distances */
+#distanze h3{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:1.6rem;color:#6d5c4e}
+.card-img{border-radius:1.6rem 1.6rem 6rem 1.6rem!important}
+.card-img img{height:340px!important}
+.card-img .tx .text-3xl{font-size:3.4rem!important;line-height:1;font-weight:300}
+/* rooms: dark stage */
+#camere{background:radial-gradient(70vw 50vh at 85% 0%,rgba(245,158,27,.16),transparent 60%),var(--night)!important;padding:7rem 0!important;color:#f8efe0}
+#camere h2{color:#fff4e2!important}
+#camere .text-center p{color:rgba(248,239,224,.65)!important}
+#camere article{background:rgba(255,244,226,.05)!important;border:1px solid rgba(255,244,226,.12);box-shadow:none!important;border-radius:1.6rem!important}
+#camere article:hover{border-color:rgba(245,158,27,.6);box-shadow:0 30px 60px -30px rgba(245,158,27,.35)!important}
+#camere article>div:first-child{height:15rem!important}
+#camere h3{color:#fff4e2}
+#camere .price-pill{background:transparent;color:var(--marigold);font-family:'Fraunces',serif;font-size:1.35rem;padding:0}
+#camere p.text-xs{text-transform:none!important;letter-spacing:0!important;font-size:.85rem!important;color:rgba(248,239,224,.6)!important}
+#camere .room-cta{background:var(--marigold)!important;color:var(--night)!important;border-radius:.8rem!important;text-transform:none!important;font-size:.9rem!important;padding:.7rem!important}
+#camere .room-cta:hover{background:#ffb94a!important}
+/* gallery */
+#galleria{background:var(--paper)!important;padding-top:6rem!important}
+.mySwiper{border-radius:2rem 2rem 8rem 2rem!important}
+.mySwiper img{height:min(70vh,560px)!important}
+/* todo */
+#da-fare{background:#efe4d0!important}
+#da-fare article{background:var(--paper)!important;box-shadow:none!important;border-radius:1.4rem!important}
+#da-fare article:nth-child(even){transform:translateY(2rem)}
+#da-fare article:nth-child(even):hover{transform:translateY(1.4rem)}
+#da-fare h3{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:500}
+#da-fare .grid{padding-bottom:2.5rem}
+/* contact + map + footer */
+#contatti{background:var(--paper)!important}
+#contatti a{border-radius:999px}
+section.h-\[520px\]{height:auto!important;min-height:520px}
+footer{background:var(--night)!important}
+footer h4{font-family:'Fraunces',serif;font-weight:500;font-size:1.1rem}
+@media(max-width:767px){
+ header.hero-bg{min-height:auto!important;padding-top:3rem;padding-bottom:7.5rem}
+ .hero-flower{width:95vw;height:95vw;right:-40vw;top:-10vw;opacity:.6}
+ #da-fare article:nth-child(even){transform:none}
+ section.h-\[520px\]{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){.hero-flower{transition:none}}
+</style>
 </head>
 <body class="font-sans text-dark bg-offwhite antialiased">
 
@@ -1254,5 +1343,40 @@
   })();
 </script>
 
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // fiore di calendula: 3 giri di petali
+  var host=document.querySelector('.hero-media');
+  if(host){
+    var petal='M0 0C-15 -28 -17 -70 0 -118C17 -70 15 -28 0 0Z', g='';
+    [[18,1,'url(#gp1)',.95],[18,.78,'url(#gp2)',.9],[12,.52,'url(#gp3)',.95]].forEach(function(l,k){
+      for(var i=0;i<l[0];i++){
+        g+='<path d="'+petal+'" transform="rotate('+(i*360/l[0]+k*9)+') scale('+l[1]+')" fill="'+l[2]+'" opacity="'+l[3]+'" stroke="rgba(120,40,0,.25)" stroke-width=".6"/>';
+      }
+    });
+    var d=document.createElement('div');d.className='hero-flower';d.setAttribute('aria-hidden','true');
+    d.innerHTML='<svg viewBox="-130 -130 260 260" width="100%" height="100%"><defs>'+
+      '<radialGradient id="gp1" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="#e8590c"/><stop offset="1" stop-color="#ffc24d"/></radialGradient>'+
+      '<radialGradient id="gp2" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="#f26a1b"/><stop offset="1" stop-color="#ffd166"/></radialGradient>'+
+      '<radialGradient id="gp3" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="#b23a07"/><stop offset="1" stop-color="#f59e1b"/></radialGradient>'+
+      '</defs>'+g+'<circle r="9" fill="#7a2a05"/></svg>';
+    host.appendChild(d);
+    var bar=document.createElement('div');bar.id='glowBar';document.body.appendChild(bar);
+    var bg=host,ticking=false;
+    function tick(){
+      var y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+      bar.style.transform='scaleX('+(h>0?y/h:0)+')';
+      if(!reduce){
+        d.style.transform='rotate('+(y*.06)+'deg) scale('+(1+Math.min(y,800)/2600)+')';
+      }
+      ticking=false;
+    }
+    addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(tick)}},{passive:true});
+    tick();
+  }
+})();
+</script>
 </body>
 </html>
