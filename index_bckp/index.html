@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" href="/assets/brand/favicon.png">
   <link rel="apple-touch-icon" href="/assets/brand/favicon.png">
   <meta name="theme-color" content="#ffaea3">
+  <link rel="preload" as="image" href="/assets/hero/facciata-marigold.jpg" fetchpriority="high">
 
   <!-- ===== Open Graph (anteprime WhatsApp / Facebook / LinkedIn) =====
        Per l'anteprima migliore usa un'immagine dedicata 1200x630px.
@@ -238,12 +239,13 @@
 	  .hero-bg{position:relative}                 /* no overflow clip on the header */
 	  .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden} /* only the background is clipped */
 	  .hero-media::before{content:"";position:absolute;inset:0;
-	    background:url('/assets/hero/facciata-marigold.jpg') center/cover no-repeat;
+	    background:url('/assets/hero/facciata-marigold.jpg') 58% 42%/cover no-repeat;
 	    transform:scale(1.12);animation:heroZoom 22s var(--ease) infinite alternate}
 	  .hero-media::after{content:"";position:absolute;inset:0;
 	    background:
 	      radial-gradient(80vw 60vh at 78% 6%, rgba(245,182,95,.30), transparent 55%),
-	      linear-gradient(180deg, rgba(36,20,12,.32) 0%, rgba(30,16,10,.40) 45%, rgba(22,12,8,.70) 100%)}
+	      linear-gradient(180deg, rgba(36,20,12,.38) 0%, rgba(30,16,10,.50) 45%, rgba(22,12,8,.72) 100%)}
+	  @media(max-width:767px){.hero-media::before{background-position:55% 40%}}
 	  .hero-content{position:relative;z-index:2}
 	  @keyframes heroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
 	  .hero-accent{font-style:italic;color:#fff}
