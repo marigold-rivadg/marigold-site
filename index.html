@@ -1254,5 +1254,124 @@
   })();
 </script>
 
+
+<!-- ===== WOW LAYER: effetti aggiuntivi, rimovibile eliminando questo blocco ===== -->
+<style>
+  #scrollBar{position:fixed;top:0;left:0;height:3px;width:100%;z-index:100;transform:scaleX(0);transform-origin:left;
+    background:linear-gradient(90deg,#f5b65f,#ff8d79,#f56a4f);box-shadow:0 0 12px rgba(245,106,79,.6);pointer-events:none}
+  .hero-accent{background:linear-gradient(100deg,#fff 0%,#ffe2c2 35%,#fff 50%,#ffd0c6 70%,#fff 100%);background-size:250% 100%;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite;
+    filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+  @keyframes shimmer{to{background-position:-250% 0}}
+  #heroFx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+  #heroFx i{position:absolute;bottom:-40px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,236,205,.95) 0%,rgba(255,200,150,.35) 45%,transparent 70%);
+    filter:blur(1px);opacity:0;animation:floatUp linear infinite;will-change:transform,opacity}
+  @keyframes floatUp{0%{transform:translate3d(0,0,0) scale(.6);opacity:0}15%{opacity:.9}100%{transform:translate3d(var(--dx),-95vh,0) scale(1.1);opacity:0}}
+  #scrollCue{position:absolute;left:50%;bottom:1.1rem;transform:translateX(-50%);z-index:3;color:#fff;opacity:.85;font-size:1.1rem;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,9px)}}
+  @media(max-width:767px){#scrollCue{display:none}}
+  .tilt{transform-style:preserve-3d;will-change:transform;transition:transform .5s var(--ease),box-shadow .4s var(--ease)}
+  .tilt.is-tilting{transition:transform .08s linear}
+  .tilt .glare{position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .3s;
+    background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.38),transparent 55%);mix-blend-mode:soft-light}
+  .tilt:hover .glare{opacity:1}
+  .tilt:hover{box-shadow:0 34px 60px -24px rgba(120,68,42,.55)}
+  .btn-grad{position:relative;overflow:hidden}
+  .btn-grad::after{content:"";position:absolute;top:0;left:-70%;width:50%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sheen 4.5s ease-in-out infinite}
+  @keyframes sheen{0%,55%{left:-70%}100%{left:140%}}
+  .btn-mag{transition:transform .35s var(--ease)}
+  #toTop{position:fixed;right:1.1rem;bottom:1.1rem;z-index:70;width:46px;height:46px;border:0;border-radius:50%;cursor:pointer;color:#fff;
+    background:var(--grad-coral);box-shadow:0 14px 28px -10px rgba(244,113,90,.7);opacity:0;transform:translateY(16px) scale(.85);pointer-events:none;
+    transition:opacity .3s var(--ease),transform .3s var(--ease)}
+  #toTop.show{opacity:1;transform:none;pointer-events:auto}
+  #toTop:hover{transform:translateY(-3px) scale(1.06)}
+  .title-accent::after{width:0;transition:width 1s var(--ease) .2s}
+  .is-visible .title-accent::after,.title-accent.in::after{width:64px}
+  [data-reveal-group]>*,[data-reveal]{will-change:transform,opacity}
+  .gal-zoom img{transition:transform .9s var(--ease),filter .6s}
+  .gal-zoom:hover img{transform:scale(1.07);filter:saturate(1.15)}
+  @media(prefers-reduced-motion:reduce){#heroFx,#scrollCue{display:none}.hero-accent,.btn-grad::after{animation:none}}
+</style>
+<div id="scrollBar" aria-hidden="true"></div>
+<button id="toTop" aria-label="Torna su"><i class="fas fa-arrow-up"></i></button>
+<script>
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // Barra progresso scroll + back-to-top (rAF throttled)
+  const bar=document.getElementById('scrollBar'), top=document.getElementById('toTop');
+  let tick=false;
+  function upd(){
+    const h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.transform='scaleX('+(h>0?Math.min(scrollY/h,1):0)+')';
+    top.classList.toggle('show',scrollY>700);
+    tick=false;
+  }
+  addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+  upd();
+  top.addEventListener('click',()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'}));
+
+  // Titoli: linea accento che si disegna quando entrano in vista
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.6});
+    document.querySelectorAll('.title-accent').forEach(t=>io.observe(t));
+  } else document.querySelectorAll('.title-accent').forEach(t=>t.classList.add('in'));
+
+  if(reduce) return;
+
+  // Hero: lucciole dorate + indicatore scroll
+  const media=document.querySelector('.hero-media');
+  if(media){
+    const fx=document.createElement('div'); fx.id='heroFx';
+    const n=innerWidth<768?10:22;
+    for(let i=0;i<n;i++){
+      const s=document.createElement('i'), sz=4+Math.random()*12;
+      s.style.cssText='left:'+Math.random()*100+'%;width:'+sz+'px;height:'+sz+'px;--dx:'+((Math.random()-.5)*160)+'px;animation-duration:'+(9+Math.random()*12)+'s;animation-delay:'+(-Math.random()*20)+'s';
+      fx.appendChild(s);
+    }
+    media.appendChild(fx);
+    const hero=media.parentElement, cue=document.createElement('a');
+    cue.id='scrollCue'; cue.href='#chi-siamo'; cue.setAttribute('aria-label','Scorri'); cue.innerHTML='<i class="fas fa-chevron-down"></i>';
+    hero.appendChild(cue);
+    if(fine) hero.addEventListener('mousemove',e=>{
+      const r=hero.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      fx.style.transform='translate('+(x*-26)+'px,'+(y*-18)+'px)';
+    });
+  }
+
+  if(!fine) return;
+
+  // Tilt 3D + riflesso luce su camere e card
+  document.querySelectorAll('#camere article, .card-img').forEach(el=>{
+    el.classList.add('tilt');
+    const g=document.createElement('span'); g.className='glare'; el.appendChild(g);
+    if(getComputedStyle(el).position==='static') el.style.position='relative';
+    el.addEventListener('mousemove',e=>{
+      const r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+      el.classList.add('is-tilting');
+      el.style.transform='perspective(900px) rotateX('+((.5-y)*7)+'deg) rotateY('+((x-.5)*9)+'deg) translateY(-6px)';
+      el.style.setProperty('--gx',x*100+'%'); el.style.setProperty('--gy',y*100+'%');
+    });
+    el.addEventListener('mouseleave',()=>{el.classList.remove('is-tilting');el.style.transform=''});
+  });
+
+  // Bottoni magnetici
+  document.querySelectorAll('.btn-grad, .room-cta').forEach(b=>{
+    b.classList.add('btn-mag');
+    b.addEventListener('mousemove',e=>{
+      const r=b.getBoundingClientRect();
+      b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.16)+'px,'+((e.clientY-r.top-r.height/2)*.28)+'px)';
+    });
+    b.addEventListener('mouseleave',()=>b.style.transform='');
+  });
+
+  // Galleria: zoom morbido
+  document.querySelectorAll('#galleria img').forEach(i=>{if(i.parentElement)i.parentElement.classList.add('gal-zoom')});
+})();
+</script>
+
 </body>
 </html>
