@@ -1349,24 +1349,12 @@
 
   if(reduce) return;
 
-  // Hero: lucciole dorate + indicatore scroll
+  // Hero: indicatore scroll
   const media=document.querySelector('.hero-media');
   if(media){
-    const fx=document.createElement('div'); fx.id='heroFx';
-    const n=innerWidth<768?10:22;
-    for(let i=0;i<n;i++){
-      const s=document.createElement('i'), sz=4+Math.random()*12;
-      s.style.cssText='left:'+Math.random()*100+'%;width:'+sz+'px;height:'+sz+'px;--dx:'+((Math.random()-.5)*160)+'px;animation-duration:'+(9+Math.random()*12)+'s;animation-delay:'+(-Math.random()*20)+'s';
-      fx.appendChild(s);
-    }
-    media.appendChild(fx);
     const hero=media.parentElement, cue=document.createElement('a');
     cue.id='scrollCue'; cue.href='#chi-siamo'; cue.setAttribute('aria-label','Scorri'); cue.innerHTML='<i class="fas fa-chevron-down"></i>';
     hero.appendChild(cue);
-    if(fine) hero.addEventListener('mousemove',e=>{
-      const r=hero.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-      fx.style.transform='translate('+(x*-26)+'px,'+(y*-18)+'px)';
-    });
   }
 
   if(!fine) return;
